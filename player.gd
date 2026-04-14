@@ -114,8 +114,9 @@ func _unhandled_input(event):
 	if Input.get_mouse_mode() != Input.MOUSE_MODE_CAPTURED:
 		return
 	if event is InputEventMouseMotion:
-		rotate_y(-event.relative.x * MOUSE_SENS_X)
-		head.rotate_x(-event.relative.y * MOUSE_SENS_Y)
+		var sens_scale = (30.0 / 90.0) if ads else 1.0
+		rotate_y(-event.relative.x * MOUSE_SENS_X * sens_scale)
+		head.rotate_x(-event.relative.y * MOUSE_SENS_Y * sens_scale)
 		head.rotation.x = clampf(head.rotation.x, -deg_to_rad(90), deg_to_rad(85))
 
 func _input(event):
