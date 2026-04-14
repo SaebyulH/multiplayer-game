@@ -55,12 +55,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 46.057144, 21.812206, 17.9738
 size = Vector3(44, 45.128296, 102.560486)
 
 [node name="CSGBox3D7" type="CSGBox3D" parent="CSGCombiner3D" unique_id=770057987]
-transform = Transform3D(0.9999888, 0, 0.0047298246, 0, 1, 0, -0.0047298246, 0, 0.9999888, 23.89471, -1.2676773, 5.0612435)
-size = Vector3(19.00586, 3.074768, 69)
+transform = Transform3D(0.9999888, 0, 0.0047298246, 0, 1, 0, -0.0047298246, 0, 0.9999888, 23.806013, -0.686533, 5.071486)
+size = Vector3(19.00586, 3.2658997, 69)
 
 [node name="CSGBox3D7" type="CSGBox3D" parent="CSGCombiner3D/CSGBox3D7" unique_id=250254913]
-transform = Transform3D(1.0000001, 0, 0, 0, 1, 0, 0, 0, 1.0000001, 5.5330696, 1.950779, -15.818375)
-size = Vector3(48.060547, 3.074768, 69)
+transform = Transform3D(1.0000037, 0.00041660538, -2.5227666e-05, -0.00041660396, 0.99999994, 3.5549427e-05, 2.523791e-05, -3.5542464e-05, 1.0000038, 5.533058, 1.938427, -15.81838)
+size = Vector3(48.060547, 3.050064, 69)
 
 [node name="CSGBox3D8" type="CSGBox3D" parent="CSGCombiner3D/CSGBox3D7" unique_id=740859491]
 transform = Transform3D(1.0000322, 0, -2.3748726e-08, 0, 1, 0, 2.3748726e-08, 0, 1.0000322, 22.630806, 0.1339817, -35.64974)
@@ -97,7 +97,7 @@ operation = 2
 size = Vector3(16.330421, 6.180176, 10.910339)
 
 [node name="CSGBox3D19" type="CSGBox3D" parent="CSGCombiner3D" unique_id=508841551]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32.36644, 4.0367117, 16.9906)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 29.70993, 3.1146376, 17.285809)
 operation = 2
 size = Vector3(5.8402405, 6.180176, 80.18347)
 
@@ -191,3 +191,7 @@ size = Vector3(19, 2.0010986, 1)
 [node name="CSGBox3D2" type="CSGBox3D" parent="." unique_id=621527901]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 10.908596, -9)
 size = Vector3(19, 2.11438, 1)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="." unique_id=1421304544]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -12.424709, 10.908596, 12.457122)
+size = Vector3(47.3208, 2.11438, 1)
