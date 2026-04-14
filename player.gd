@@ -55,8 +55,8 @@ const MIN_SLOPE_ANGLE = 5.0
 const MAX_SLOPE_ANGLE = 60.0
 
 # Camera tilt
-const SLIDE_TILT_AMOUNT = 0.2
-const SLIDE_TILT_SPEED = 8.0
+const SLIDE_TILT_AMOUNT = 1
+const SLIDE_TILT_SPEED = 0.2
 
 # Movement state vars
 var coyote_timer: float = 0.0
@@ -114,9 +114,8 @@ func _unhandled_input(event):
 	if Input.get_mouse_mode() != Input.MOUSE_MODE_CAPTURED:
 		return
 	if event is InputEventMouseMotion:
-		var sens_scale = (30.0 / 90.0) if ads else 1.0
-		rotate_y(-event.relative.x * MOUSE_SENS_X * sens_scale)
-		head.rotate_x(-event.relative.y * MOUSE_SENS_Y * sens_scale)
+		rotate_y(-event.relative.x * MOUSE_SENS_X)
+		head.rotate_x(-event.relative.y * MOUSE_SENS_Y)
 		head.rotation.x = clampf(head.rotation.x, -deg_to_rad(90), deg_to_rad(85))
 
 func _input(event):
