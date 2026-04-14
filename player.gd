@@ -104,12 +104,15 @@ func take_damage(amount: int, shooter_id: int):
 	print("I took damage! Health: ", health)
 	_update_hud()
 	if health <= 0:
-		# Tell the shooter they got a kill
-		_notify_kill.rpc_id(shooter_id)
+		# Find the shooter's player node and notify it
+		var shooter = get_parent().get_node_or_null(str(shooter_id))
+		if shooter:
+			shooter._notify_kill.rpc_id(shooter_id)
 		_die()
 	else:
-		# Tell the shooter they landed a hit
-		_notify_hit.rpc_id(shooter_id)
+		var shooter = get_parent().get_node_or_null(str(shooter_id))
+		if shooter:
+			shooter._notify_hit.rpc_id(shooter_id)
 
 # Called on the shooter's machine when their shot lands
 @rpc("any_peer", "call_local", "reliable")
