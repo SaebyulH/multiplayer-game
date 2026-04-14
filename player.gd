@@ -6,7 +6,7 @@ const JUMP_VELOCITY: float = 5.5
 # CS-like movement tuning
 const MAX_SPEED := 8.0
 const ACCEL := 40.0
-const AIR_ACCEL := 8.0
+const AIR_ACCEL := 0.0
 const FRICTION := 10.0
 const STOP_SPEED := 1.5
 var coyote_timer := 0.0
