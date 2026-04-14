@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://dcwoh2ee3wly2"]
 
-[ext_resource type="Script" uid="uid://l6xlch4jtdhe" path="res://gun.gd" id="1_5bb75"]
-[ext_resource type="PackedScene" uid="uid://yg2u62is0a7y" path="res://Leader _50.fbx" id="2_7oeqp"]
+[ext_resource type="Script" path="res://gun.gd" id="1_5bb75"]
+[ext_resource type="PackedScene" uid="uid://baesjaenr14ov" path="res://Double Deuce.fbx" id="2_5bb75"]
 
 [node name="Shotgun" type="Node3D" unique_id=345758277]
 script = ExtResource("1_5bb75")
@@ -65,24 +65,5 @@ target_position = Vector3(0, 0, -1000)
 collision_mask = 2
 collide_with_areas = true
 
-[node name="Leader _50" parent="." unique_id=1598665167 instance=ExtResource("2_7oeqp")]
-transform = Transform3D(-0.02546855, 0.21828248, -0.069880545, 0.035006545, -0.046378482, -0.30745128, -0.25470862, -0.028200416, -0.035267953, -0.09381533, -0.6549541, -1.0513766)
-
-[node name="Light" parent="Leader _50" index="0" unique_id=104521066]
-light_energy = 0.0
-
-[node name="Leader _51" parent="." unique_id=454277615 instance=ExtResource("2_7oeqp")]
-transform = Transform3D(-0.02546855, 0.21828248, -0.069880545, 0.035006545, -0.046378482, -0.30745128, -0.25470862, -0.028200416, -0.035267953, 0.09151607, -0.69527155, -1.0671245)
-
-[node name="Light" parent="Leader _51" index="0" unique_id=104521066]
-light_energy = 0.0
-
-[node name="Leader _52" parent="." unique_id=690512617 instance=ExtResource("2_7oeqp")]
-transform = Transform3D(-0.02546855, 0.21828248, -0.069880545, 0.035006545, -0.046378482, -0.30745128, -0.25470862, -0.028200416, -0.035267953, -0.0025628542, -0.67772657, -1.0336646)
-
-[node name="Light" parent="Leader _52" index="0" unique_id=104521066]
-light_energy = 0.0
-
-[editable path="Leader _50"]
-[editable path="Leader _51"]
-[editable path="Leader _52"]
+[node name="Double Deuce" parent="." unique_id=1063465238 instance=ExtResource("2_5bb75")]
+transform = Transform3D(-1.0490733e-08, 0, 0.29313236, 0, 0.40955845, 0, -0.24, 0, -1.2813222e-08, 0, -0.50819075, -0.67130685)
