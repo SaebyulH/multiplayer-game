@@ -3,7 +3,12 @@ class_name Player
 # Movement physics
 var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
 const JUMP_VELOCITY: float = 5.5
-
+# CS-like movement tuning
+const MAX_SPEED := 8.0
+const ACCEL := 40.0
+const AIR_ACCEL := 8.0
+const FRICTION := 10.0
+const STOP_SPEED := 1.5
 var coyote_timer := 0.0
 @export var guns: Array[Gun] = []
 var current_gun_index := 0
@@ -196,11 +201,18 @@ func _physics_process(delta):
 			velocity.y = 0
 
 	# ─── Horizontal movement (simple placeholder) ─────
-	var speed = 8
-	var dir = movement_direction
-	velocity.x = dir.x * speed
-	velocity.z = dir.z * speed
+	#var speed = 8
+	#var dir = movement_direction
+	#velocity.x = dir.x * speed
+	#velocity.z = dir.z * speed
+	var wish_dir = movement_direction
+	var wish_speed = MAX_SPEED
 
+	if is_on_floor():
+		_apply_friction(delta)
+		_accelerate(wish_dir, wish_speed, ACCEL, delta)
+	else:
+		_accelerate(wish_dir, wish_speed, AIR_ACCEL, delta)
 	# ─── Shooting ─────────────────────────────
 	if current_gun.automatic:
 		if Input.is_action_pressed("shoot") and can_shoot:
@@ -210,7 +222,35 @@ func _physics_process(delta):
 			_shoot()
 
 	move_and_slide()
+func _apply_friction(delta):
+	var speed = velocity.length()
+	if speed < 0.01:
+		return
 
+	var drop = 0.0
+
+	var control = max(speed, STOP_SPEED)
+	drop += control * FRICTION * delta
+
+	var new_speed = max(speed - drop, 0.0)
+	new_speed /= speed
+
+	velocity.x *= new_speed
+	velocity.z *= new_speed
+	
+func _accelerate(wish_dir: Vector3, wish_speed: float, accel: float, delta: float):
+	var current_speed = velocity.dot(wish_dir)
+	var add_speed = wish_speed - current_speed
+
+	if add_speed <= 0:
+		return
+
+	var accel_speed = accel * delta * wish_speed
+	if accel_speed > add_speed:
+		accel_speed = add_speed
+
+	velocity.x += accel_speed * wish_dir.x
+	velocity.z += accel_speed * wish_dir.z
 # ─── Movement Direction ───────────────────────────────────────────────────────
 func jump():
 	if is_on_floor() or coyote_timer > 0.0:
