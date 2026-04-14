@@ -137,6 +137,8 @@ func _input(event):
 		jump()
 
 func _physics_process(delta):
+	if global_position.y < -100:
+		_die()
 	if not is_multiplayer_authority():
 		return
 	
