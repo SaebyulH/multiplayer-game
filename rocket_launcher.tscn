@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://b5bdhcpoppi5y"]
+
+[ext_resource type="PackedScene" uid="uid://d3a25xx4xrpd0" path="res://gun.tscn" id="1_vfvja"]
+[ext_resource type="Script" uid="uid://dfeg447gk2yhg" path="res://rocket_launcher.gd" id="2_f4skl"]
+[ext_resource type="PackedScene" uid="uid://byya168eenpvh" path="res://rocket.tscn" id="3_c2pqj"]
+
+[node name="RocketLauncher" unique_id=345758277 instance=ExtResource("1_vfvja")]
+script = ExtResource("2_f4skl")
+rocket_scene = ExtResource("3_c2pqj")
+rocket_speed = 1.0
+explosion_damage = 50
+explosion_radius = 4.0
+
+[node name="Node3D" parent="." index="4" unique_id=890904197]
+transform = Transform3D(0.5364109, 0, 0, 0, 0.5364109, 0, 0, 0, 0.5364109, 0, -0.17848764, -0.16163851)
