@@ -259,8 +259,12 @@ func _physics_process(delta):
 	velocity = current_velocity
 	move_and_slide()
 	
-	if Input.is_action_pressed("shoot") and can_shoot and movement_mode != MovementMode.SLIDE:
-		_shoot()
+	if current_gun.automatic:	
+		if Input.is_action_pressed("shoot") and can_shoot and movement_mode != MovementMode.SLIDE:
+			_shoot()
+	else:
+		if Input.is_action_just_pressed("shoot") and can_shoot and movement_mode != MovementMode.SLIDE:
+			_shoot()
 
 # ─── Movement Direction ───────────────────────────────────────────────────────
 

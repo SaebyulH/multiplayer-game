@@ -7,6 +7,7 @@ class_name Gun
 @export var mag_size = 20
 @export var reload_rate = 1.0
 @export var bullet_hole_scene: PackedScene = preload("res://bullet_hole.tscn")
+@export var automatic = true
 
 var reload_time := 0.0
 var mag
