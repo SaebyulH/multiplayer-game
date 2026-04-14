@@ -11,7 +11,7 @@
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_0rwas"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kpjcp"]
-albedo_color = Color(0.38735604, 0, 0.14073187, 1)
+albedo_color = Color(0.11760362, 2.8878452e-07, 0.59663695, 1)
 emission = Color(0.7293818, 0.55274343, 0.20701948, 1)
 emission_energy_multiplier = 7.31
 
@@ -19,7 +19,7 @@ emission_energy_multiplier = 7.31
 height = 1.5
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cxr5p"]
-albedo_color = Color(1, 0.35684806, 0.5079961, 1)
+albedo_color = Color(0, 0.67975825, 0.8662698, 1)
 emission = Color(0.97597724, 0.3642801, 0.34752083, 1)
 emission_energy_multiplier = 16.0
 
@@ -32,9 +32,11 @@ albedo_color = Color(0, 0, 0, 1)
 emission = Color(0.97597724, 0.3642801, 0.34752083, 1)
 emission_energy_multiplier = 16.0
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dtqjt"]
-albedo_color = Color(0.25565878, 0.25565878, 0.25565878, 1)
-metallic = 1.0
+[sub_resource type="CylinderMesh" id="CylinderMesh_dtqjt"]
+top_radius = 0.0
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_5ncpa"]
+top_radius = 0.0
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_cxr5p"]
 radius = 0.34756088
@@ -82,16 +84,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7044293, 0)
 material_override = SubResource("StandardMaterial3D_cxr5p")
 mesh = SubResource("CapsuleMesh_cxr5p")
 
-[node name="EyeRight" type="MeshInstance3D" parent="." unique_id=1100476758]
-transform = Transform3D(0.18413943, 0, 0, 0, 0.18413943, 0, 0, 0, 0.18413943, 0.11629483, 0.764, -0.2232976)
-material_override = SubResource("StandardMaterial3D_5ncpa")
-mesh = SubResource("CapsuleMesh_cxr5p")
-
-[node name="EyeLeft" type="MeshInstance3D" parent="." unique_id=297424843]
-transform = Transform3D(0.18413943, 0, 0, 0, 0.18413943, 0, 0, 0, 0.18413943, -0.116, 0.764, -0.223)
-material_override = SubResource("StandardMaterial3D_5ncpa")
-mesh = SubResource("CapsuleMesh_cxr5p")
-
 [node name="Head" type="Node3D" parent="." unique_id=310579590]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.731, 0)
 
@@ -111,14 +103,15 @@ crit = 3.0
 [node name="Shotgun" parent="Head/GunSocket" unique_id=990368423 instance=ExtResource("4_dtqjt")]
 visible = false
 
-[node name="CSGSphere3D" type="CSGSphere3D" parent="Head" unique_id=1181435837]
-transform = Transform3D(0.5719682, 0, 0, 0, 0.45309138, -0.34907854, 0, 0.34907854, 0.45309138, 0, 0.013333321, 0.01673007)
-material = SubResource("StandardMaterial3D_dtqjt")
+[node name="EyeRight" type="MeshInstance3D" parent="Head" unique_id=1100476758]
+transform = Transform3D(0.14326082, 0.11568777, 0, -0.11568777, 0.14326082, 0, 0, 0, 0.18413942, 0.20910907, 0.1840353, -0.022616148)
+material_override = SubResource("StandardMaterial3D_5ncpa")
+mesh = SubResource("CylinderMesh_dtqjt")
 
-[node name="CSGBox3D" type="CSGBox3D" parent="Head/CSGSphere3D" unique_id=950704948]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.23950195, 0)
-operation = 2
-size = Vector3(1, 0.5209961, 1)
+[node name="EyeLeft" type="MeshInstance3D" parent="Head" unique_id=297424843]
+transform = Transform3D(0.15798377, -0.09459627, 0, 0.09459627, 0.15798377, 0, 0, 0, 0.18413942, -0.18289736, 0.20377898, -0.022318557)
+material_override = SubResource("StandardMaterial3D_5ncpa")
+mesh = SubResource("CylinderMesh_5ncpa")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1728018687]
 

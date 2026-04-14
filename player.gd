@@ -85,8 +85,8 @@ func _ready():
 	# Hide own model only for the owning client
 	if is_multiplayer_authority():
 		mesh.visible = false
-		$EyeRight.visible = false
-		$EyeLeft.visible = false
+		$Head/EyeRight.visible = false
+		$Head/EyeLeft.visible = false
 
 	if is_multiplayer_authority():
 		camera.make_current()
