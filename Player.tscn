@@ -109,7 +109,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.73080194, 0)
 
 [node name="AttackRaycast" type="RayCast3D" parent="Head/Camera3D" unique_id=1871601543]
 target_position = Vector3(0, 0, -1000)
-collision_mask = 3
+collision_mask = 2
 collide_with_areas = true
 
 [node name="CSGCombiner3D" type="CSGCombiner3D" parent="Head" unique_id=2003275331]
@@ -216,10 +216,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6519599, 0)
 shape = SubResource("SphereShape3D_e80uo")
 
 [node name="HeadHitbox" type="Area3D" parent="." unique_id=2071605120 groups=["head"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.68454164, 0)
 collision_layer = 2
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="HeadHitbox" unique_id=283319358]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0047561526, 0.71557635, 0.008369625)
 shape = SubResource("SphereShape3D_cxr5p")
 
 [node name="BodyHitbox" type="Area3D" parent="." unique_id=337833301]
