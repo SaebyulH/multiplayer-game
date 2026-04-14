@@ -37,6 +37,9 @@ const SLIDE_ENTRY_BOOST = 2.0
 const SLIDE_JUMP_POWER = 8.0
 const SLIDE_JUMP_ANGLE = 27.0
 
+const GUN_SLIDE_ROTATION = deg_to_rad(-35.0)
+const GUN_ROTATE_SPEED = 10.0
+
 const AIR_ACCEL = 20.0
 const AIR_MAX_SPEED = 5.0
 
@@ -53,10 +56,6 @@ const WALL_RUN_ASSIST = 0.4
 const SLOPE_ACCEL_MULTIPLIER = 5.0
 const MIN_SLOPE_ANGLE = 5.0
 const MAX_SLOPE_ANGLE = 60.0
-
-# Camera tilt
-const SLIDE_TILT_AMOUNT = 1
-const SLIDE_TILT_SPEED = 0.2
 
 # Movement state vars
 var coyote_timer: float = 0.0
@@ -78,9 +77,9 @@ var kills = 0
 
 # Nodes
 @onready var head = $Head
-@onready var camera_tilt = $Head/CameraTilt
-@onready var camera = $Head/CameraTilt/Camera3D
-@onready var raycast = $Head/CameraTilt/Camera3D/AttackRaycast
+@onready var gun = $Head/CSGCombiner3D
+@onready var camera = $Head/Camera3D
+@onready var raycast = $Head/Camera3D/AttackRaycast
 @onready var health_label = $CanvasLayer/VBoxContainer/HealthLabel
 @onready var health_bar = $CanvasLayer/VBoxContainer/HealthBar
 @onready var kills_label = $CanvasLayer/KillsLabel
@@ -155,7 +154,7 @@ func _physics_process(delta):
 	update_jump_cooldown_timer(delta)
 	update_movement_states()
 	apply_forces(delta)
-	update_camera_tilt(delta)
+	update_gun_rotation(delta)
 	
 	current_velocity = current_velocity.clamp(
 		Vector3(-999, -TERMINAL_VELOCITY, -999),
@@ -164,7 +163,7 @@ func _physics_process(delta):
 	velocity = current_velocity
 	move_and_slide()
 	
-	if Input.is_action_pressed("shoot") and can_shoot:
+	if Input.is_action_pressed("shoot") and can_shoot and movement_mode != MovementMode.SLIDE:
 		_shoot()
 
 # ─── Movement Direction ───────────────────────────────────────────────────────
@@ -178,18 +177,6 @@ func get_movement_direction() -> Vector3:
 	forward = forward.normalized()
 	right = right.normalized()
 	return (forward * input_dir.y + right * input_dir.x).normalized()
-
-# ─── Camera Tilt ──────────────────────────────────────────────────────────────
-
-func update_camera_tilt(delta: float):
-	var target_tilt := 0.0
-	if movement_mode == MovementMode.SLIDE:
-		var horiz_vel = Vector3(current_velocity.x, 0, current_velocity.z)
-		if horiz_vel.length() > 0.1:
-			var cam_right = camera.global_transform.basis.x
-			var lateral = horiz_vel.dot(cam_right)
-			target_tilt = -lateral / SLIDE_MAX_SPEED * SLIDE_TILT_AMOUNT
-	camera_tilt.rotation.z = lerp(camera_tilt.rotation.z, target_tilt, SLIDE_TILT_SPEED * delta)
 
 # ─── State Management ─────────────────────────────────────────────────────────
 
@@ -225,6 +212,14 @@ func update_movement_states():
 			return
 		if movement_state != MovementState.WALL_GLIDING:
 			movement_state = MovementState.IN_AIR
+			
+func update_gun_rotation(delta: float):
+	var target_rot = 0.0
+	
+	if movement_mode == MovementMode.SLIDE:
+		target_rot = GUN_SLIDE_ROTATION
+	
+	gun.rotation.x = lerp(gun.rotation.x, target_rot, GUN_ROTATE_SPEED * delta)
 
 # ─── Forces ───────────────────────────────────────────────────────────────────
 

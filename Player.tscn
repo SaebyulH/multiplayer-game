@@ -85,11 +85,9 @@ mesh = SubResource("CapsuleMesh_xhfnw")
 [node name="Head" type="Node3D" parent="." unique_id=310579590]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 
-[node name="CameraTilt" type="Node3D" parent="Head" unique_id=517543012]
+[node name="Camera3D" type="Camera3D" parent="Head" unique_id=1949569597]
 
-[node name="Camera3D" type="Camera3D" parent="Head/CameraTilt" unique_id=1949569597]
-
-[node name="AttackRaycast" type="RayCast3D" parent="Head/CameraTilt/Camera3D" unique_id=1871601543]
+[node name="AttackRaycast" type="RayCast3D" parent="Head/Camera3D" unique_id=1871601543]
 target_position = Vector3(0, 0, -1000)
 
 [node name="CSGCombiner3D" type="CSGCombiner3D" parent="Head" unique_id=2003275331]
