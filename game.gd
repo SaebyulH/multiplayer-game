@@ -31,12 +31,17 @@ func _spawn_player_on_all(peer_id: int):
 		print("Player already exists, skipping")
 		return
 	_spawn_player(peer_id)
-
+	
 func _spawn_player(peer_id: int):
 	var player = PLAYER_SCENE.instantiate()
 	player.name = str(peer_id)
 	player.set_multiplayer_authority(peer_id)
-	player.position = Vector3(randf_range(-3, 3), 1, randf_range(-3, 3))
+	
+	if peer_id == 1:
+		player.position = $HostPosition.position
+	else:
+		player.position = $ClientPosition.position
+	
 	add_child(player)
 	print("Player spawned locally for peer: ", peer_id, " on machine: ", multiplayer.get_unique_id())
 

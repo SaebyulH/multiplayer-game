@@ -1,11 +1,11 @@
 extends CharacterBody3D
 
-const SPEED = 5.0
+const SPEED = 15.0
 const JUMP_VELOCITY = 4.5
 const GRAVITY = 9.8
 const MOUSE_SENSITIVITY = 0.003
 const MAX_HEALTH = 100
-const DAMAGE = 25
+const DAMAGE = 125
 const FIRE_RATE = 0.5
 
 var health = MAX_HEALTH
