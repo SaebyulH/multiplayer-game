@@ -182,3 +182,5 @@ shape = SubResource("CapsuleShape3D_cxr5p")
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="." unique_id=1833801068]
 replication_config = SubResource("SceneReplicationConfig_tdg3f")
+
+[node name="Node3D" type="Node3D" parent="." unique_id=416578289]
