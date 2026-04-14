@@ -59,8 +59,33 @@ transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 10.1
 use_collision = true
 size = Vector3(23.31678, 10.596191, 5.90448)
 
+[node name="CSGBox3D10" type="CSGBox3D" parent="." unique_id=1356077108]
+transform = Transform3D(-0.7732208, 0, 0.63413686, 0, 1, 0, -0.63413686, 0, -0.7732208, 4.060207, 4.0464096, -8.539697)
+use_collision = true
+size = Vector3(39.196564, 2.2297363, 5.90448)
+
+[node name="CSGBox3D11" type="CSGBox3D" parent="." unique_id=441234675]
+transform = Transform3D(0.5454585, 0, 0.83813787, 0, 1, 0, -0.83813787, 0, 0.5454585, -1.9374585, 1.5938101, -10.92053)
+use_collision = true
+size = Vector3(39.196564, 2.2297363, 5.90448)
+
+[node name="CSGBox3D12" type="CSGBox3D" parent="." unique_id=939699359]
+transform = Transform3D(0.98974633, 0, 0.14283621, 0, 1, 0, -0.14283621, 0, 0.98974633, -1.9374585, -2.301444, 13.747209)
+use_collision = true
+size = Vector3(39.196564, 2.2297363, 5.90448)
+
+[node name="CSGBox3D13" type="CSGBox3D" parent="." unique_id=10052446]
+transform = Transform3D(0.98974633, 0, 0.14283621, 0, 1, 0, -0.14283621, 0, 0.98974633, -1.9374585, 0.9236345, 2.2298012)
+use_collision = true
+size = Vector3(39.196564, 2.2297363, 5.90448)
+
 [node name="CSGBox3D7" type="CSGBox3D" parent="." unique_id=1386561721]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -12.3828535, 1.178339, -3.5047188)
+use_collision = true
+size = Vector3(23.31678, 10.596191, 5.90448)
+
+[node name="CSGBox3D14" type="CSGBox3D" parent="." unique_id=662359636]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -12.3828535, 1.178339, -30.902788)
 use_collision = true
 size = Vector3(23.31678, 10.596191, 5.90448)
 

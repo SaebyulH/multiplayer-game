@@ -1,12 +1,12 @@
 extends CharacterBody3D
 
-const SPEED = 4.0
+const SPEED = 8.0
 const JUMP_VELOCITY = 10
 const GRAVITY = 9.8
 var MOUSE_SENSITIVITY = 0.003
 const MAX_HEALTH = 100
-const DAMAGE = 125
-const FIRE_RATE = 0.5
+const DAMAGE = 15
+const FIRE_RATE = 0.04
 
 var health = MAX_HEALTH
 var can_shoot = true
@@ -76,7 +76,7 @@ func _physics_process(delta):
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 		velocity.z = move_toward(velocity.z, 0, SPEED)
 	move_and_slide()
-	if Input.is_action_just_pressed("shoot") and can_shoot:
+	if Input.is_action_pressed("shoot") and can_shoot:
 		_shoot()
 
 func _shoot():
