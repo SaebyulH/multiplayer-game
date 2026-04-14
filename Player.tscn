@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://dgonpuubl7xqa" path="res://sniper.tscn" id="3_tdg3f"]
 [ext_resource type="PackedScene" uid="uid://dcwoh2ee3wly2" path="res://shotgun.tscn" id="4_dtqjt"]
 [ext_resource type="AudioStream" uid="uid://cklt78jqh12d7" path="res://critical-hit-sounds-effect.mp3" id="4_tdg3f"]
+[ext_resource type="PackedScene" uid="uid://b5bdhcpoppi5y" path="res://rocket_launcher.tscn" id="5_5ncpa"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_0rwas"]
 
@@ -57,7 +58,7 @@ properties/5/replication_mode = 1
 
 [node name="Player" type="CharacterBody3D" unique_id=1040195153 node_paths=PackedStringArray("guns")]
 script = ExtResource("1_xhfnw")
-guns = [NodePath("Head/GunSocket/Sniper"), NodePath("Head/GunSocket/Gun"), NodePath("Head/GunSocket/Shotgun")]
+guns = [NodePath("Head/GunSocket/Sniper"), NodePath("Head/GunSocket/Gun"), NodePath("Head/GunSocket/Shotgun"), NodePath("Head/GunSocket/RocketLauncher")]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=2097299770]
 shape = SubResource("CapsuleShape3D_0rwas")
@@ -88,6 +89,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0028017762, 0, 0.0015054939
 visible = false
 
 [node name="Shotgun" parent="Head/GunSocket" unique_id=990368423 instance=ExtResource("4_dtqjt")]
+visible = false
+
+[node name="RocketLauncher" parent="Head/GunSocket" unique_id=1499229624 instance=ExtResource("5_5ncpa")]
 visible = false
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1728018687]
@@ -182,5 +186,3 @@ shape = SubResource("CapsuleShape3D_cxr5p")
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="." unique_id=1833801068]
 replication_config = SubResource("SceneReplicationConfig_tdg3f")
-
-[node name="Node3D" type="Node3D" parent="." unique_id=416578289]
