@@ -444,6 +444,8 @@ func _shoot():
 	if hit is Area3D and hit.get_parent() and hit.get_parent().has_method("take_damage"):
 		if hit.is_in_group("head"):
 			hit.get_parent().take_damage.rpc_id(hit.get_multiplayer_authority(), DAMAGE * CRIT, multiplayer.get_unique_id())
+			kill_sound.play()
+			
 		else:
 			hit.get_parent().take_damage.rpc_id(hit.get_multiplayer_authority(), DAMAGE, multiplayer.get_unique_id())
 			
