@@ -4,6 +4,15 @@
 [ext_resource type="PackedScene" uid="uid://baesjaenr14ov" path="res://Double Deuce.fbx" id="2_5bb75"]
 [ext_resource type="PackedScene" uid="uid://bbc31s7tdy1pq" path="res://muzzle_flash.tscn" id="3_7oeqp"]
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7oeqp"]
+albedo_color = Color(0.38735604, 0, 0.14073187, 1)
+emission = Color(0.7293818, 0.55274343, 0.20701948, 1)
+emission_energy_multiplier = 7.31
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_a8mn3"]
+radius = 0.065
+height = 0.52
+
 [sub_resource type="Animation" id="Animation_a8mn3"]
 length = 0.001
 tracks/0/type = "value"
@@ -118,7 +127,7 @@ collision_mask = 2
 collide_with_areas = true
 
 [node name="AttackRaycast2" type="RayCast3D" parent="Raycasts" unique_id=827576581]
-transform = Transform3D(0.9999999, 0, 0, 0, 0.9986075, -0.052754268, 0, 0.052754268, 0.9986075, 0, 0, 0)
+transform = Transform3D(0.9999999, 0, 0, 0, 0.99262464, -0.12122837, 0, 0.12122837, 0.99262464, 0, 0, 0)
 target_position = Vector3(0, 0, -1000)
 collision_mask = 2
 collide_with_areas = true
@@ -130,37 +139,37 @@ collision_mask = 2
 collide_with_areas = true
 
 [node name="AttackRaycast4" type="RayCast3D" parent="Raycasts" unique_id=1808144348]
-transform = Transform3D(0.9991198, 0, -0.041945405, 0, 1, 0, 0.0419454, 0, 0.9991199, 0, 0, 0)
+transform = Transform3D(0.99656683, 0, -0.08279082, 0, 1, 0, 0.08279081, 0, 0.9965669, 0, 0, 0)
 target_position = Vector3(0, 0, -1000)
 collision_mask = 2
 collide_with_areas = true
 
 [node name="AttackRaycast5" type="RayCast3D" parent="Raycasts" unique_id=715740329]
-transform = Transform3D(0.99911976, -0.0022127992, -0.041886996, 0, 0.9986075, -0.052754268, 0.0419454, 0.052707836, 0.99772865, 0, 0, 0)
+transform = Transform3D(0.9965668, -0.004367569, -0.08267553, 7.63669e-11, 0.99860764, -0.05275428, 0.082790814, 0.052573167, 0.99517936, 0, 0, 0)
 target_position = Vector3(0, 0, -1000)
 collision_mask = 2
 collide_with_areas = true
 
 [node name="AttackRaycast6" type="RayCast3D" parent="Raycasts" unique_id=848720151]
-transform = Transform3D(0.99911976, 0.0019751675, -0.041898873, 0, 0.99889064, 0.047089007, 0.0419454, -0.047047563, 0.99801147, 0, 0, 0)
+transform = Transform3D(0.9965668, 0.0038985368, -0.08269896, -1.562588e-10, 0.99889064, 0.047089003, 0.08279081, -0.046927344, 0.99546134, 0, 0, 0)
 target_position = Vector3(0, 0, -1000)
 collision_mask = 2
 collide_with_areas = true
 
 [node name="AttackRaycast7" type="RayCast3D" parent="Raycasts" unique_id=855301121]
-transform = Transform3D(0.9992054, 0, 0.039852757, 0, 1, 0, -0.03985276, 0, 0.99920547, 0, 0, 0)
+transform = Transform3D(0.99743694, 0, 0.071549654, 0, 1, 0, -0.07154966, 0, 0.997437, 0, 0, 0)
 target_position = Vector3(0, 0, -1000)
 collision_mask = 2
 collide_with_areas = true
 
 [node name="AttackRaycast8" type="RayCast3D" parent="Raycasts" unique_id=10578314]
-transform = Transform3D(0.99920535, 0.0021024032, 0.03979727, 7.63669e-11, 0.99860764, -0.05275428, -0.039852757, 0.052712366, 0.99781424, 0, 0, 0)
+transform = Transform3D(0.997437, 0.0037745517, 0.071450055, -1.5627871e-10, 0.99860775, -0.052754287, -0.07154966, 0.052619077, 0.9960483, 0, 0, 0)
 target_position = Vector3(0, 0, -1000)
 collision_mask = 2
 collide_with_areas = true
 
 [node name="AttackRaycast9" type="RayCast3D" parent="Raycasts" unique_id=1841246161]
-transform = Transform3D(0.99920535, -0.0018766269, 0.03980855, -1.562588e-10, 0.99889064, 0.047089003, -0.039852753, -0.047051594, 0.99809706, 0, 0, 0)
+transform = Transform3D(0.9974369, -0.0033692026, 0.07147029, -0.0038157012, 0.99496454, 0.10015572, -0.07144785, -0.10017174, 0.99240166, 0, 0, 0)
 target_position = Vector3(0, 0, -1000)
 collision_mask = 2
 collide_with_areas = true
@@ -168,8 +177,18 @@ collide_with_areas = true
 [node name="Double Deuce" parent="." unique_id=1063465238 instance=ExtResource("2_5bb75")]
 transform = Transform3D(-8.742278e-09, 0, 0.19999997, 0, 0.2, 0, -0.2, 0, -8.742276e-09, 0, -0.50819075, -0.67130685)
 
-[node name="Light" parent="Double Deuce" index="0" unique_id=1887889902]
+[node name="Light" parent="Double Deuce" index="0" unique_id=496079405]
 light_energy = 0.0
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Double Deuce" unique_id=1694135652]
+transform = Transform3D(2.1090407, 4.2558646, -1.5619106, 0.33226597, 1.5729146, 4.734505, 4.521233, -2.1008468, 0.38065237, -1.8063478, -0.30339694, 0.6691578)
+material_override = SubResource("StandardMaterial3D_7oeqp")
+mesh = SubResource("CapsuleMesh_a8mn3")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Double Deuce" unique_id=2074180620]
+transform = Transform3D(-2.2591248, 4.278068, -1.2627311, 0.33226597, 1.5729146, 4.734505, 4.448141, 2.0552561, -0.9949738, -0.8365829, -0.27645922, -0.54304916)
+material_override = SubResource("StandardMaterial3D_7oeqp")
+mesh = SubResource("CapsuleMesh_a8mn3")
 
 [node name="Muzzle" type="Node3D" parent="." unique_id=1157123791]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.4188637, -1.2596198)

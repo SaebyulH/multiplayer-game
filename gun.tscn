@@ -102,6 +102,15 @@ properties/1/path = NodePath("Muzzle/MuzzleFlash:emitting")
 properties/1/spawn = true
 properties/1/replication_mode = 1
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kw0bs"]
+albedo_color = Color(0.38735604, 0, 0.14073187, 1)
+emission = Color(0.7293818, 0.55274343, 0.20701948, 1)
+emission_energy_multiplier = 7.31
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_8iju2"]
+radius = 0.065
+height = 0.52
+
 [node name="Gun" type="Node3D" unique_id=345758277]
 script = ExtResource("1_xcl07")
 crit = 5.0
@@ -131,3 +140,13 @@ transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, -0.17848764, -0.1616
 
 [node name="Sketchfab_Scene" parent="Node3D" unique_id=300043714 instance=ExtResource("2_kw0bs")]
 transform = Transform3D(-4.371139e-11, 0, 0.001, 0, 0.001, 0, -0.001, 0, -4.371139e-11, -0.0001089424, -0.07519734, -0.6976277)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Node3D" unique_id=2120421383]
+transform = Transform3D(4.5212326, -2.1008468, 0.3806524, 0.33226603, 1.5729147, 4.7345057, -2.109041, -4.255865, 1.5619109, 0.6736475, -0.5886758, 0.37791765)
+material_override = SubResource("StandardMaterial3D_kw0bs")
+mesh = SubResource("CapsuleMesh_8iju2")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Node3D" unique_id=1779344557]
+transform = Transform3D(4.448141, 2.0552557, -0.99497366, 0.33226603, 1.5729147, 4.7345057, 2.2591248, -4.278068, 1.2627313, -0.5430491, -0.5886759, 0.25666076)
+material_override = SubResource("StandardMaterial3D_kw0bs")
+mesh = SubResource("CapsuleMesh_8iju2")
