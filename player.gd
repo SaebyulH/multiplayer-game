@@ -4,11 +4,11 @@ class_name Player
 var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
 const JUMP_VELOCITY: float = 5.5
 # CS-like movement tuning
-const MAX_SPEED := 8.0
-const ACCEL := 40.0
+const MAX_SPEED := 7.0
+const ACCEL := 20.0
 const AIR_ACCEL := 4.0
-const FRICTION := 10.0
-const STOP_SPEED := 1.5
+const FRICTION := 7.0
+const STOP_SPEED := 2.5
 var coyote_timer := 0.0
 @export var guns: Array[Gun] = []
 var current_gun_index := 0
