@@ -1,10 +1,16 @@
-[gd_scene format=3 uid="uid://bqjmj4agtie2r"]
+[gd_scene format=3 uid="uid://d3a25xx4xrpd0"]
 
-[ext_resource type="Script" uid="uid://l6xlch4jtdhe" path="res://gun.gd" id="1_xcl07"]
-[ext_resource type="PackedScene" uid="uid://yg2u62is0a7y" path="res://Leader _50.fbx" id="2_dk5gl"]
+[ext_resource type="Script" path="res://gun.gd" id="1_xcl07"]
+[ext_resource type="PackedScene" uid="uid://dfiyx2mwdvwxe" path="res://low-poly_lahti_l39.glb" id="2_dk5gl"]
 
 [node name="Gun" type="Node3D" unique_id=345758277]
 script = ExtResource("1_xcl07")
+
+[node name="Sketchfab_Scene" parent="." unique_id=109490475 instance=ExtResource("2_dk5gl")]
+transform = Transform3D(-8.742278e-11, 0, 0.002, 0, 0.002, 0, -0.002, 0, -8.742278e-11, -0.5, -0.451, -1)
+
+[node name="Sketchfab_Scene2" parent="." unique_id=902165080 instance=ExtResource("2_dk5gl")]
+transform = Transform3D(-8.742278e-11, 0, 0.002, 0, 0.002, 0, -0.002, 0, -8.742278e-11, 0.5, -0.451, -1)
 
 [node name="Raycasts" type="Node3D" parent="." unique_id=832925510]
 
@@ -12,11 +18,3 @@ script = ExtResource("1_xcl07")
 target_position = Vector3(0, 0, -1000)
 collision_mask = 2
 collide_with_areas = true
-
-[node name="Leader _50" parent="." unique_id=1598665167 instance=ExtResource("2_dk5gl")]
-transform = Transform3D(-1.1293353e-08, 0, 0.3172592, 0.008403746, -0.22481082, 4.5107987e-10, 0.2582246, 0.007316316, 1.38604745e-08, -0.0016207248, -0.4340573, -1.0641127)
-
-[node name="Light" parent="Leader _50" index="0" unique_id=104521066]
-light_energy = 0.0
-
-[editable path="Leader _50"]
