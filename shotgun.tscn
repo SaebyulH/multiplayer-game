@@ -67,3 +67,8 @@ collide_with_areas = true
 
 [node name="Double Deuce" parent="." unique_id=1063465238 instance=ExtResource("2_5bb75")]
 transform = Transform3D(-1.0490733e-08, 0, 0.29313236, 0, 0.40955845, 0, -0.24, 0, -1.2813222e-08, 0, -0.50819075, -0.67130685)
+
+[node name="Light" parent="Double Deuce" index="0" unique_id=1887889902]
+light_energy = 0.0
+
+[editable path="Double Deuce"]
