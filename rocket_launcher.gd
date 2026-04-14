@@ -56,10 +56,6 @@ func _spawn_rocket(shooter_id: int, spawn_transform: Transform3D):
 
 		r.velocity = -spawn_transform.basis.z * rocket_speed
 
-		if multiplayer.is_server():
-			r.set_physics_process(true)
-		else:
-			r.set_physics_process(false)
 	else:
 		push_error("rocket_scene is not a Rocket")
 
