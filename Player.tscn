@@ -9,9 +9,17 @@
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_0rwas"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kpjcp"]
-albedo_color = Color(1, 0.35684806, 0.5079961, 1)
+albedo_color = Color(0.38735604, 0, 0.14073187, 1)
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_xhfnw"]
+height = 1.5
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cxr5p"]
+albedo_color = Color(1, 0.35684806, 0.5079961, 1)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_cxr5p"]
+radius = 0.25
+height = 0.5
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xhfnw"]
 albedo_color = Color(0.39181867, 0.39181864, 0.39181864, 1)
@@ -72,6 +80,12 @@ _data = {
 [sub_resource type="SphereShape3D" id="SphereShape3D_e80uo"]
 radius = 0.99999017
 
+[sub_resource type="SphereShape3D" id="SphereShape3D_cxr5p"]
+radius = 0.34756088
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_cxr5p"]
+height = 1.4765625
+
 [node name="Player" type="CharacterBody3D" unique_id=1040195153]
 script = ExtResource("1_xhfnw")
 
@@ -79,16 +93,24 @@ script = ExtResource("1_xhfnw")
 shape = SubResource("CapsuleShape3D_0rwas")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1616540823]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.27725387, 0)
 material_override = SubResource("StandardMaterial3D_kpjcp")
 mesh = SubResource("CapsuleMesh_xhfnw")
 
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="." unique_id=2026089259]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7044293, 0)
+material_override = SubResource("StandardMaterial3D_cxr5p")
+mesh = SubResource("CapsuleMesh_cxr5p")
+
 [node name="Head" type="Node3D" parent="." unique_id=310579590]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.73080194, 0)
 
 [node name="Camera3D" type="Camera3D" parent="Head" unique_id=1949569597]
 
 [node name="AttackRaycast" type="RayCast3D" parent="Head/Camera3D" unique_id=1871601543]
 target_position = Vector3(0, 0, -1000)
+collision_mask = 3
+collide_with_areas = true
 
 [node name="CSGCombiner3D" type="CSGCombiner3D" parent="Head" unique_id=2003275331]
 transform = Transform3D(1, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, 0.12826478, 0, -0.5170328)
@@ -97,7 +119,7 @@ material_override = SubResource("StandardMaterial3D_xhfnw")
 [node name="Leader _50" parent="Head/CSGCombiner3D" unique_id=482514637 instance=ExtResource("2_cxr5p")]
 transform = Transform3D(-1.1293354e-08, 0, 0.3172592, 0, 0.22492985, 0, -0.25836134, 0, -1.3867816e-08, -0.1328203, -0.4340573, -0.508076)
 
-[node name="Light" parent="Head/CSGCombiner3D/Leader _50" index="0" unique_id=633882731]
+[node name="Light" parent="Head/CSGCombiner3D/Leader _50" index="0" unique_id=104521066]
 light_energy = 0.0
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="." unique_id=640499472]
@@ -192,5 +214,19 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6519599, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="MagneticRange" unique_id=661632718]
 shape = SubResource("SphereShape3D_e80uo")
+
+[node name="HeadHitbox" type="Area3D" parent="." unique_id=2071605120]
+collision_layer = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="HeadHitbox" unique_id=283319358]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0047561526, 0.71557635, 0.008369625)
+shape = SubResource("SphereShape3D_cxr5p")
+
+[node name="BodyHitbox" type="Area3D" parent="." unique_id=337833301]
+collision_layer = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="BodyHitbox" unique_id=769585010]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.26171875, 0)
+shape = SubResource("CapsuleShape3D_cxr5p")
 
 [editable path="Head/CSGCombiner3D/Leader _50"]

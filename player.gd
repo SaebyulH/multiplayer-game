@@ -7,8 +7,9 @@ const MOUSE_SENS_Y: float = 0.002
 
 # Stats
 const MAX_HEALTH = 100
-const DAMAGE = 15
-const FIRE_RATE = 0.04
+const DAMAGE = 10
+const CRIT = 3.0
+const FIRE_RATE = 0.08
 
 # Movement modes
 enum MovementMode { WALK, SLIDE }
@@ -439,8 +440,13 @@ func _shoot():
 	var hit = raycast.get_collider()
 	if hit == null or hit == self:
 		return
-	if hit is CharacterBody3D and hit.has_method("take_damage"):
-		hit.take_damage.rpc_id(hit.get_multiplayer_authority(), DAMAGE, multiplayer.get_unique_id())
+	
+	if hit is Area3D and hit.get_parent().has_method("take_damage"):
+		if hit.is_in_group("head"):
+			hit.take_damage.rpc_id(hit.get_multiplayer_authority(), DAMAGE * CRIT, multiplayer.get_unique_id())
+		else:
+			hit.take_damage.rpc_id(hit.get_multiplayer_authority(), DAMAGE, multiplayer.get_unique_id())
+			
 
 @rpc("any_peer", "call_local", "reliable")
 func take_damage(amount: int, shooter_id: int):
