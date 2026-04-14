@@ -56,7 +56,7 @@ const MAX_SLOPE_ANGLE = 60.0
 
 # Camera tilt
 const SLIDE_TILT_AMOUNT = 1
-const SLIDE_TILT_SPEED = 8.0
+const SLIDE_TILT_SPEED = 0.2
 
 # Movement state vars
 var coyote_timer: float = 0.0
