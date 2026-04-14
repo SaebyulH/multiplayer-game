@@ -8,6 +8,7 @@ var current_gun: Gun
 # Mouse
 const MOUSE_SENS_X: float = 0.002
 const MOUSE_SENS_Y: float = 0.002
+@onready var mesh: MeshInstance3D = $MeshInstance3D
 
 # Stats
 const MAX_HEALTH = 100
@@ -122,7 +123,17 @@ func equip_gun(index: int):
 	_update_hud()
 
 func _ready():
-	$MeshInstance3D.hide()
+	# Hide own model only for the owning client
+	if is_multiplayer_authority():
+		mesh.visible = false
+
+	if is_multiplayer_authority():
+		camera.make_current()
+		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	else:
+		camera.current = false
+		$CanvasLayer.visible = false
+	#$MeshInstance3D.hide()
 	if is_multiplayer_authority():
 		camera.make_current()
 		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
