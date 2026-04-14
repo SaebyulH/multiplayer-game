@@ -104,8 +104,9 @@ properties/1/replication_mode = 1
 [node name="Shotgun" type="Node3D" unique_id=345758277]
 script = ExtResource("1_5bb75")
 damage = 15
-fire_rate = 1.5
-mag_size = 5
+fire_rate = 0.1
+mag_size = 2
+reload_rate = 0.8
 
 [node name="Raycasts" type="Node3D" parent="." unique_id=832925510]
 
@@ -166,7 +167,7 @@ collide_with_areas = true
 [node name="Double Deuce" parent="." unique_id=1063465238 instance=ExtResource("2_5bb75")]
 transform = Transform3D(-8.742278e-09, 0, 0.19999997, 0, 0.2, 0, -0.2, 0, -8.742276e-09, 0, -0.50819075, -0.67130685)
 
-[node name="Light" parent="Double Deuce" index="0" unique_id=496079405]
+[node name="Light" parent="Double Deuce" index="0" unique_id=1887889902]
 light_energy = 0.0
 
 [node name="Muzzle" type="Node3D" parent="." unique_id=1157123791]

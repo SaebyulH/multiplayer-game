@@ -104,6 +104,7 @@ properties/1/replication_mode = 1
 
 [node name="Gun" type="Node3D" unique_id=345758277]
 script = ExtResource("1_xcl07")
+crit = 5.0
 automatic = false
 
 [node name="Raycasts" type="Node3D" parent="." unique_id=832925510]
