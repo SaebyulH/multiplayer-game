@@ -30,7 +30,7 @@ const WALK_FRICTION = 30.0
 const WALK_JUMP_POWER = 8.0
 const WALK_JUMP_ANGLE = 10.0
 
-const SLIDE_MAX_SPEED = 20.0
+const SLIDE_MAX_SPEED = 10.0
 const SLIDE_ACCEL = 4.0
 const SLIDE_FRICTION = 5.0
 const SLIDE_ENTRY_BOOST = 2.0
@@ -54,6 +54,10 @@ const SLOPE_ACCEL_MULTIPLIER = 5.0
 const MIN_SLOPE_ANGLE = 5.0
 const MAX_SLOPE_ANGLE = 60.0
 
+# Camera tilt
+const SLIDE_TILT_AMOUNT = 1
+const SLIDE_TILT_SPEED = 8.0
+
 # Movement state vars
 var coyote_timer: float = 0.0
 var jump_cooldown_timer: float = 0.2
@@ -74,8 +78,9 @@ var kills = 0
 
 # Nodes
 @onready var head = $Head
-@onready var camera = $Head/Camera3D
-@onready var raycast = $Head/Camera3D/AttackRaycast
+@onready var camera_tilt = $Head/CameraTilt
+@onready var camera = $Head/CameraTilt/Camera3D
+@onready var raycast = $Head/CameraTilt/Camera3D/AttackRaycast
 @onready var health_label = $CanvasLayer/VBoxContainer/HealthLabel
 @onready var health_bar = $CanvasLayer/VBoxContainer/HealthBar
 @onready var kills_label = $CanvasLayer/KillsLabel
@@ -147,6 +152,7 @@ func _physics_process(delta):
 	update_jump_cooldown_timer(delta)
 	update_movement_states()
 	apply_forces(delta)
+	update_camera_tilt(delta)
 	
 	current_velocity = current_velocity.clamp(
 		Vector3(-999, -TERMINAL_VELOCITY, -999),
@@ -169,6 +175,18 @@ func get_movement_direction() -> Vector3:
 	forward = forward.normalized()
 	right = right.normalized()
 	return (forward * input_dir.y + right * input_dir.x).normalized()
+
+# ─── Camera Tilt ──────────────────────────────────────────────────────────────
+
+func update_camera_tilt(delta: float):
+	var target_tilt := 0.0
+	if movement_mode == MovementMode.SLIDE:
+		var horiz_vel = Vector3(current_velocity.x, 0, current_velocity.z)
+		if horiz_vel.length() > 0.1:
+			var cam_right = camera.global_transform.basis.x
+			var lateral = horiz_vel.dot(cam_right)
+			target_tilt = -lateral / SLIDE_MAX_SPEED * SLIDE_TILT_AMOUNT
+	camera_tilt.rotation.z = lerp(camera_tilt.rotation.z, target_tilt, SLIDE_TILT_SPEED * delta)
 
 # ─── State Management ─────────────────────────────────────────────────────────
 
