@@ -147,11 +147,11 @@ func _connect_gun(gun_instance: Gun):
 			ammo_label.text = "Ammo: %d/%d" % [current, max]
 	)
 
-	#gun_instance.shot_fired.connect(func():
-		#if gun_instance == current_gun:
+	gun_instance.shot_fired.connect(func():
+		if gun_instance == current_gun:
 			#current_gun.play("shoot")
-			#shoot_sound.play()
-	#)
+			shoot_sound.play()
+	)
 
 	gun_instance.hit_confirmed.connect(func():
 		if gun_instance == current_gun:
