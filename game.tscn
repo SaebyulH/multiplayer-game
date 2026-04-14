@@ -55,7 +55,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 46.057144, 21.812206, 17.9738
 size = Vector3(44, 45.128296, 102.560486)
 
 [node name="CSGBox3D7" type="CSGBox3D" parent="CSGCombiner3D" unique_id=770057987]
-transform = Transform3D(0.9999888, 0, 0.0047298246, 0, 1, 0, -0.0047298246, 0, 0.9999888, 23.806013, -0.686533, 5.071486)
+transform = Transform3D(0.9999888, 0, 0.0047298246, 0, 1, 0, -0.0047298246, 0, 0.9999888, 25.080088, -1.3867292, 3.5650582)
 size = Vector3(19.00586, 3.2658997, 69)
 
 [node name="CSGBox3D7" type="CSGBox3D" parent="CSGCombiner3D/CSGBox3D7" unique_id=250254913]
@@ -81,20 +81,25 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.217825, -2.1203098, 28.1377
 operation = 2
 size = Vector3(5.8679543, 3.7493896, 56.10486)
 
+[node name="CSGBox3D34" type="CSGBox3D" parent="CSGCombiner3D" unique_id=1454340569]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.9933662, -2.1203098, 26.447449)
+operation = 2
+size = Vector3(40.547935, 3.7493896, 7.900482)
+
 [node name="CSGBox3D31" type="CSGBox3D" parent="CSGCombiner3D" unique_id=189980320]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.2244797, -2.1203098, 3.7079506)
 operation = 2
 size = Vector3(40.066086, 3.7493896, 7.2453003)
 
 [node name="CSGBox3D32" type="CSGBox3D" parent="CSGCombiner3D" unique_id=863235942]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23.516453, -2.1163368, 10.239763)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23.516453, -2.1163368, 12.051825)
 operation = 2
-size = Vector3(6.0988026, 3.7493896, 20.25859)
+size = Vector3(6.0988026, 3.7493896, 23.882713)
 
 [node name="CSGBox3D33" type="CSGBox3D" parent="CSGCombiner3D" unique_id=1189374017]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.350766, -2.1163368, 10.239763)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.350766, -2.1163368, 12.005926)
 operation = 2
-size = Vector3(6.0988026, 3.7493896, 20.25859)
+size = Vector3(6.0988026, 3.7493896, 23.790916)
 
 [node name="CSGBox3D12" type="CSGBox3D" parent="CSGCombiner3D" unique_id=1496716291]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.7694836, 4.0367117, 48.128235)
