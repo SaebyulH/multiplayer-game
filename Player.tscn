@@ -22,23 +22,6 @@ albedo_color = Color(1, 0.35684806, 0.5079961, 1)
 radius = 0.25
 height = 0.5
 
-[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_kpjcp"]
-properties/0/path = NodePath(".:position")
-properties/0/spawn = true
-properties/0/replication_mode = 1
-properties/1/path = NodePath(".:rotation")
-properties/1/spawn = true
-properties/1/replication_mode = 1
-properties/2/path = NodePath("Head:rotation")
-properties/2/spawn = true
-properties/2/replication_mode = 1
-properties/3/path = NodePath("Head/CSGCombiner3D:rotation")
-properties/3/spawn = true
-properties/3/replication_mode = 1
-properties/4/path = NodePath("Head/GunSocket:rotation")
-properties/4/spawn = true
-properties/4/replication_mode = 1
-
 [sub_resource type="Animation" id="Animation_xhfnw"]
 length = 0.001
 tracks/0/type = "value"
@@ -101,6 +84,20 @@ radius = 0.34756088
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_cxr5p"]
 height = 1.4765625
 
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_tdg3f"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+properties/1/path = NodePath(".:rotation")
+properties/1/spawn = true
+properties/1/replication_mode = 1
+properties/2/path = NodePath("Head:rotation")
+properties/2/spawn = true
+properties/2/replication_mode = 1
+properties/3/path = NodePath("Head/GunSocket:rotation")
+properties/3/spawn = true
+properties/3/replication_mode = 1
+
 [node name="Player" type="CharacterBody3D" unique_id=1040195153 node_paths=PackedStringArray("guns")]
 script = ExtResource("1_xhfnw")
 guns = [NodePath("Head/GunSocket/Sniper"), NodePath("Head/GunSocket/Gun")]
@@ -129,9 +126,6 @@ transform = Transform3D(0.9999999, 0, 0, 0, 1, 0, 0, 0, 1.0000001, 0, 0, 0)
 [node name="Sniper" parent="Head/GunSocket" unique_id=345758277 instance=ExtResource("3_tdg3f")]
 
 [node name="Gun" parent="Head/GunSocket" unique_id=235050932 instance=ExtResource("2_tdg3f")]
-
-[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="." unique_id=640499472]
-replication_config = SubResource("SceneReplicationConfig_kpjcp")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1728018687]
 
@@ -252,3 +246,6 @@ collision_layer = 2
 [node name="CollisionShape3D" type="CollisionShape3D" parent="BodyHitbox" unique_id=769585010]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.26171875, 0)
 shape = SubResource("CapsuleShape3D_cxr5p")
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="." unique_id=1833801068]
+replication_config = SubResource("SceneReplicationConfig_tdg3f")
