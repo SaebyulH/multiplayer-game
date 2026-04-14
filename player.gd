@@ -96,8 +96,14 @@ func _update_hud():
 	health_label.text = "HP: " + str(health)
 	health_bar.value = health
 
+@rpc("any_peer", "call_local", "reliable")
+func set_position_on_all(pos: Vector3):
+	position = pos
+
 func _die():
 	print("I died!")
 	health = MAX_HEALTH
-	position = Vector3(randf_range(-3, 3), 1, randf_range(-3, 3))
 	_update_hud()
+	# Tell the server to respawn us at the correct spawn point
+	var game = get_parent()
+	game.respawn_player.rpc_id(1, int(name))

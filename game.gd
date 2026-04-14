@@ -56,3 +56,17 @@ func _on_peer_connected(peer_id: int):
 	for child in get_children():
 		if child is CharacterBody3D:
 			_spawn_player_on_all.rpc_id(peer_id, child.name.to_int())
+			
+@rpc("any_peer", "call_local", "reliable")
+func respawn_player(peer_id: int):
+	if not multiplayer.is_server():
+		return
+	var player = get_node_or_null(str(peer_id))
+	if player == null:
+		return
+	var pos
+	if peer_id == 1:
+		pos = $HostPosition.position
+	else:
+		pos = $ClientPosition.position
+	player.set_position_on_all.rpc(pos)
