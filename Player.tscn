@@ -1,9 +1,9 @@
 [gd_scene format=3 uid="uid://dbiptpnc576os"]
 
 [ext_resource type="Script" uid="uid://bwg0f7q25waie" path="res://player.gd" id="1_xhfnw"]
-[ext_resource type="AudioStream" uid="uid://lok0qio71yk6" path="res://multiplayer-game/Sniper_bazaarbargain_shoot.wav" id="2_e80uo"]
-[ext_resource type="AudioStream" uid="uid://8iccnkcb310w" path="res://multiplayer-game/Hitsound.wav" id="3_cxr5p"]
-[ext_resource type="AudioStream" uid="uid://cklt78jqh12d7" path="res://multiplayer-game/critical-hit-sounds-effect.mp3" id="4_tdg3f"]
+[ext_resource type="AudioStream" uid="uid://lok0qio71yk6" path="res://Sniper_bazaarbargain_shoot.wav" id="2_e80uo"]
+[ext_resource type="AudioStream" uid="uid://8iccnkcb310w" path="res://Hitsound.wav" id="3_cxr5p"]
+[ext_resource type="AudioStream" uid="uid://cklt78jqh12d7" path="res://critical-hit-sounds-effect.mp3" id="4_tdg3f"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_0rwas"]
 
@@ -84,7 +84,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 [node name="Camera3D" type="Camera3D" parent="Head" unique_id=1949569597]
 
 [node name="AttackRaycast" type="RayCast3D" parent="Head/Camera3D" unique_id=1871601543]
-target_position = Vector3(0, 0, -3)
+target_position = Vector3(0, 0, -10)
 
 [node name="CSGCombiner3D" type="CSGCombiner3D" parent="Head" unique_id=2003275331]
 transform = Transform3D(1, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, 0.12826478, 0, -0.5170328)
