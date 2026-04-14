@@ -38,6 +38,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.156206, 12.744419, -4.0963
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -29.860628, 9.598574, -3.3377721)
 
 [node name="CSGCombiner3D" type="CSGCombiner3D" parent="." unique_id=345663770]
+use_collision = true
 
 [node name="CSGBox3D" type="CSGBox3D" parent="CSGCombiner3D" unique_id=429483313]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.743042, -5.772705, -2.7047424)
