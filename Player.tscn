@@ -11,12 +11,18 @@
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kpjcp"]
 albedo_color = Color(0.38735604, 0, 0.14073187, 1)
+emission_enabled = true
+emission = Color(0.7293818, 0.55274343, 0.20701948, 1)
+emission_energy_multiplier = 7.31
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_xhfnw"]
 height = 1.5
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cxr5p"]
 albedo_color = Color(1, 0.35684806, 0.5079961, 1)
+emission_enabled = true
+emission = Color(0.97597724, 0.3642801, 0.34752083, 1)
+emission_energy_multiplier = 16.0
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_cxr5p"]
 radius = 0.25
@@ -122,7 +128,7 @@ material_override = SubResource("StandardMaterial3D_cxr5p")
 mesh = SubResource("CapsuleMesh_cxr5p")
 
 [node name="Head" type="Node3D" parent="." unique_id=310579590]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.73080194, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.73080194, -0.5232969)
 
 [node name="Camera3D" type="Camera3D" parent="Head" unique_id=1949569597]
 
@@ -132,6 +138,7 @@ transform = Transform3D(0.9999999, 0, 0, 0, 1, 0, 0, 0, 1.0000001, 0, 0, 0)
 [node name="Sniper" parent="Head/GunSocket" unique_id=345758277 instance=ExtResource("3_tdg3f")]
 
 [node name="Gun" parent="Head/GunSocket" unique_id=235050932 instance=ExtResource("2_tdg3f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0028017762, 0, 0.0015054939)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1728018687]
 
