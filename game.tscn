@@ -1,29 +1,23 @@
 [gd_scene format=3 uid="uid://cyi1st5yo8ukd"]
 
 [ext_resource type="Script" uid="uid://iefbpqgwinon" path="res://game.gd" id="1_80nbo"]
+[ext_resource type="Texture2D" uid="uid://mnu41vwdqady" path="res://citrus_orchard_road_puresky_1k.exr" id="2_e2o6t"]
 
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_mwb40"]
-sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
-ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_feb5d"]
+panorama = ExtResource("2_e2o6t")
 
-[sub_resource type="Sky" id="Sky_80nbo"]
-sky_material = SubResource("ProceduralSkyMaterial_mwb40")
+[sub_resource type="Sky" id="Sky_fc0e3"]
+sky_material = SubResource("PanoramaSkyMaterial_feb5d")
 
-[sub_resource type="Environment" id="Environment_e2o6t"]
+[sub_resource type="Environment" id="Environment_7jktm"]
 background_mode = 2
-sky = SubResource("Sky_80nbo")
-tonemap_mode = 2
-ssil_enabled = true
-glow_enabled = true
-volumetric_fog_enabled = true
-volumetric_fog_density = 0.025
-volumetric_fog_albedo = Color(0.65056974, 0.58972025, 0.5999851, 1)
+sky = SubResource("Sky_fc0e3")
 
 [node name="Game" type="Node3D" unique_id=159294576]
 script = ExtResource("1_80nbo")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1829733486]
-environment = SubResource("Environment_e2o6t")
+environment = SubResource("Environment_7jktm")
 
 [node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="." unique_id=2044530733]
 _spawnable_scenes = PackedStringArray("uid://dbiptpnc576os")
