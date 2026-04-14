@@ -1,0 +1,138 @@
+[gd_scene format=3 uid="uid://dbiptpnc576os"]
+
+[ext_resource type="Script" uid="uid://bwg0f7q25waie" path="res://player.gd" id="1_xhfnw"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_0rwas"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_xhfnw"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xhfnw"]
+albedo_color = Color(0.39181867, 0.39181864, 0.39181864, 1)
+metallic = 1.0
+roughness = 0.22
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_kpjcp"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+properties/1/path = NodePath(".:rotation")
+properties/1/spawn = true
+properties/1/replication_mode = 1
+properties/2/path = NodePath("Head:rotation")
+properties/2/spawn = true
+properties/2/replication_mode = 1
+properties/3/path = NodePath("Head/CSGCombiner3D:rotation")
+properties/3/spawn = true
+properties/3/replication_mode = 1
+
+[sub_resource type="Animation" id="Animation_xhfnw"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Head/CSGCombiner3D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_kpjcp"]
+resource_name = "shoot"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Head/CSGCombiner3D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.03333333, 0.36666667),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0.3589968, 0, 0), Vector3(0, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_kne1u"]
+_data = {
+&"RESET": SubResource("Animation_xhfnw"),
+&"shoot": SubResource("Animation_kpjcp")
+}
+
+[node name="Player" type="CharacterBody3D" unique_id=1040195153]
+script = ExtResource("1_xhfnw")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=2097299770]
+shape = SubResource("CapsuleShape3D_0rwas")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1616540823]
+mesh = SubResource("CapsuleMesh_xhfnw")
+
+[node name="Head" type="Node3D" parent="." unique_id=310579590]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+
+[node name="Camera3D" type="Camera3D" parent="Head" unique_id=1949569597]
+
+[node name="AttackRaycast" type="RayCast3D" parent="Head/Camera3D" unique_id=1871601543]
+target_position = Vector3(0, 0, -1000)
+
+[node name="CSGCombiner3D" type="CSGCombiner3D" parent="Head" unique_id=2003275331]
+transform = Transform3D(1, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, 0.12826478, 0, -0.5170328)
+material_override = SubResource("StandardMaterial3D_xhfnw")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Head/CSGCombiner3D" unique_id=914051254]
+transform = Transform3D(0.48264563, 0, 0, 0, 0.4826454, 0, 0, 0, 0.4826454, 0.0061627775, -0.24981606, -0.14927554)
+size = Vector3(0.17578125, 0.35131836, 0.13085938)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Head/CSGCombiner3D" unique_id=299894541]
+transform = Transform3D(0.48264563, 0, 0, 0, 0.48264536, 0, 0, 0, 0.48264536, 0.0061627775, -0.20132768, -0.3060587)
+size = Vector3(0.17578125, 0.15039063, 0.7036133)
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="." unique_id=640499472]
+replication_config = SubResource("SceneReplicationConfig_kpjcp")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1728018687]
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer" unique_id=1018508194]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -408.0
+offset_top = -54.0
+offset_right = 408.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_horizontal = 3
+
+[node name="HealthLabel" type="Label" parent="CanvasLayer/VBoxContainer" unique_id=651813463]
+layout_mode = 2
+text = "HP: 100"
+
+[node name="HealthBar" type="ProgressBar" parent="CanvasLayer/VBoxContainer" unique_id=385343545]
+modulate = Color(0, 0.97494787, 0.36734608, 1)
+layout_mode = 2
+value = 100.0
+
+[node name="Crosshair" type="Label" parent="CanvasLayer" unique_id=551098004]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1831075273]
+libraries/ = SubResource("AnimationLibrary_kne1u")

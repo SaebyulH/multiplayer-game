@@ -1,0 +1,51 @@
+[gd_scene format=3 uid="uid://1ii02qh8q237"]
+
+[ext_resource type="Script" uid="uid://wdhtuhqujwip" path="res://main.gd" id="1_ig7tw"]
+
+[node name="Main" type="Control" unique_id=694002052]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ig7tw")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1588229823]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -69.5
+offset_top = -64.0
+offset_right = 69.5
+offset_bottom = 64.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="VBoxContainer" unique_id=1247396541]
+layout_mode = 2
+text = "Multiplayer Demo"
+
+[node name="IPLabel" type="Label" parent="VBoxContainer" unique_id=327143585]
+layout_mode = 2
+text = "Multiplayer Demo"
+
+[node name="HostButton" type="Button" parent="VBoxContainer" unique_id=1196626840]
+layout_mode = 2
+text = "Host Game"
+
+[node name="JoinButton2" type="Button" parent="VBoxContainer" unique_id=1587514627]
+layout_mode = 2
+text = "Join Game"
+
+[node name="AddressInput" type="LineEdit" parent="VBoxContainer" unique_id=2146528394]
+layout_mode = 2
+placeholder_text = "127.0.0.1"
+
+[connection signal="pressed" from="VBoxContainer/HostButton" to="." method="_on_HostButton_pressed"]
+[connection signal="pressed" from="VBoxContainer/JoinButton2" to="." method="_on_JoinButton_pressed"]
