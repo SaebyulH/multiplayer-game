@@ -11,12 +11,16 @@ const FIRE_RATE = 0.5
 var health = MAX_HEALTH
 var can_shoot = true
 var ads = false
-
+var kills = 0
+@onready var kills_label = $CanvasLayer/VBoxContainer/KillsLabel
 @onready var head = $Head
 @onready var camera = $Head/Camera3D
 @onready var raycast = $Head/Camera3D/AttackRaycast
 @onready var health_label = $CanvasLayer/VBoxContainer/HealthLabel
 @onready var health_bar = $CanvasLayer/VBoxContainer/HealthBar
+@onready var shoot_sound = $ShootSound
+@onready var hit_sound = $HitSound
+@onready var kill_sound = $KillSound
 
 func _ready():
 	if is_multiplayer_authority():
@@ -79,7 +83,8 @@ func _shoot():
 	can_shoot = false
 	get_tree().create_timer(FIRE_RATE).timeout.connect(func(): can_shoot = true)
 	$AnimationPlayer.play("shoot")
-	
+	shoot_sound.play()
+
 	if not raycast.is_colliding():
 		return
 	var hit = raycast.get_collider()
@@ -87,10 +92,11 @@ func _shoot():
 		return
 	print("Shot hit: ", hit.name)
 	if hit is CharacterBody3D and hit.has_method("take_damage"):
-		hit.take_damage.rpc_id(hit.get_multiplayer_authority(), DAMAGE)
+		# Pass our peer ID so the hit player can tell us if we killed them
+		hit.take_damage.rpc_id(hit.get_multiplayer_authority(), DAMAGE, multiplayer.get_unique_id())
 
 @rpc("any_peer", "call_local", "reliable")
-func take_damage(amount: int):
+func take_damage(amount: int, shooter_id: int):
 	if not is_multiplayer_authority():
 		return
 	health -= amount
@@ -98,11 +104,35 @@ func take_damage(amount: int):
 	print("I took damage! Health: ", health)
 	_update_hud()
 	if health <= 0:
+		# Tell the shooter they got a kill
+		_notify_kill.rpc_id(shooter_id)
 		_die()
+	else:
+		# Tell the shooter they landed a hit
+		_notify_hit.rpc_id(shooter_id)
+
+# Called on the shooter's machine when their shot lands
+@rpc("any_peer", "call_local", "reliable")
+func _notify_hit():
+	if not is_multiplayer_authority():
+		return
+	hit_sound.play()
+
+# Called on the shooter's machine when they get a kill
+@rpc("any_peer", "call_local", "reliable")
+func _notify_kill():
+	if not is_multiplayer_authority():
+		return
+	kill_sound.play()
+	kills += 1
+	health = min(health + 20, MAX_HEALTH)
+	print("Kill! +20 HP. Health: ", health, " Kills: ", kills)
+	_update_hud()
 
 func _update_hud():
 	health_label.text = "HP: " + str(health)
 	health_bar.value = health
+	kills_label.text = "Kills: " + str(kills)
 
 @rpc("any_peer", "call_local", "reliable")
 func set_position_on_all(pos: Vector3):
@@ -112,6 +142,5 @@ func _die():
 	print("I died!")
 	health = MAX_HEALTH
 	_update_hud()
-	# Tell the server to respawn us at the correct spawn point
 	var game = get_parent()
 	game.respawn_player.rpc_id(1, int(name))
