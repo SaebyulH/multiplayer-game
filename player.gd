@@ -1,15 +1,16 @@
 extends CharacterBody3D
 
-const SPEED = 15.0
-const JUMP_VELOCITY = 4.5
+const SPEED = 4.0
+const JUMP_VELOCITY = 10
 const GRAVITY = 9.8
-const MOUSE_SENSITIVITY = 0.003
+var MOUSE_SENSITIVITY = 0.003
 const MAX_HEALTH = 100
 const DAMAGE = 125
 const FIRE_RATE = 0.5
 
 var health = MAX_HEALTH
 var can_shoot = true
+var ads = false
 
 @onready var head = $Head
 @onready var camera = $Head/Camera3D
@@ -41,11 +42,18 @@ func _input(event):
 		return
 	if event.is_action_pressed("ui_cancel"):
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+	if event.is_action_pressed("ads"):
+		ads = not ads
+		MOUSE_SENSITIVITY = 0.001 if ads else 0.0025
 	if event is InputEventMouseButton and event.pressed:
 		if Input.get_mouse_mode() == Input.MOUSE_MODE_VISIBLE:
 			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
 func _physics_process(delta):
+	if ads:
+		$Head/Camera3D.fov = 30
+	else:
+		$Head/Camera3D.fov = 90
 	if not is_multiplayer_authority():
 		return
 	if not is_on_floor():
