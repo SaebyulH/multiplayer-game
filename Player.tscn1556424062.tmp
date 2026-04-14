@@ -29,6 +29,9 @@ emission_energy_multiplier = 16.0
 radius = 0.25
 height = 0.5
 
+[sub_resource type="SphereShape3D" id="SphereShape3D_e80uo"]
+radius = 0.99999017
+
 [sub_resource type="SphereShape3D" id="SphereShape3D_cxr5p"]
 radius = 0.34756088
 
@@ -166,6 +169,33 @@ stream = ExtResource("3_cxr5p")
 [node name="KillSound" type="AudioStreamPlayer3D" parent="." unique_id=760201787]
 stream = ExtResource("4_tdg3f")
 
+[node name="WallDetection" type="Node3D" parent="." unique_id=609471589]
+
+[node name="RayCastLeft" type="RayCast3D" parent="WallDetection" unique_id=1507086022]
+transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, 0, 0, 0)
+target_position = Vector3(0, -1.5, 0)
+
+[node name="RayCastRight" type="RayCast3D" parent="WallDetection" unique_id=1432546561]
+transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, 0, 0, 0)
+target_position = Vector3(0, -1.5, 0)
+
+[node name="RayCastUp" type="RayCast3D" parent="WallDetection" unique_id=1915976226]
+target_position = Vector3(0, 1.5, 0)
+
+[node name="RayCastForward" type="RayCast3D" parent="WallDetection" unique_id=992066508]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0)
+target_position = Vector3(0, 1.5, 0)
+
+[node name="RayCastBackward" type="RayCast3D" parent="WallDetection" unique_id=71094278]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0)
+target_position = Vector3(0, 1.5, 0)
+
+[node name="MagneticRange" type="Area3D" parent="." unique_id=1499002284]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6519599, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MagneticRange" unique_id=661632718]
+shape = SubResource("SphereShape3D_e80uo")
+
 [node name="HeadHitbox" type="Area3D" parent="." unique_id=2071605120 groups=["head"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.68454164, 0)
 collision_layer = 2
@@ -182,5 +212,3 @@ shape = SubResource("CapsuleShape3D_cxr5p")
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="." unique_id=1833801068]
 replication_config = SubResource("SceneReplicationConfig_tdg3f")
-
-[node name="Node3D" type="Node3D" parent="." unique_id=416578289]
