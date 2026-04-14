@@ -1,0 +1,202 @@
+[gd_scene format=3 uid="uid://dcwoh2ee3wly2"]
+
+[ext_resource type="Script" uid="uid://l6xlch4jtdhe" path="res://gun.gd" id="1_5bb75"]
+[ext_resource type="PackedScene" uid="uid://yg2u62is0a7y" path="res://Leader _50.fbx" id="2_7oeqp"]
+
+[node name="Shotgun" type="Node3D" unique_id=345758277]
+script = ExtResource("1_5bb75")
+damage = 5
+fire_rate = 1.5
+mag_size = 5
+
+[node name="Raycasts" type="Node3D" parent="." unique_id=832925510]
+
+[node name="AttackRaycast" type="RayCast3D" parent="Raycasts" unique_id=1089709099]
+transform = Transform3D(0.97953117, -0.12865713, -0.15480955, 0.12707981, 0.99168915, -0.020084271, 0.15610693, 0, 0.98774016, 0, 0, 0)
+target_position = Vector3(0, 0, -1000)
+collision_mask = 2
+collide_with_areas = true
+
+[node name="AttackRaycast2" type="RayCast3D" parent="Raycasts" unique_id=363168172]
+transform = Transform3D(0.97953117, -0.13885555, -0.1457319, 0.12707981, 0.98804647, -0.08726361, 0.15610693, 0.06695783, 0.985468, 0, 0, 0)
+target_position = Vector3(0, 0, -1000)
+collision_mask = 2
+collide_with_areas = true
+
+[node name="AttackRaycast3" type="RayCast3D" parent="Raycasts" unique_id=360464275]
+transform = Transform3D(0.97953117, -0.11776711, -0.16324694, 0.1270798, 0.99074036, 0.047792666, 0.15610692, -0.06755979, 0.98542696, 0, 0, 0)
+target_position = Vector3(0, 0, -1000)
+collision_mask = 2
+collide_with_areas = true
+
+[node name="AttackRaycast4" type="RayCast3D" parent="Raycasts" unique_id=1944323008]
+transform = Transform3D(0.9685367, -0.113784574, -0.22133623, 0.12565345, 0.99125713, 0.040256422, 0.21482056, -0.06680149, 0.97436637, 0, 0, 0)
+target_position = Vector3(0, 0, -1000)
+collision_mask = 2
+collide_with_areas = true
+
+[node name="AttackRaycast5" type="RayCast3D" parent="Raycasts" unique_id=153659502]
+transform = Transform3D(0.9886158, -0.12301978, -0.08663136, 0.1282584, 0.9900589, 0.05773239, 0.07866788, -0.06818637, 0.99456626, 0, 0, 0)
+target_position = Vector3(0, 0, -1000)
+collision_mask = 2
+collide_with_areas = true
+
+[node name="AttackRaycast6" type="RayCast3D" parent="Raycasts" unique_id=1170903978]
+transform = Transform3D(0.9880718, -0.13144168, -0.08023233, 0.13232055, 0.9911904, 0.0057140095, 0.078774415, -0.016262256, 0.9967598, 0, 0, 0)
+target_position = Vector3(0, 0, -1000)
+collision_mask = 2
+collide_with_areas = true
+
+[node name="AttackRaycast7" type="RayCast3D" parent="Raycasts" unique_id=1547937809]
+transform = Transform3D(0.98914963, -0.11385213, -0.09284852, 0.124000505, 0.9859348, 0.11205637, 0.0787847, -0.12235373, 0.98935455, 0, 0, 0)
+target_position = Vector3(0, 0, -1000)
+collision_mask = 2
+collide_with_areas = true
+
+[node name="AttackRaycast8" type="RayCast3D" parent="Raycasts" unique_id=303801216]
+transform = Transform3D(0.97953117, -0.1614247, -0.12025274, 0.1270798, 0.9592178, -0.25249133, 0.15610692, 0.23204148, 0.9600976, 0, 0, 0)
+target_position = Vector3(0, 0, -1000)
+collision_mask = 2
+collide_with_areas = true
+
+[node name="AttackRaycast9" type="RayCast3D" parent="Raycasts" unique_id=1374939928]
+transform = Transform3D(0.97953117, -0.16920516, -0.10903333, 0.12707981, 0.93989515, -0.31693494, 0.15610693, 0.29659173, 0.9421592, 0, 0, 0)
+target_position = Vector3(0, 0, -1000)
+collision_mask = 2
+collide_with_areas = true
+
+[node name="AttackRaycast10" type="RayCast3D" parent="Raycasts" unique_id=849382283]
+transform = Transform3D(0.97953117, -0.15282154, -0.13101232, 0.12707981, 0.9742414, -0.18629114, 0.15610695, 0.16582897, 0.9737203, 0, 0, 0)
+target_position = Vector3(0, 0, -1000)
+collision_mask = 2
+collide_with_areas = true
+
+[node name="AttackRaycast11" type="RayCast3D" parent="Raycasts" unique_id=1466500274]
+transform = Transform3D(0.9706006, -0.1488348, -0.18916316, 0.11177306, 0.97472996, -0.19341351, 0.21316968, 0.16658396, 0.9627092, 0, 0, 0)
+target_position = Vector3(0, 0, -1000)
+collision_mask = 2
+collide_with_areas = true
+
+[node name="AttackRaycast12" type="RayCast3D" parent="Raycasts" unique_id=1729747071]
+transform = Transform3D(0.9859232, -0.15806702, -0.054501563, 0.14636748, 0.97351146, -0.17564644, 0.0808218, 0.16519663, 0.9829434, 0, 0, 0)
+target_position = Vector3(0, 0, -1000)
+collision_mask = 2
+collide_with_areas = true
+
+[node name="AttackRaycast13" type="RayCast3D" parent="Raycasts" unique_id=1219424278]
+transform = Transform3D(0.9852487, -0.1647446, -0.04630845, 0.15027152, 0.9623542, -0.22647917, 0.08187635, 0.2161794, 0.97291446, 0, 0, 0)
+target_position = Vector3(0, 0, -1000)
+collision_mask = 2
+collide_with_areas = true
+
+[node name="AttackRaycast14" type="RayCast3D" parent="Raycasts" unique_id=1964051507]
+transform = Transform3D(0.98660165, -0.15062179, -0.062692516, 0.14222144, 0.9823036, -0.12187156, 0.07993961, 0.11132242, 0.99056387, 0, 0, 0)
+target_position = Vector3(0, 0, -1000)
+collision_mask = 2
+collide_with_areas = true
+
+[node name="AttackRaycast15" type="RayCast3D" parent="Raycasts" unique_id=1527180827]
+transform = Transform3D(0.97953117, -0.10379028, -0.17247102, 0.12707981, 0.9833394, 0.12997892, 0.15610692, -0.149236, 0.9764012, 0, 0, 0)
+target_position = Vector3(0, 0, -1000)
+collision_mask = 2
+collide_with_areas = true
+
+[node name="AttackRaycast16" type="RayCast3D" parent="Raycasts" unique_id=1539894302]
+transform = Transform3D(0.9795311, -0.11524314, -0.16503838, 0.1270798, 0.98988855, 0.063020416, 0.15610692, -0.082703516, 0.98427165, 0, 0, 0)
+target_position = Vector3(0, 0, -1000)
+collision_mask = 2
+collide_with_areas = true
+
+[node name="AttackRaycast17" type="RayCast3D" parent="Raycasts" unique_id=1059246655]
+transform = Transform3D(0.9795313, -0.09175049, -0.17916618, 0.12707983, 0.97214615, 0.1969333, 0.15610693, -0.21567072, 0.9639071, 0, 0, 0)
+target_position = Vector3(0, 0, -1000)
+collision_mask = 2
+collide_with_areas = true
+
+[node name="AttackRaycast18" type="RayCast3D" parent="Raycasts" unique_id=349739175]
+transform = Transform3D(0.96748185, -0.08777012, -0.23722403, 0.1346159, 0.9726813, 0.18912989, 0.21414335, -0.21491379, 0.95286673, 0, 0, 0)
+target_position = Vector3(0, 0, -1000)
+collision_mask = 2
+collide_with_areas = true
+
+[node name="AttackRaycast19" type="RayCast3D" parent="Raycasts" unique_id=2096985970]
+transform = Transform3D(0.989992, -0.09700682, -0.10249697, 0.11656554, 0.97149575, 0.20641781, 0.079551436, -0.21629961, 0.9730807, 0, 0, 0)
+target_position = Vector3(0, 0, -1000)
+collision_mask = 2
+collide_with_areas = true
+
+[node name="AttackRaycast20" type="RayCast3D" parent="Raycasts" unique_id=487578346]
+transform = Transform3D(0.98954815, -0.106302306, -0.097440414, 0.12060966, 0.98049754, 0.1551703, 0.079045124, -0.16530077, 0.9830705, 0, 0, 0)
+target_position = Vector3(0, 0, -1000)
+collision_mask = 2
+collide_with_areas = true
+
+[node name="AttackRaycast21" type="RayCast3D" parent="Raycasts" unique_id=844272487]
+transform = Transform3D(0.99041694, -0.087001644, -0.10726142, 0.11236119, 0.95918614, 0.25949344, 0.08030731, -0.2690589, 0.95976985, 0, 0, 0)
+target_position = Vector3(0, 0, -1000)
+collision_mask = 2
+collide_with_areas = true
+
+[node name="AttackRaycast22" type="RayCast3D" parent="Raycasts" unique_id=751032374]
+transform = Transform3D(0.9716228, -0.18103383, 0.15223534, 0.18508218, 0.9826407, -0.012736369, -0.1472869, 0.040551018, 0.98826224, 0, 0, 0)
+target_position = Vector3(0, 0, -1000)
+collision_mask = 2
+collide_with_areas = true
+
+[node name="AttackRaycast23" type="RayCast3D" parent="Raycasts" unique_id=1984200495]
+transform = Transform3D(0.971623, -0.17029755, 0.16415721, 0.18508218, 0.9795167, -0.07931926, -0.14728688, 0.10745099, 0.98324007, 0, 0, 0)
+target_position = Vector3(0, 0, -1000)
+collision_mask = 2
+collide_with_areas = true
+
+[node name="AttackRaycast24" type="RayCast3D" parent="Raycasts" unique_id=14732527]
+transform = Transform3D(0.97162306, -0.19102255, 0.1394965, 0.1850822, 0.98121053, 0.054504436, -0.14728694, -0.027139466, 0.98872143, 0, 0, 0)
+target_position = Vector3(0, 0, -1000)
+collision_mask = 2
+collide_with_areas = true
+
+[node name="AttackRaycast25" type="RayCast3D" parent="Raycasts" unique_id=520830965]
+transform = Transform3D(0.97898066, -0.18703482, 0.08133149, 0.1839911, 0.98196495, 0.04349909, -0.0880005, -0.027620403, 0.99573755, 0, 0, 0)
+target_position = Vector3(0, 0, -1000)
+collision_mask = 2
+collide_with_areas = true
+
+[node name="AttackRaycast26" type="RayCast3D" parent="Raycasts" unique_id=1660234752]
+transform = Transform3D(0.9568067, -0.19616915, 0.21456587, 0.1855119, 0.9802212, 0.06893076, -0.22384426, -0.026148934, 0.97427404, 0, 0, 0)
+target_position = Vector3(0, 0, -1000)
+collision_mask = 2
+collide_with_areas = true
+
+[node name="AttackRaycast27" type="RayCast3D" parent="Raycasts" unique_id=652707843]
+transform = Transform3D(0.9560814, -0.18856567, 0.22439188, 0.18953778, 0.9817191, 0.017402934, -0.22357145, 0.025892034, 0.97434366, 0, 0, 0)
+target_position = Vector3(0, 0, -1000)
+collision_mask = 2
+collide_with_areas = true
+
+[node name="AttackRaycast28" type="RayCast3D" parent="Raycasts" unique_id=396518528]
+transform = Transform3D(0.95760167, -0.20356375, 0.20386504, 0.1812937, 0.9757416, 0.1227212, -0.22390135, -0.08055872, 0.97127676, 0, 0, 0)
+target_position = Vector3(0, 0, -1000)
+collision_mask = 2
+collide_with_areas = true
+
+[node name="Leader _50" parent="." unique_id=1598665167 instance=ExtResource("2_7oeqp")]
+transform = Transform3D(-0.02546855, 0.21828248, -0.069880545, 0.035006545, -0.046378482, -0.30745128, -0.25470862, -0.028200416, -0.035267953, -0.09381533, -0.6549541, -1.0513766)
+
+[node name="Light" parent="Leader _50" index="0" unique_id=104521066]
+light_energy = 0.0
+
+[node name="Leader _51" parent="." unique_id=454277615 instance=ExtResource("2_7oeqp")]
+transform = Transform3D(-0.02546855, 0.21828248, -0.069880545, 0.035006545, -0.046378482, -0.30745128, -0.25470862, -0.028200416, -0.035267953, 0.09151607, -0.69527155, -1.0671245)
+
+[node name="Light" parent="Leader _51" index="0" unique_id=104521066]
+light_energy = 0.0
+
+[node name="Leader _52" parent="." unique_id=690512617 instance=ExtResource("2_7oeqp")]
+transform = Transform3D(-0.02546855, 0.21828248, -0.069880545, 0.035006545, -0.046378482, -0.30745128, -0.25470862, -0.028200416, -0.035267953, -0.0025628542, -0.67772657, -1.0336646)
+
+[node name="Light" parent="Leader _52" index="0" unique_id=104521066]
+light_energy = 0.0
+
+[editable path="Leader _50"]
+[editable path="Leader _51"]
+[editable path="Leader _52"]
