@@ -106,7 +106,8 @@ script = ExtResource("1_5bb75")
 damage = 15
 fire_rate = 0.1
 mag_size = 2
-reload_rate = 0.8
+reload_rate = 1.2
+automatic = false
 
 [node name="Raycasts" type="Node3D" parent="." unique_id=832925510]
 
