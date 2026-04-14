@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://bjfq41rpthdls"]
+
+[sub_resource type="TorusMesh" id="TorusMesh_s3f3j"]
+rings = 6
+ring_segments = 3
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_guucc"]
+top_radius = 0.585
+bottom_radius = 0.675
+height = 0.035
+radial_segments = 6
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_iisxy"]
+albedo_color = Color(0, 0, 0, 1)
+
+[node name="BulletHole" type="Node3D" unique_id=2096753878]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=2040301748]
+transform = Transform3D(1.4730988e-16, -3.3700576e-09, 0.07709793, -0.07709793, -3.3700576e-09, 0, 3.3700576e-09, -0.07709793, -3.3700576e-09, -1.6868114e-05, 0, -0.015271279)
+mesh = SubResource("TorusMesh_s3f3j")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="." unique_id=1373214973]
+transform = Transform3D(1.4730988e-16, -3.3700576e-09, 0.07709793, -0.07709793, -3.3700576e-09, 0, 3.3700576e-09, -0.07709793, -3.3700576e-09, -1.6868114e-05, 0, -0.015271279)
+mesh = SubResource("CylinderMesh_guucc")
+surface_material_override/0 = SubResource("StandardMaterial3D_iisxy")

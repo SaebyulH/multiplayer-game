@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bwg0f7q25waie" path="res://player.gd" id="1_xhfnw"]
 [ext_resource type="AudioStream" uid="uid://lok0qio71yk6" path="res://Sniper_bazaarbargain_shoot.wav" id="2_e80uo"]
-[ext_resource type="PackedScene" uid="uid://bqjmj4agtie2r" path="res://gun.tscn" id="2_tdg3f"]
+[ext_resource type="PackedScene" uid="uid://d3a25xx4xrpd0" path="res://gun.tscn" id="2_tdg3f"]
 [ext_resource type="AudioStream" uid="uid://8iccnkcb310w" path="res://Hitsound.wav" id="3_cxr5p"]
 [ext_resource type="PackedScene" uid="uid://dgonpuubl7xqa" path="res://sniper.tscn" id="3_tdg3f"]
 [ext_resource type="PackedScene" uid="uid://dcwoh2ee3wly2" path="res://shotgun.tscn" id="4_dtqjt"]
@@ -28,59 +28,6 @@ emission_energy_multiplier = 16.0
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_cxr5p"]
 radius = 0.25
 height = 0.5
-
-[sub_resource type="Animation" id="Animation_xhfnw"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Head/GunSocket:rotation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0, 0, 0)]
-}
-
-[sub_resource type="Animation" id="Animation_cxr5p"]
-resource_name = "reload"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Head/GunSocket:rotation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.0995217, 0.33333334, 0.52675533, 0.6970197, 0.846001, 1),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
-"update": 0,
-"values": [Vector3(0, 0, 0), Vector3(0.4218112, 0, 0), Vector3(-0.42027897, 0.03704153, 3.051015), Vector3(0.08866668, 0.033950128, 3.0691416), Vector3(-0.5878969, 0.040643208, 3.0435843), Vector3(0.13521646, -0.42733803, -0.82566327), Vector3(0, 0, 0)]
-}
-
-[sub_resource type="Animation" id="Animation_kpjcp"]
-resource_name = "shoot"
-length = 0.1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Head/GunSocket:rotation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.033333335, 0.1),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector3(0, 0, 0), Vector3(0.21968459, 0, 0), Vector3(0, 0, 0)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_kne1u"]
-_data = {
-&"RESET": SubResource("Animation_xhfnw"),
-&"reload": SubResource("Animation_cxr5p"),
-&"shoot": SubResource("Animation_kpjcp")
-}
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_e80uo"]
 radius = 0.99999017
@@ -129,7 +76,7 @@ material_override = SubResource("StandardMaterial3D_cxr5p")
 mesh = SubResource("CapsuleMesh_cxr5p")
 
 [node name="Head" type="Node3D" parent="." unique_id=310579590]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.73080194, -0.5232969)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.731, 0)
 
 [node name="Camera3D" type="Camera3D" parent="Head" unique_id=1949569597]
 
@@ -137,11 +84,14 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.73080194, -0.5232969)
 transform = Transform3D(0.9999999, 0, 0, 0, 1, 0, 0, 0, 1.0000001, 0, 0, 0)
 
 [node name="Sniper" parent="Head/GunSocket" unique_id=345758277 instance=ExtResource("3_tdg3f")]
+visible = false
 
 [node name="Gun" parent="Head/GunSocket" unique_id=235050932 instance=ExtResource("2_tdg3f")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0028017762, 0, 0.0015054939)
+visible = false
 
 [node name="Shotgun" parent="Head/GunSocket" unique_id=990368423 instance=ExtResource("4_dtqjt")]
+visible = false
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1728018687]
 
@@ -209,9 +159,6 @@ offset_right = 974.0
 offset_bottom = 45.0
 theme_override_font_sizes/font_size = 44
 text = "Kills: 0"
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1831075273]
-libraries/ = SubResource("AnimationLibrary_kne1u")
 
 [node name="ShootSound" type="AudioStreamPlayer3D" parent="." unique_id=139818228]
 stream = ExtResource("2_e80uo")

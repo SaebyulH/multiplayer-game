@@ -122,6 +122,7 @@ func equip_gun(index: int):
 	_update_hud()
 
 func _ready():
+	$MeshInstance3D.hide()
 	if is_multiplayer_authority():
 		camera.make_current()
 		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
@@ -146,11 +147,11 @@ func _connect_gun(gun_instance: Gun):
 			ammo_label.text = "Ammo: %d/%d" % [current, max]
 	)
 
-	gun_instance.shot_fired.connect(func():
-		if gun_instance == current_gun:
-			$AnimationPlayer.play("shoot")
-			shoot_sound.play()
-	)
+	#gun_instance.shot_fired.connect(func():
+		#if gun_instance == current_gun:
+			#current_gun.play("shoot")
+			#shoot_sound.play()
+	#)
 
 	gun_instance.hit_confirmed.connect(func():
 		if gun_instance == current_gun:
@@ -162,12 +163,12 @@ func _connect_gun(gun_instance: Gun):
 			kill_sound.play()
 	)
 
-	gun_instance.reload_started.connect(func():
-		$AnimationPlayer.play("reload")
-		if gun_instance == current_gun:
-			reload_bar.visible = true
-			reload_bar.value = 0
-	)
+	#gun_instance.reload_started.connect(func():
+		#$AnimationPlayer.play("reload")
+		#if gun_instance == current_gun:
+			#reload_bar.visible = true
+			#reload_bar.value = 0
+	#)
 
 	gun_instance.reload_progress.connect(func(value):
 		if gun_instance == current_gun:

@@ -2,6 +2,103 @@
 
 [ext_resource type="Script" uid="uid://l6xlch4jtdhe" path="res://gun.gd" id="1_6jcko"]
 [ext_resource type="PackedScene" uid="uid://yg2u62is0a7y" path="res://Leader _50.fbx" id="2_okkp5"]
+[ext_resource type="PackedScene" uid="uid://bbc31s7tdy1pq" path="res://muzzle_flash.tscn" id="3_okkp5"]
+
+[sub_resource type="Animation" id="Animation_okkp5"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Leader _50:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-0.0016207248, -0.4340573, -1.0641127)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Leader _50:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 1.5707964, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_r8j6d"]
+resource_name = "reload"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Leader _50:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.13256374, 0.57909423, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(-0.0016207248, -0.4340573, -1.0641127), Vector3(-0.0016207248, -0.3553923, -1.0641127), Vector3(-0.0016207248, -0.3553923, -1.0641127), Vector3(-0.0016207248, -0.4340573, -1.0641127)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Leader _50:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.13256374, 0.57909423, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 1.5707964, 0), Vector3(0.9956136, 2.5103295, 1.0205675), Vector3(0.9956136, 2.317296, 1.0205674), Vector3(0, 1.5707964, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_pyhkq"]
+resource_name = "shoot"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Leader _50:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.03578133, 0.046515733, 0.59933734),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(-0.0016207248, -0.4340573, -1.0641127), Vector3(-0.0016207248, -0.4340573, -0.86747473), Vector3(-0.0016207248, -0.31716692, -0.7925651), Vector3(-0.0016207248, -0.4340573, -1.0641127)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Leader _50:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.03578133, 0.046515733, 0.59933734),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 1.5707964, 0), Vector3(-3.532982e-09, 1.5707964, 0.08091347), Vector3(-1.6023728e-08, 1.5707964, 0.37435034), Vector3(0, 1.5707964, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_r8j6d"]
+_data = {
+&"RESET": SubResource("Animation_okkp5"),
+&"reload": SubResource("Animation_r8j6d"),
+&"shoot": SubResource("Animation_pyhkq")
+}
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_okkp5"]
+properties/0/path = NodePath("AnimationPlayer:current_animation")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+properties/1/path = NodePath("Muzzle/MuzzleFlash:emitting")
+properties/1/spawn = true
+properties/1/replication_mode = 1
 
 [node name="Sniper" type="Node3D" unique_id=345758277]
 script = ExtResource("1_6jcko")
@@ -17,9 +114,20 @@ collision_mask = 2
 collide_with_areas = true
 
 [node name="Leader _50" parent="." unique_id=1598665167 instance=ExtResource("2_okkp5")]
-transform = Transform3D(-1.1293354e-08, 0, 0.3172592, 0, 0.22492985, 0, -0.25836134, 0, -1.3867816e-08, -0.0016207248, -0.4340573, -1.0641127)
+transform = Transform3D(-1.070929e-08, 0, 0.245, 0, 0.245, 0, -0.245, 0, -1.070929e-08, -0.0016207248, -0.4340573, -1.0641127)
 
 [node name="Light" parent="Leader _50" index="0" unique_id=104521066]
 light_energy = 0.0
+
+[node name="Muzzle" type="Node3D" parent="." unique_id=1577237426]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.39422518, -1.6762348)
+
+[node name="MuzzleFlash" parent="Muzzle" unique_id=1165541235 instance=ExtResource("3_okkp5")]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1817528808]
+libraries/ = SubResource("AnimationLibrary_r8j6d")
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="." unique_id=291804428]
+replication_config = SubResource("SceneReplicationConfig_okkp5")
 
 [editable path="Leader _50"]

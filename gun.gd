@@ -6,9 +6,11 @@ class_name Gun
 @export var fire_rate = 0.08
 @export var mag_size = 20
 @export var reload_rate = 1.0
+@export var bullet_hole_scene: PackedScene = preload("res://bullet_hole.tscn")
+
 var reload_time := 0.0
 var mag
-
+@onready var muzzle_flash = $Muzzle/MuzzleFlash
 
 var can_shoot := true
 var is_reloading := false
@@ -25,7 +27,7 @@ signal reload_progress(value)
 
 func _ready() -> void:
 	mag = mag_size
-	
+
 func _process(delta):
 	if not is_reloading:
 		return
@@ -35,11 +37,11 @@ func _process(delta):
 	var progress = reload_time / reload_rate
 	progress = clamp(progress, 0.0, 1.0)
 	
-	reload_progress.emit(progress) # new signal
+	reload_progress.emit(progress)
 	
 	if reload_time >= reload_rate:
 		_finish_reload()
-		
+
 func shoot(owner):
 	if is_reloading:
 		return
@@ -50,13 +52,14 @@ func shoot(owner):
 	
 	if not can_shoot:
 		return
+	$AnimationPlayer.play("shoot")
 	
 	can_shoot = false
 	mag -= 1
 	ammo_changed.emit(mag, mag_size)
 	shot_fired.emit()
+	muzzle_flash.emitting = true
 	
-	# fire rate timer
 	get_tree().create_timer(fire_rate).timeout.connect(func(): can_shoot = true)
 	
 	for ray in raycasts:
@@ -67,42 +70,43 @@ func shoot(owner):
 		if hit == null or hit == owner:
 			continue
 		
+		var hit_point = ray.get_collision_point()
+		var hit_normal = ray.get_collision_normal()
+		
+		# spawn bullet hole
+		if bullet_hole_scene:
+			var hole = bullet_hole_scene.instantiate()
+			get_tree().current_scene.add_child(hole)
+			
+			hole.global_position = hit_point
+			hole.look_at(hit_point + hit_normal, Vector3.UP)
+		
 		if hit is Area3D and hit.get_parent() and hit.get_parent().has_method("take_damage"):
-			var damage = damage
+			var dmg = damage
+			
 			if hit.is_in_group("head"):
-				damage *= crit
+				dmg *= crit
 			
 			hit.get_parent().take_damage.rpc_id(
 				hit.get_multiplayer_authority(),
-				damage,
+				dmg,
 				owner.multiplayer.get_unique_id()
 			)
 			
 			hit_confirmed.emit()
-			
-			if damage > damage:
-				kill_confirmed.emit() # optional logic
 
 func start_reload():
 	if is_reloading:
 		return
 	if mag == mag_size:
 		return
+	$AnimationPlayer.play("reload")
 	
 	is_reloading = true
 	can_shoot = false
 	reload_time = 0.0
 	
 	reload_started.emit()
-
-func _reload():
-	var elapsed := 0.0
-	
-	while elapsed < reload_rate:
-		await get_tree().process_frame
-		elapsed += get_process_delta_time()
-	
-	_finish_reload()
 
 func _finish_reload():
 	mag = mag_size

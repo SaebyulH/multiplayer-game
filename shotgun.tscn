@@ -1,7 +1,105 @@
 [gd_scene format=3 uid="uid://dcwoh2ee3wly2"]
 
-[ext_resource type="Script" path="res://gun.gd" id="1_5bb75"]
+[ext_resource type="Script" uid="uid://l6xlch4jtdhe" path="res://gun.gd" id="1_5bb75"]
 [ext_resource type="PackedScene" uid="uid://baesjaenr14ov" path="res://Double Deuce.fbx" id="2_5bb75"]
+[ext_resource type="PackedScene" uid="uid://bbc31s7tdy1pq" path="res://muzzle_flash.tscn" id="3_7oeqp"]
+
+[sub_resource type="Animation" id="Animation_a8mn3"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Double Deuce:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, -0.50819075, -0.67130685)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Double Deuce:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 1.5707964, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_gda1h"]
+resource_name = "reload"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Double Deuce:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.29340693, 0.4597901, 0.6404858),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 1.5707964, 0), Vector3(2.6855473e-08, 1.5707964, -0.6616019), Vector3(3.437305e-08, 1.5707964, -0.8813927), Vector3(0, 1.5707964, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Double Deuce:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.29340693, 0.4597901, 0.6404858),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, -0.50819075, -0.67130685), Vector3(0, -0.6469929, -0.6459162), Vector3(0, -0.66085744, -0.6775542), Vector3(0, -0.50819075, -0.67130685)]
+}
+
+[sub_resource type="Animation" id="Animation_7oeqp"]
+resource_name = "shoot"
+length = 0.51
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Double Deuce:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.033333335, 0.034318898, 0.44),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, -0.50819075, -0.67130685), Vector3(0, -0.48285872, -0.56422144), Vector3(0, -0.45528522, -0.511514), Vector3(0, -0.50819075, -0.67130685)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Double Deuce:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.03301565, 0.034318898, 0.06666667, 0.44),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 1.5707964, 0), Vector3(-1.4942986e-08, 1.5707964, 0.3481139), Vector3(-1.8247285e-08, 1.5707964, 0.4247495), Vector3(-8.752774e-09, 1.5707964, 0.201603), Vector3(0, 1.5707964, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_a8mn3"]
+_data = {
+&"RESET": SubResource("Animation_a8mn3"),
+&"reload": SubResource("Animation_gda1h"),
+&"shoot": SubResource("Animation_7oeqp")
+}
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_7oeqp"]
+properties/0/path = NodePath("AnimationPlayer:current_animation")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+properties/1/path = NodePath("Muzzle/MuzzleFlash:emitting")
+properties/1/spawn = true
+properties/1/replication_mode = 1
 
 [node name="Shotgun" type="Node3D" unique_id=345758277]
 script = ExtResource("1_5bb75")
@@ -66,9 +164,20 @@ collision_mask = 2
 collide_with_areas = true
 
 [node name="Double Deuce" parent="." unique_id=1063465238 instance=ExtResource("2_5bb75")]
-transform = Transform3D(-1.0490733e-08, 0, 0.29313236, 0, 0.40955845, 0, -0.24, 0, -1.2813222e-08, 0, -0.50819075, -0.67130685)
+transform = Transform3D(-8.742278e-09, 0, 0.19999997, 0, 0.2, 0, -0.2, 0, -8.742276e-09, 0, -0.50819075, -0.67130685)
 
-[node name="Light" parent="Double Deuce" index="0" unique_id=1887889902]
+[node name="Light" parent="Double Deuce" index="0" unique_id=496079405]
 light_energy = 0.0
+
+[node name="Muzzle" type="Node3D" parent="." unique_id=1157123791]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.4188637, -1.2596198)
+
+[node name="MuzzleFlash" parent="Muzzle" unique_id=1165541235 instance=ExtResource("3_7oeqp")]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=828523941]
+libraries/ = SubResource("AnimationLibrary_a8mn3")
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="." unique_id=1108819861]
+replication_config = SubResource("SceneReplicationConfig_7oeqp")
 
 [editable path="Double Deuce"]
