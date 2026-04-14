@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://dbiptpnc576os"]
 
 [ext_resource type="Script" uid="uid://bwg0f7q25waie" path="res://player.gd" id="1_xhfnw"]
+[ext_resource type="PackedScene" uid="uid://yg2u62is0a7y" path="res://Leader _50.fbx" id="2_cxr5p"]
 [ext_resource type="AudioStream" uid="uid://lok0qio71yk6" path="res://Sniper_bazaarbargain_shoot.wav" id="2_e80uo"]
 [ext_resource type="AudioStream" uid="uid://8iccnkcb310w" path="res://Hitsound.wav" id="3_cxr5p"]
 [ext_resource type="AudioStream" uid="uid://cklt78jqh12d7" path="res://critical-hit-sounds-effect.mp3" id="4_tdg3f"]
@@ -95,13 +96,11 @@ target_position = Vector3(0, 0, -1000)
 transform = Transform3D(1, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, 0.12826478, 0, -0.5170328)
 material_override = SubResource("StandardMaterial3D_xhfnw")
 
-[node name="CSGBox3D" type="CSGBox3D" parent="Head/CSGCombiner3D" unique_id=914051254]
-transform = Transform3D(0.48264563, 0, 0, 0, 0.4826454, 0, 0, 0, 0.4826454, 0.0061627775, -0.24981606, -0.14927554)
-size = Vector3(0.17578125, 0.35131836, 0.13085938)
+[node name="Leader _50" parent="Head/CSGCombiner3D" unique_id=482514637 instance=ExtResource("2_cxr5p")]
+transform = Transform3D(-1.1293354e-08, 0, 0.3172592, 0, 0.22492985, 0, -0.25836134, 0, -1.3867816e-08, -0.1328203, -0.4340573, -0.508076)
 
-[node name="CSGBox3D2" type="CSGBox3D" parent="Head/CSGCombiner3D" unique_id=299894541]
-transform = Transform3D(0.48264563, 0, 0, 0, 0.48264536, 0, 0, 0, 0.48264536, 0.0061627775, -0.20132768, -0.3060587)
-size = Vector3(0.17578125, 0.15039063, 0.7036133)
+[node name="Light" parent="Head/CSGCombiner3D/Leader _50" index="0" unique_id=633882731]
+light_energy = 0.0
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="." unique_id=640499472]
 replication_config = SubResource("SceneReplicationConfig_kpjcp")
@@ -195,3 +194,5 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6519599, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="MagneticRange" unique_id=661632718]
 shape = SubResource("SphereShape3D_e80uo")
+
+[editable path="Head/CSGCombiner3D/Leader _50"]
