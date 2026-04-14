@@ -35,55 +35,16 @@ properties/2/replication_mode = 1
 properties/3/path = NodePath("Head/CSGCombiner3D:rotation")
 properties/3/spawn = true
 properties/3/replication_mode = 1
-properties/4/path = NodePath("Head/GunSocket:rotation")
-properties/4/spawn = true
-properties/4/replication_mode = 1
 
 [sub_resource type="Animation" id="Animation_xhfnw"]
 length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Head/GunSocket:rotation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0, 0, 0)]
-}
 
 [sub_resource type="Animation" id="Animation_cxr5p"]
 resource_name = "reload"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Head/GunSocket:rotation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.0995217, 0.33333334, 0.52675533, 0.6970197, 0.846001, 1),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
-"update": 0,
-"values": [Vector3(0, 0, 0), Vector3(0.4218112, 0, 0), Vector3(-0.42027897, 0.03704153, 3.051015), Vector3(0.08866668, 0.033950128, 3.0691416), Vector3(-0.5878969, 0.040643208, 3.0435843), Vector3(0.13521646, -0.42733803, -0.82566327), Vector3(0, 0, 0)]
-}
 
 [sub_resource type="Animation" id="Animation_kpjcp"]
 resource_name = "shoot"
-length = 0.1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Head/GunSocket:rotation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.033333335, 0.1),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector3(0, 0, 0), Vector3(0.21968459, 0, 0), Vector3(0, 0, 0)]
-}
+length = 0.4
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_kne1u"]
 _data = {
@@ -101,9 +62,8 @@ radius = 0.34756088
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_cxr5p"]
 height = 1.4765625
 
-[node name="Player" type="CharacterBody3D" unique_id=1040195153 node_paths=PackedStringArray("guns")]
+[node name="Player" type="CharacterBody3D" unique_id=1040195153]
 script = ExtResource("1_xhfnw")
-guns = [NodePath("Head/GunSocket/Sniper"), NodePath("Head/GunSocket/Gun")]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=2097299770]
 shape = SubResource("CapsuleShape3D_0rwas")
@@ -124,11 +84,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.73080194, 0)
 [node name="Camera3D" type="Camera3D" parent="Head" unique_id=1949569597]
 
 [node name="GunSocket" type="Node3D" parent="Head" unique_id=1360289710]
-transform = Transform3D(0.9999999, 0, 0, 0, 1, 0, 0, 0, 1.0000001, 0, 0, 0)
 
-[node name="Sniper" parent="Head/GunSocket" unique_id=345758277 instance=ExtResource("3_tdg3f")]
+[node name="Gun" parent="Head/GunSocket" unique_id=345758277 instance=ExtResource("2_tdg3f")]
 
-[node name="Gun" parent="Head/GunSocket" unique_id=235050932 instance=ExtResource("2_tdg3f")]
+[node name="Gun2" parent="Head/GunSocket" unique_id=858097090 instance=ExtResource("3_tdg3f")]
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="." unique_id=640499472]
 replication_config = SubResource("SceneReplicationConfig_kpjcp")

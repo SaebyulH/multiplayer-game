@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://dgonpuubl7xqa"]
+
+[ext_resource type="Script" uid="uid://l6xlch4jtdhe" path="res://gun.gd" id="1_6jcko"]
+[ext_resource type="PackedScene" uid="uid://yg2u62is0a7y" path="res://Leader _50.fbx" id="2_okkp5"]
+
+[node name="Sniper" type="Node3D" unique_id=345758277]
+script = ExtResource("1_6jcko")
+damage = 55
+fire_rate = 1.0
+mag_size = 5
+
+[node name="Raycasts" type="Node3D" parent="." unique_id=832925510]
+
+[node name="AttackRaycast" type="RayCast3D" parent="Raycasts" unique_id=1089709099]
+target_position = Vector3(0, 0, -1000)
+collision_mask = 2
+collide_with_areas = true
+
+[node name="Leader _50" parent="." unique_id=1598665167 instance=ExtResource("2_okkp5")]
+transform = Transform3D(-1.1293354e-08, 0, 0.3172592, 0, 0.22492985, 0, -0.25836134, 0, -1.3867816e-08, -0.0016207248, -0.4340573, -1.0641127)
+
+[node name="Light" parent="Leader _50" index="0" unique_id=104521066]
+light_energy = 0.0
+
+[editable path="Leader _50"]

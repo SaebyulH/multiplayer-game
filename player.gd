@@ -1,16 +1,22 @@
 extends CharacterBody3D
 class_name Player
 
+@export var guns: Array[Gun] = []
+var current_gun_index := 0
+var current_gun: Gun
+
 # Mouse
 const MOUSE_SENS_X: float = 0.002
 const MOUSE_SENS_Y: float = 0.002
 
 # Stats
 const MAX_HEALTH = 100
-const DAMAGE = 10
-const CRIT = 3.0
-const FIRE_RATE = 0.08
-
+#const DAMAGE = 10
+#const CRIT = 3.0
+#const FIRE_RATE = 0.08
+#const MAG_SIZE = 20
+#var mag = MAG_SIZE
+#const RELOAD_RATE = 1.0
 # Movement modes
 enum MovementMode { WALK, SLIDE }
 var movement_mode = MovementMode.WALK
@@ -75,14 +81,20 @@ var health = MAX_HEALTH
 var can_shoot = true
 var ads = false
 var kills = 0
-
+var is_reloading = false
 # Nodes
 @onready var head = $Head
-@onready var gun = $Head/CSGCombiner3D
+#@onready var gun = $Head/CSGCombiner3D
+#@onready var gun: Gun = $Head/Gun
 @onready var camera = $Head/Camera3D
-@onready var raycast = $Head/Camera3D/AttackRaycast
-@onready var health_label = $CanvasLayer/VBoxContainer/HealthLabel
+#@onready var raycast = $Head/Camera3D/AttackRaycast
+@onready var health_label = $CanvasLayer/VBoxContainer/HBoxContainer/HealthLabel
 @onready var health_bar = $CanvasLayer/VBoxContainer/HealthBar
+@onready var reload_bar = $CanvasLayer/VBoxContainer/ReloadBar
+
+@onready var ammo_label = $CanvasLayer/VBoxContainer/HBoxContainer/AmmoLabel
+
+
 @onready var kills_label = $CanvasLayer/KillsLabel
 @onready var shoot_sound = $ShootSound
 @onready var hit_sound = $HitSound
@@ -95,19 +107,78 @@ var kills = 0
 	$WallDetection/RayCastForward,
 	$WallDetection/RayCastBackward,
 ]
+@onready var gun_socket = $Head/GunSocket
+func equip_gun(index: int):
+	if index < 0 or index >= guns.size():
+		return
+
+	if current_gun:
+		current_gun.visible = false
+
+	current_gun_index = index
+	current_gun = guns[index]
+	current_gun.visible = true
+
+	_update_hud()
 
 func _ready():
 	if is_multiplayer_authority():
 		camera.make_current()
 		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-		raycast.add_exception(self)
 	else:
 		camera.current = false
 		$CanvasLayer.visible = false
-	
+
 	magnetic_range.body_entered.connect(near_magnetic_wall)
 	magnetic_range.body_exited.connect(left_magnetic_wall)
 
+	for gun in guns:
+		#var gun_instance: Gun = scene.instantiate()
+		#gun_instance.visible = false
+		#gun_socket.add_child(gun_instance)
+
+		_connect_gun(gun)
+
+	equip_gun(0)
+func _connect_gun(gun_instance: Gun):
+	gun_instance.ammo_changed.connect(func(current, max):
+		if gun_instance == current_gun:
+			ammo_label.text = "Ammo: %d/%d" % [current, max]
+	)
+
+	gun_instance.shot_fired.connect(func():
+		if gun_instance == current_gun:
+			$AnimationPlayer.play("shoot")
+			shoot_sound.play()
+	)
+
+	gun_instance.hit_confirmed.connect(func():
+		if gun_instance == current_gun:
+			hit_sound.play()
+	)
+
+	gun_instance.kill_confirmed.connect(func():
+		if gun_instance == current_gun:
+			kill_sound.play()
+	)
+
+	gun_instance.reload_started.connect(func():
+		$AnimationPlayer.play("reload")
+		if gun_instance == current_gun:
+			reload_bar.visible = true
+			reload_bar.value = 0
+	)
+
+	gun_instance.reload_progress.connect(func(value):
+		if gun_instance == current_gun:
+			reload_bar.value = value * 100.0
+	)
+
+	gun_instance.reload_finished.connect(func():
+		if gun_instance == current_gun:
+			reload_bar.visible = false
+			reload_bar.value = 0
+	)
 func _unhandled_input(event):
 	if not is_multiplayer_authority():
 		return
@@ -135,7 +206,30 @@ func _input(event):
 		stop_slide()
 	if Input.is_action_just_pressed("jump"):
 		jump()
+	if event.is_action_pressed("reload"):
+		current_gun.start_reload()
+		
+	if event.is_action_pressed("weapon_next"):
+		_cycle_weapon(1)
 
+	if event.is_action_pressed("weapon_prev"):
+		_cycle_weapon(-1)
+		
+func _cycle_weapon(dir: int):
+	if guns.is_empty():
+		return
+	
+	var new_index = current_gun_index + dir
+	
+	# wrap around
+	if new_index < 0:
+		new_index = guns.size() - 1
+	elif new_index >= guns.size():
+		new_index = 0
+	
+	equip_gun(new_index)
+	_update_hud()
+	
 func _physics_process(delta):
 	if global_position.y < -100:
 		_die()
@@ -155,7 +249,7 @@ func _physics_process(delta):
 	update_jump_cooldown_timer(delta)
 	update_movement_states()
 	apply_forces(delta)
-	update_gun_rotation(delta)
+	#update_gun_rotation(delta)
 	
 	current_velocity = current_velocity.clamp(
 		Vector3(-999, -TERMINAL_VELOCITY, -999),
@@ -214,13 +308,13 @@ func update_movement_states():
 		if movement_state != MovementState.WALL_GLIDING:
 			movement_state = MovementState.IN_AIR
 			
-func update_gun_rotation(delta: float):
-	var target_rot = 0.0
-	
-	if movement_mode == MovementMode.SLIDE:
-		target_rot = GUN_SLIDE_ROTATION
-	
-	gun.rotation.x = lerp(gun.rotation.x, target_rot, GUN_ROTATE_SPEED * delta)
+#func update_gun_rotation(delta: float):
+	#var target_rot = 0.0
+	#
+	#if movement_mode == MovementMode.SLIDE:
+		#target_rot = GUN_SLIDE_ROTATION
+	#
+	#current_gun.rotation.x = lerp(current_gun.rotation.x, target_rot, GUN_ROTATE_SPEED * delta)
 
 # ─── Forces ───────────────────────────────────────────────────────────────────
 
@@ -431,23 +525,33 @@ func jump():
 # ─── Combat ───────────────────────────────────────────────────────────────────
 
 func _shoot():
-	can_shoot = false
-	get_tree().create_timer(FIRE_RATE).timeout.connect(func(): can_shoot = true)
-	$AnimationPlayer.play("shoot")
-	shoot_sound.play()
-	if not raycast.is_colliding():
-		return
-	var hit = raycast.get_collider()
-	if hit == null or hit == self:
-		return
-	
-	if hit is Area3D and hit.get_parent() and hit.get_parent().has_method("take_damage"):
-		if hit.is_in_group("head"):
-			hit.get_parent().take_damage.rpc_id(hit.get_multiplayer_authority(), DAMAGE * CRIT, multiplayer.get_unique_id())
-			kill_sound.play()
-			
-		else:
-			hit.get_parent().take_damage.rpc_id(hit.get_multiplayer_authority(), DAMAGE, multiplayer.get_unique_id())
+	if current_gun:
+		current_gun.shoot(self)
+	#if is_reloading:
+		#return
+	#if mag <= 0:
+		#start_reload()
+		#return
+		#
+	#can_shoot = false
+	#mag -= 1
+	#_update_hud()
+	#get_tree().create_timer(FIRE_RATE).timeout.connect(func(): can_shoot = true)
+	#$AnimationPlayer.play("shoot")
+	#shoot_sound.play()
+	#if not raycast.is_colliding():
+		#return
+	#var hit = raycast.get_collider()
+	#if hit == null or hit == self:
+		#return
+	#
+	#if hit is Area3D and hit.get_parent() and hit.get_parent().has_method("take_damage"):
+		#if hit.is_in_group("head"):
+			#hit.get_parent().take_damage.rpc_id(hit.get_multiplayer_authority(), DAMAGE * CRIT, multiplayer.get_unique_id())
+			#kill_sound.play()
+			#
+		#else:
+			#hit.get_parent().take_damage.rpc_id(hit.get_multiplayer_authority(), DAMAGE, multiplayer.get_unique_id())
 			
 
 @rpc("any_peer", "call_local", "reliable")
@@ -486,11 +590,45 @@ func _update_hud():
 	health_label.text = "HP: " + str(health)
 	health_bar.value = health
 	kills_label.text = "Kills: " + str(kills)
+	ammo_label.text = "Ammo: " + str(current_gun.mag) + "/" + str(current_gun.mag_size)
 
 @rpc("any_peer", "call_local", "reliable")
 func set_position_on_all(pos: Vector3):
 	position = pos
-
+	
+#func start_reload():
+	#if is_reloading:
+		#return
+	#if mag == MAG_SIZE:
+		#return
+	#
+	#is_reloading = true
+	#can_shoot = false
+	#
+	#reload_bar.visible = true
+	#reload_bar.value = 0
+	#
+	#_reload()
+#
+#func _reload():
+	#var elapsed := 0.0
+	#
+	#while elapsed < RELOAD_RATE:
+		#await get_tree().process_frame
+		#elapsed += get_process_delta_time()
+		#reload_bar.value = (elapsed / RELOAD_RATE) * 100.0
+	#
+	#_finish_reload()
+	#
+#func _finish_reload():
+	#mag = MAG_SIZE
+	#is_reloading = false
+	#can_shoot = true
+	#
+	#reload_bar.visible = false
+	#reload_bar.value = 0
+	#_update_hud()
+	#
 func _die():
 	health = MAX_HEALTH
 	_update_hud()
