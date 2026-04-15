@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://b5bdhcpoppi5y"]
+
+[ext_resource type="PackedScene" uid="uid://d3a25xx4xrpd0" path="res://weapons/gun.tscn" id="1_vfvja"]
+[ext_resource type="Script" uid="uid://2v0i2ajtkome" path="res://weapons/rocket_launcher.gd" id="2_f4skl"]
+
+[node name="RocketLauncher" unique_id=345758277 instance=ExtResource("1_vfvja")]
+script = ExtResource("2_f4skl")
+damage = 100
+crit = 1.0
+fire_rate = 1.0
+mag_size = 4

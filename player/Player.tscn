@@ -1,0 +1,181 @@
+[gd_scene format=3 uid="uid://dbiptpnc576os"]
+
+[ext_resource type="Script" uid="uid://bwg0f7q25waie" path="res://player/player.gd" id="1_xhfnw"]
+[ext_resource type="AudioStream" uid="uid://lok0qio71yk6" path="res://weapons/sounds/Sniper_bazaarbargain_shoot.wav" id="2_e80uo"]
+[ext_resource type="PackedScene" uid="uid://d3a25xx4xrpd0" path="res://weapons/gun.tscn" id="2_tdg3f"]
+[ext_resource type="AudioStream" uid="uid://8iccnkcb310w" path="res://weapons/sounds/Hitsound.wav" id="3_cxr5p"]
+[ext_resource type="PackedScene" uid="uid://dcwoh2ee3wly2" path="res://weapons/shotgun.tscn" id="3_dtqjt"]
+[ext_resource type="PackedScene" uid="uid://dgonpuubl7xqa" path="res://weapons/sniper.tscn" id="4_5ncpa"]
+[ext_resource type="AudioStream" uid="uid://cklt78jqh12d7" path="res://weapons/sounds/critical-hit-sounds-effect.mp3" id="4_tdg3f"]
+[ext_resource type="PackedScene" uid="uid://b5bdhcpoppi5y" path="res://weapons/rocket_launcher.tscn" id="5_5ncpa"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_0rwas"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kpjcp"]
+albedo_color = Color(0.11760362, 2.8878452e-07, 0.59663695, 1)
+emission = Color(0.7293818, 0.55274343, 0.20701948, 1)
+emission_energy_multiplier = 7.31
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_xhfnw"]
+height = 1.5
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cxr5p"]
+albedo_color = Color(0, 0.67975825, 0.8662698, 1)
+emission = Color(0.97597724, 0.3642801, 0.34752083, 1)
+emission_energy_multiplier = 16.0
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_cxr5p"]
+radius = 0.25
+height = 0.5
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_cxr5p"]
+radius = 0.34756088
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_cxr5p"]
+height = 1.4765625
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_cxr5p"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+properties/1/path = NodePath(".:rotation")
+properties/1/spawn = true
+properties/1/replication_mode = 1
+properties/2/path = NodePath("Head:rotation")
+properties/2/spawn = true
+properties/2/replication_mode = 1
+
+[node name="Player" type="CharacterBody3D" unique_id=1040195153 node_paths=PackedStringArray("guns")]
+collision_layer = 0
+script = ExtResource("1_xhfnw")
+guns = [NodePath("Head/GunSocket/Gun"), NodePath("Head/GunSocket/Shotgun"), NodePath("Head/GunSocket/Sniper"), NodePath("Head/GunSocket/RocketLauncher")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=2097299770]
+shape = SubResource("CapsuleShape3D_0rwas")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="." unique_id=385370132]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.27725387, 0)
+material_override = SubResource("StandardMaterial3D_kpjcp")
+mesh = SubResource("CapsuleMesh_xhfnw")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="." unique_id=2026089259]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7044293, 0)
+material_override = SubResource("StandardMaterial3D_cxr5p")
+mesh = SubResource("CapsuleMesh_cxr5p")
+
+[node name="Head" type="Node3D" parent="." unique_id=310579590]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.731, 0)
+
+[node name="Camera3D" type="Camera3D" parent="Head" unique_id=1949569597]
+
+[node name="GunSocket" type="Node3D" parent="Head" unique_id=1360289710]
+transform = Transform3D(0.9999999, 0, 0, 0, 1, 0, 0, 0, 1.0000001, 0, 0, 0)
+
+[node name="Gun" parent="Head/GunSocket" unique_id=345758277 node_paths=PackedStringArray("arms") instance=ExtResource("2_tdg3f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0028017762, 0, 0.0015054939)
+arms = []
+
+[node name="Shotgun" parent="Head/GunSocket" unique_id=904129470 instance=ExtResource("3_dtqjt")]
+
+[node name="Sniper" parent="Head/GunSocket" unique_id=534440267 instance=ExtResource("4_5ncpa")]
+
+[node name="RocketLauncher" parent="Head/GunSocket" unique_id=605035277 instance=ExtResource("5_5ncpa")]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1728018687]
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer" unique_id=1018508194]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -408.0
+offset_top = -54.0
+offset_right = 408.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_horizontal = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/VBoxContainer" unique_id=1474932161]
+layout_mode = 2
+
+[node name="HealthLabel" type="Label" parent="CanvasLayer/VBoxContainer/HBoxContainer" unique_id=651813463]
+layout_mode = 2
+theme_override_font_sizes/font_size = 35
+text = "HP: 100"
+
+[node name="AmmoLabel" type="Label" parent="CanvasLayer/VBoxContainer/HBoxContainer" unique_id=914989610]
+layout_mode = 2
+size_flags_horizontal = 10
+theme_override_font_sizes/font_size = 44
+text = "20/20"
+
+[node name="HealthBar" type="ProgressBar" parent="CanvasLayer/VBoxContainer" unique_id=385343545]
+modulate = Color(0, 0.97494787, 0.36734608, 1)
+layout_mode = 2
+theme_override_font_sizes/font_size = 42
+value = 100.0
+
+[node name="ReloadBar" type="ProgressBar" parent="CanvasLayer/VBoxContainer" unique_id=660855573]
+visible = false
+modulate = Color(0.9403743, 0.7849955, 0.5836634, 1)
+layout_mode = 2
+theme_override_font_sizes/font_size = 42
+value = 100.0
+
+[node name="Crosshair" type="Label" parent="CanvasLayer" unique_id=551098004]
+modulate = Color(0, 0, 0, 1)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -23.0
+offset_top = -41.0
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "O"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="KillsLabel" type="Label" parent="CanvasLayer" unique_id=992893207]
+offset_left = 158.0
+offset_top = 22.0
+offset_right = 974.0
+offset_bottom = 45.0
+theme_override_font_sizes/font_size = 44
+text = "Kills: 0"
+
+[node name="Items" type="VBoxContainer" parent="CanvasLayer" unique_id=766239787]
+anchors_preset = 9
+anchor_bottom = 1.0
+grow_vertical = 2
+size_flags_vertical = 3
+
+[node name="ShootSound" type="AudioStreamPlayer3D" parent="." unique_id=139818228]
+stream = ExtResource("2_e80uo")
+
+[node name="HitSound" type="AudioStreamPlayer3D" parent="." unique_id=2050101377]
+stream = ExtResource("3_cxr5p")
+
+[node name="KillSound" type="AudioStreamPlayer3D" parent="." unique_id=760201787]
+stream = ExtResource("4_tdg3f")
+
+[node name="HeadHitbox" type="Area3D" parent="." unique_id=2071605120 groups=["head"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.68454164, 0)
+collision_layer = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="HeadHitbox" unique_id=283319358]
+shape = SubResource("SphereShape3D_cxr5p")
+
+[node name="BodyHitbox" type="Area3D" parent="." unique_id=337833301]
+collision_layer = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="BodyHitbox" unique_id=769585010]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.26171875, 0)
+shape = SubResource("CapsuleShape3D_cxr5p")
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="." unique_id=2003625442]
+replication_config = SubResource("SceneReplicationConfig_cxr5p")
