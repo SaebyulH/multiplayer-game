@@ -4,15 +4,6 @@
 [ext_resource type="PackedScene" uid="uid://yg2u62is0a7y" path="res://Leader _50.fbx" id="2_okkp5"]
 [ext_resource type="PackedScene" uid="uid://bbc31s7tdy1pq" path="res://muzzle_flash.tscn" id="3_okkp5"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_okkp5"]
-albedo_color = Color(0.38735604, 0, 0.14073187, 1)
-emission = Color(0.7293818, 0.55274343, 0.20701948, 1)
-emission_energy_multiplier = 7.31
-
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_pyhkq"]
-radius = 0.065
-height = 0.52
-
 [sub_resource type="Animation" id="Animation_okkp5"]
 length = 0.001
 tracks/0/type = "value"
@@ -127,16 +118,6 @@ transform = Transform3D(-1.0709291e-08, 0, 0.24500002, 0, 0.245, 0, -0.24500003,
 
 [node name="Light" parent="Leader _50" index="0" unique_id=104521066]
 light_energy = 0.0
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Leader _50" unique_id=1712129990]
-transform = Transform3D(1.7216659, 3.474175, -1.2750291, 0.27123755, 1.284012, 3.8649025, 3.6908023, -1.7149768, 0.3107366, -1.6294672, -0.36274326, 0.5565314)
-material_override = SubResource("StandardMaterial3D_okkp5")
-mesh = SubResource("CapsuleMesh_pyhkq")
-
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="Leader _50" unique_id=365738438]
-transform = Transform3D(-1.8441833, 3.4923003, -1.0308009, 0.27123755, 1.284012, 3.8649023, 3.6311355, 1.6777598, -0.81222343, -0.21193409, -0.19390297, -0.4366902)
-material_override = SubResource("StandardMaterial3D_okkp5")
-mesh = SubResource("CapsuleMesh_pyhkq")
 
 [node name="Muzzle" type="Node3D" parent="." unique_id=1577237426]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.39422518, -1.6762348)

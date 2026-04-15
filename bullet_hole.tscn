@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://bjfq41rpthdls"]
 
 [sub_resource type="TorusMesh" id="TorusMesh_s3f3j"]
-rings = 6
+rings = 8
 ring_segments = 3
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_guucc"]

@@ -27,17 +27,6 @@ emission_energy_multiplier = 16.0
 radius = 0.25
 height = 0.5
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5ncpa"]
-albedo_color = Color(0, 0, 0, 1)
-emission = Color(0.97597724, 0.3642801, 0.34752083, 1)
-emission_energy_multiplier = 16.0
-
-[sub_resource type="CylinderMesh" id="CylinderMesh_dtqjt"]
-top_radius = 0.0
-
-[sub_resource type="CylinderMesh" id="CylinderMesh_5ncpa"]
-top_radius = 0.0
-
 [sub_resource type="SphereShape3D" id="SphereShape3D_cxr5p"]
 radius = 0.34756088
 
@@ -74,7 +63,7 @@ guns = [NodePath("Head/GunSocket/Sniper"), NodePath("Head/GunSocket/Gun"), NodeP
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=2097299770]
 shape = SubResource("CapsuleShape3D_0rwas")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1616540823]
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="." unique_id=385370132]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.27725387, 0)
 material_override = SubResource("StandardMaterial3D_kpjcp")
 mesh = SubResource("CapsuleMesh_xhfnw")
@@ -102,16 +91,6 @@ crit = 3.0
 
 [node name="Shotgun" parent="Head/GunSocket" unique_id=990368423 instance=ExtResource("4_dtqjt")]
 visible = false
-
-[node name="EyeRight" type="MeshInstance3D" parent="Head" unique_id=1100476758]
-transform = Transform3D(0.14326082, 0.11568777, 0, -0.11568777, 0.14326082, 0, 0, 0, 0.18413942, 0.20910907, 0.1840353, -0.022616148)
-material_override = SubResource("StandardMaterial3D_5ncpa")
-mesh = SubResource("CylinderMesh_dtqjt")
-
-[node name="EyeLeft" type="MeshInstance3D" parent="Head" unique_id=297424843]
-transform = Transform3D(0.15798377, -0.09459627, 0, 0.09459627, 0.15798377, 0, 0, 0, 0.18413942, -0.18289736, 0.20377898, -0.022318557)
-material_override = SubResource("StandardMaterial3D_5ncpa")
-mesh = SubResource("CylinderMesh_5ncpa")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1728018687]
 

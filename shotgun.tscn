@@ -4,15 +4,6 @@
 [ext_resource type="PackedScene" uid="uid://baesjaenr14ov" path="res://Double Deuce.fbx" id="2_5bb75"]
 [ext_resource type="PackedScene" uid="uid://bbc31s7tdy1pq" path="res://muzzle_flash.tscn" id="3_7oeqp"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7oeqp"]
-albedo_color = Color(0.38735604, 0, 0.14073187, 1)
-emission = Color(0.7293818, 0.55274343, 0.20701948, 1)
-emission_energy_multiplier = 7.31
-
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_a8mn3"]
-radius = 0.065
-height = 0.52
-
 [sub_resource type="Animation" id="Animation_a8mn3"]
 length = 0.001
 tracks/0/type = "value"
@@ -110,6 +101,15 @@ properties/1/path = NodePath("Muzzle/MuzzleFlash:emitting")
 properties/1/spawn = true
 properties/1/replication_mode = 1
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7oeqp"]
+albedo_color = Color(0.11760362, 2.8878452e-07, 0.59663695, 1)
+emission = Color(0.7293818, 0.55274343, 0.20701948, 1)
+emission_energy_multiplier = 7.31
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_a8mn3"]
+radius = 0.135
+height = 1.5
+
 [node name="Shotgun" type="Node3D" unique_id=345758277]
 script = ExtResource("1_5bb75")
 damage = 15
@@ -175,20 +175,10 @@ collision_mask = 2
 collide_with_areas = true
 
 [node name="Double Deuce" parent="." unique_id=1063465238 instance=ExtResource("2_5bb75")]
-transform = Transform3D(-8.742278e-09, 0, 0.19999997, 0, 0.2, 0, -0.2, 0, -8.742276e-09, 0, -0.50819075, -0.67130685)
+transform = Transform3D(-1.9451567e-08, 0, 0.445, 0, 0.445, 0, -0.445, 0, -1.9451567e-08, 0, -0.50819075, -0.67130685)
 
 [node name="Light" parent="Double Deuce" index="0" unique_id=496079405]
 light_energy = 0.0
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Double Deuce" unique_id=1694135652]
-transform = Transform3D(2.1090407, 4.2558646, -1.5619106, 0.33226597, 1.5729146, 4.734505, 4.521233, -2.1008468, 0.38065237, -1.8063478, -0.30339694, 0.6691578)
-material_override = SubResource("StandardMaterial3D_7oeqp")
-mesh = SubResource("CapsuleMesh_a8mn3")
-
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="Double Deuce" unique_id=2074180620]
-transform = Transform3D(-2.2591248, 4.278068, -1.2627311, 0.33226597, 1.5729146, 4.734505, 4.448141, 2.0552561, -0.9949738, -0.8365829, -0.27645922, -0.54304916)
-material_override = SubResource("StandardMaterial3D_7oeqp")
-mesh = SubResource("CapsuleMesh_a8mn3")
 
 [node name="Muzzle" type="Node3D" parent="." unique_id=1157123791]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.4188637, -1.2596198)
@@ -200,5 +190,15 @@ libraries/ = SubResource("AnimationLibrary_a8mn3")
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="." unique_id=1108819861]
 replication_config = SubResource("SceneReplicationConfig_7oeqp")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=2125134795]
+transform = Transform3D(0.99019504, -0.13969159, -1.1188526e-08, 4.9911644e-09, -4.4714927e-08, 1, -0.13969159, -0.99019504, -4.3579277e-08, 0.31976485, -0.52205575, -0.41112632)
+material_override = SubResource("StandardMaterial3D_7oeqp")
+mesh = SubResource("CapsuleMesh_a8mn3")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="." unique_id=2121044900]
+transform = Transform3D(0.8214379, 0.5702978, 2.1400904e-08, 4.9911573e-09, -4.4714923e-08, 1, 0.5702978, -0.8214379, -3.9576985e-08, -0.10563719, -0.52205575, -0.79370236)
+material_override = SubResource("StandardMaterial3D_7oeqp")
+mesh = SubResource("CapsuleMesh_a8mn3")
 
 [editable path="Double Deuce"]
