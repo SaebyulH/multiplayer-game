@@ -11,17 +11,24 @@ var preview_weapon: Node3D = null
 var claimed := false
 
 
+# ─────────────────────────────────────────
+# INIT
+# ─────────────────────────────────────────
 func _ready() -> void:
 	if weapon_scene:
 		_spawn_preview()
 
 
+# ─────────────────────────────────────────
+# PREVIEW WEAPON
+# ─────────────────────────────────────────
 func _spawn_preview():
 	if preview_weapon:
 		preview_weapon.queue_free()
 
 	preview_weapon = weapon_scene.instantiate()
 	display_point.add_child(preview_weapon)
+
 	preview_weapon.scale = Vector3(3, 3, 3)
 
 	if preview_weapon.has_method("hide_arms"):
@@ -29,10 +36,14 @@ func _spawn_preview():
 
 
 # ─────────────────────────────────────────
-# CLIENT REQUEST
+# PICKUP TRIGGER (CLIENT SIDE)
 # ─────────────────────────────────────────
 func _on_claim_area_body_entered(body: Node3D) -> void:
-	if body is Player and not claimed:
+	if claimed:
+		return
+
+	if body is Player:
+		# send request to server (peer 1 in your setup)
 		_request_pickup.rpc_id(1)
 
 
@@ -41,7 +52,10 @@ func _on_claim_area_body_entered(body: Node3D) -> void:
 # ─────────────────────────────────────────
 @rpc("any_peer", "reliable")
 func _request_pickup():
-	if claimed or not multiplayer.is_server():
+	if claimed:
+		return
+
+	if not multiplayer.is_server():
 		return
 
 	var sender_id := multiplayer.get_remote_sender_id()
@@ -52,23 +66,24 @@ func _request_pickup():
 
 	claimed = true
 
-	# sync crate state
+	# sync crate state to everyone
 	_set_crate_state.rpc(true)
 
 	# give weapon to everyone
 	_give_weapon.rpc(sender_id)
 
+	# respawn logic (server-controlled)
 	await get_tree().create_timer(respawn_time).timeout
 	_set_crate_state.rpc(false)
 
 
 # ─────────────────────────────────────────
-# SAFE PLAYER RESOLVE
+# PLAYER RESOLUTION (SAFE)
 # ─────────────────────────────────────────
 func _get_player_by_id(id: int) -> Player:
-	for child in get_tree().get_nodes_in_group("players"):
-		if child is Player and child.get_multiplayer_authority() == id:
-			return child
+	for p in get_tree().get_nodes_in_group("players"):
+		if p is Player and p.get_multiplayer_authority() == id:
+			return p
 	return null
 
 
@@ -82,6 +97,7 @@ func _set_crate_state(is_claimed: bool):
 	if claimed:
 		if preview_weapon:
 			preview_weapon.visible = false
+
 		claim_area.monitoring = false
 		collision.disabled = true
 	else:
@@ -107,5 +123,6 @@ func _give_weapon(player_id: int):
 	player.guns.append(new_weapon)
 	player._connect_gun(new_weapon)
 
+	# only equip on owning client
 	if player.is_multiplayer_authority():
 		player.equip_gun(player.guns.size() - 1)
