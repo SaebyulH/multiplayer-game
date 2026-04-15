@@ -10,7 +10,9 @@ const AIR_ACCEL := 4.0
 const FRICTION := 7.0
 const STOP_SPEED := 2.5
 var coyote_timer := 0.0
-@export var guns: Array[Gun] = []
+@export var default_guns: Array[Gun] = []
+var guns: Array[Gun] = default_guns
+
 var current_gun_index := 0
 var current_gun: Gun
 var movement_direction
@@ -326,6 +328,7 @@ func set_position_on_all(pos: Vector3):
 	position = pos
 
 func _die():
+	guns = default_guns
 	health = MAX_HEALTH
 	_update_hud()
 	var game = get_parent()
