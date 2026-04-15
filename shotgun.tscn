@@ -4,23 +4,6 @@
 [ext_resource type="PackedScene" uid="uid://baesjaenr14ov" path="res://Double Deuce.fbx" id="2_5bb75"]
 [ext_resource type="PackedScene" uid="uid://bbc31s7tdy1pq" path="res://muzzle_flash.tscn" id="3_7oeqp"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7oeqp"]
-albedo_color = Color(0.11760362, 2.8878452e-07, 0.59663695, 1)
-emission = Color(0.7293818, 0.55274343, 0.20701948, 1)
-emission_energy_multiplier = 7.31
-
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_a8mn3"]
-radius = 0.135
-height = 1.5
-
-[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_7oeqp"]
-properties/0/path = NodePath("AnimationPlayer:current_animation")
-properties/0/spawn = true
-properties/0/replication_mode = 1
-properties/1/path = NodePath("Muzzle/MuzzleFlash:emitting")
-properties/1/spawn = true
-properties/1/replication_mode = 1
-
 [sub_resource type="Animation" id="Animation_a8mn3"]
 length = 0.001
 tracks/0/type = "value"
@@ -33,7 +16,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector3(0.24332261, -0.42983258, -1.480607)]
+"values": [Vector3(0, -0.50819075, -0.67130685)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -47,62 +30,37 @@ tracks/1/keys = {
 "update": 0,
 "values": [Vector3(0, 1.5707964, 0)]
 }
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Double Deuce/Armature:rotation")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(-5.9604645e-08, 1.5707966, -1.5707964)]
-}
 
 [sub_resource type="Animation" id="Animation_gda1h"]
 resource_name = "reload"
-length = 1.2
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Double Deuce:position")
+tracks/0/path = NodePath("Double Deuce:rotation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.19428906, 0.95057887, 1.1700151),
+"times": PackedFloat32Array(0, 0.29340693, 0.4597901, 0.6404858),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
-"values": [Vector3(0.24332261, -0.42983258, -1.480607), Vector3(0.24332261, -0.96802944, -1.4290556), Vector3(0.24332261, -0.96802944, -1.4290556), Vector3(0.24332261, -0.42983258, -1.480607)]
+"values": [Vector3(0, 1.5707964, 0), Vector3(2.6855473e-08, 1.5707964, -0.6616019), Vector3(3.437305e-08, 1.5707964, -0.8813927), Vector3(0, 1.5707964, 0)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Double Deuce:rotation")
+tracks/1/path = NodePath("Double Deuce:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.19428906, 0.9416336, 1.1879058),
+"times": PackedFloat32Array(0, 0.29340693, 0.4597901, 0.6404858),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
-"values": [Vector3(0, 1.5707964, 0), Vector3(1.714399e-08, 1.5707964, -0.40303144), Vector3(1.714399e-08, 1.5707964, -0.40303144), Vector3(0, 1.5707964, 0)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Double Deuce/Armature:rotation")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0.42579785, 0.56534505, 0.8498066, 0.9177912, 1.0161898),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
-"update": 0,
-"values": [Vector3(-5.9604645e-08, 1.5707966, -1.5707964), Vector3(0.9626713, 1.5707968, -1.5707959), Vector3(0.9626713, 1.5707968, -1.5707959), Vector3(-0.3512699, 1.5707967, -1.5707965), Vector3(-5.9604645e-08, 1.5707966, -1.5707964)]
+"values": [Vector3(0, -0.50819075, -0.67130685), Vector3(0, -0.6469929, -0.6459162), Vector3(0, -0.66085744, -0.6775542), Vector3(0, -0.50819075, -0.67130685)]
 }
 
 [sub_resource type="Animation" id="Animation_7oeqp"]
 resource_name = "shoot"
-length = 0.08
+length = 0.51
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -110,10 +68,10 @@ tracks/0/path = NodePath("Double Deuce:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.008067731, 0.06460997, 0.077215955),
+"times": PackedFloat32Array(0, 0.033333335, 0.034318898, 0.44),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
-"values": [Vector3(0.24332261, -0.42983258, -1.480607), Vector3(0.24332261, -0.42983258, -1.2723393), Vector3(0.24332261, -0.42983258, -1.08806), Vector3(0.24332261, -0.42983258, -1.480607)]
+"values": [Vector3(0, -0.50819075, -0.67130685), Vector3(0, -0.48285872, -0.56422144), Vector3(0, -0.45528522, -0.511514), Vector3(0, -0.50819075, -0.67130685)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -122,10 +80,10 @@ tracks/1/path = NodePath("Double Deuce:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.0074110143, 0.063911475, 0.07451548),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.03301565, 0.034318898, 0.06666667, 0.44),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 0,
-"values": [Vector3(0, 1.5707964, 0), Vector3(-1.4042617e-08, 1.5707964, 0.32705724), Vector3(-2.377651e-08, 1.5707964, 0.56231034), Vector3(0, 1.5707964, 0)]
+"values": [Vector3(0, 1.5707964, 0), Vector3(-1.4942986e-08, 1.5707964, 0.3481139), Vector3(-1.8247285e-08, 1.5707964, 0.4247495), Vector3(-8.752774e-09, 1.5707964, 0.201603), Vector3(0, 1.5707964, 0)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_a8mn3"]
@@ -134,6 +92,23 @@ _data = {
 &"reload": SubResource("Animation_gda1h"),
 &"shoot": SubResource("Animation_7oeqp")
 }
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_7oeqp"]
+properties/0/path = NodePath("AnimationPlayer:current_animation")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+properties/1/path = NodePath("Muzzle/MuzzleFlash:emitting")
+properties/1/spawn = true
+properties/1/replication_mode = 1
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7oeqp"]
+albedo_color = Color(0.11760362, 2.8878452e-07, 0.59663695, 1)
+emission = Color(0.7293818, 0.55274343, 0.20701948, 1)
+emission_energy_multiplier = 7.31
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_a8mn3"]
+radius = 0.135
+height = 1.5
 
 [node name="Shotgun" type="Node3D" unique_id=345758277]
 script = ExtResource("1_5bb75")
@@ -151,82 +126,79 @@ target_position = Vector3(0, 0, -1000)
 collision_mask = 2
 collide_with_areas = true
 
-[node name="AttackRaycast2" type="RayCast3D" parent="Raycasts" unique_id=1880377305]
-transform = Transform3D(0.9961946, 0, -0.08715573, 0, 1, 0, 0.087155715, 0, 0.99619466, 0, 0, 0)
+[node name="AttackRaycast2" type="RayCast3D" parent="Raycasts" unique_id=827576581]
+transform = Transform3D(0.9999999, 0, 0, 0, 0.99262464, -0.12122837, 0, 0.12122837, 0.99262464, 0, 0, 0)
 target_position = Vector3(0, 0, -1000)
 collision_mask = 2
 collide_with_areas = true
 
-[node name="AttackRaycast3" type="RayCast3D" parent="Raycasts" unique_id=397240514]
-transform = Transform3D(0.99619466, 0, 0.087155744, 0, 1, 0, -0.08715576, 0, 0.9961948, 0, 0, 0)
+[node name="AttackRaycast3" type="RayCast3D" parent="Raycasts" unique_id=1082258405]
+transform = Transform3D(0.9999999, 0, 0, 0, 0.99889064, 0.047089003, 0, -0.047089003, 0.99889064, 0, 0, 0)
 target_position = Vector3(0, 0, -1000)
 collision_mask = 2
 collide_with_areas = true
 
-[node name="AttackRaycast4" type="RayCast3D" parent="Raycasts" unique_id=1114673973]
-transform = Transform3D(0.9999999, 0, 0, 0, 0.99619466, -0.08715573, 0, 0.08715573, 0.99619466, 0, 0, 0)
+[node name="AttackRaycast4" type="RayCast3D" parent="Raycasts" unique_id=1808144348]
+transform = Transform3D(0.99656683, 0, -0.08279082, 0, 1, 0, 0.08279081, 0, 0.9965669, 0, 0, 0)
 target_position = Vector3(0, 0, -1000)
 collision_mask = 2
 collide_with_areas = true
 
-[node name="AttackRaycast5" type="RayCast3D" parent="Raycasts" unique_id=56135333]
-transform = Transform3D(0.9960236, 0.015134436, -0.087794006, -0.022557562, 0.9961948, -0.084185995, 0.0861858, 0.08583166, 0.9925748, 0, 0, 0)
+[node name="AttackRaycast5" type="RayCast3D" parent="Raycasts" unique_id=715740329]
+transform = Transform3D(0.9965668, -0.004367569, -0.08267553, 7.63669e-11, 0.99860764, -0.05275428, 0.082790814, 0.052573167, 0.99517936, 0, 0, 0)
 target_position = Vector3(0, 0, -1000)
 collision_mask = 2
 collide_with_areas = true
 
-[node name="AttackRaycast6" type="RayCast3D" parent="Raycasts" unique_id=430061829]
-transform = Transform3D(0.99602365, -0.015134442, 0.08779402, 0.022557558, 0.9961946, -0.08418594, -0.0861858, 0.08583165, 0.9925748, 0, 0, 0)
+[node name="AttackRaycast6" type="RayCast3D" parent="Raycasts" unique_id=848720151]
+transform = Transform3D(0.9965668, 0.0038985368, -0.08269896, -1.562588e-10, 0.99889064, 0.047089003, 0.08279081, -0.046927344, 0.99546134, 0, 0, 0)
 target_position = Vector3(0, 0, -1000)
 collision_mask = 2
 collide_with_areas = true
 
-[node name="AttackRaycast7" type="RayCast3D" parent="Raycasts" unique_id=738070142]
-transform = Transform3D(0.9999999, 0, 0, 0, 0.9961948, 0.087155744, 0, -0.087155744, 0.9961948, 0, 0, 0)
+[node name="AttackRaycast7" type="RayCast3D" parent="Raycasts" unique_id=855301121]
+transform = Transform3D(0.99743694, 0, 0.071549654, 0, 1, 0, -0.07154966, 0, 0.997437, 0, 0, 0)
 target_position = Vector3(0, 0, -1000)
 collision_mask = 2
 collide_with_areas = true
 
-[node name="AttackRaycast8" type="RayCast3D" parent="Raycasts" unique_id=2009676041]
-transform = Transform3D(0.9960236, -0.015134435, -0.087794006, 0.022557562, 0.9961948, 0.08418596, 0.0861858, -0.08583166, 0.9925748, 0, 0, 0)
+[node name="AttackRaycast8" type="RayCast3D" parent="Raycasts" unique_id=10578314]
+transform = Transform3D(0.997437, 0.0037745517, 0.071450055, -1.5627871e-10, 0.99860775, -0.052754287, -0.07154966, 0.052619077, 0.9960483, 0, 0, 0)
 target_position = Vector3(0, 0, -1000)
 collision_mask = 2
 collide_with_areas = true
 
-[node name="AttackRaycast9" type="RayCast3D" parent="Raycasts" unique_id=1858403055]
-transform = Transform3D(0.9960238, 0.015134421, 0.087794065, -0.022557555, 0.99619466, 0.08418602, -0.0861858, -0.0858316, 0.99257475, 0, 0, 0)
+[node name="AttackRaycast9" type="RayCast3D" parent="Raycasts" unique_id=1841246161]
+transform = Transform3D(0.9974369, -0.0033692026, 0.07147029, -0.0038157012, 0.99496454, 0.10015572, -0.07144785, -0.10017174, 0.99240166, 0, 0, 0)
 target_position = Vector3(0, 0, -1000)
 collision_mask = 2
 collide_with_areas = true
 
 [node name="Double Deuce" parent="." unique_id=1063465238 instance=ExtResource("2_5bb75")]
-transform = Transform3D(-1.9451566e-08, 0, 0.44499996, 0, 0.44499993, 0, -0.44499993, 0, -1.9451566e-08, 0.24332261, -0.42983258, -1.480607)
+transform = Transform3D(-1.9451567e-08, 0, 0.445, 0, 0.445, 0, -0.445, 0, -1.9451567e-08, 0, -0.50819075, -0.67130685)
 
 [node name="Light" parent="Double Deuce" index="0" unique_id=496079405]
 light_energy = 0.0
 
-[node name="Armature" parent="Double Deuce" index="2" unique_id=1799381436]
-transform = Transform3D(2.4104825e-06, -1.1409667e-05, 40.441174, -40.441174, -1.7677398e-06, 2.4104818e-06, 1.7677391e-06, -40.441174, -1.1409667e-05, -0.16887712, 0.07240236, 0)
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Double Deuce" unique_id=2125134795]
-transform = Transform3D(0.31391358, 2.2251573, 9.793096e-08, 1.1216099e-08, -1.0048298e-07, 2.247191, 2.2251573, -0.31391358, -2.514275e-08, -2.4033275, -0.20724314, 0.17178023)
-material_override = SubResource("StandardMaterial3D_7oeqp")
-mesh = SubResource("CapsuleMesh_a8mn3")
-
-[node name="MeshInstance3D4" type="MeshInstance3D" parent="Double Deuce" unique_id=2121044900]
-transform = Transform3D(-1.2815682, 1.8459278, 8.893704e-08, 1.1216083e-08, -1.0048297e-07, 2.247191, 1.8459278, 1.2815682, 4.8091923e-08, -1.5436058, -0.20724314, -0.7841794)
-material_override = SubResource("StandardMaterial3D_7oeqp")
-mesh = SubResource("CapsuleMesh_a8mn3")
-
 [node name="Muzzle" type="Node3D" parent="." unique_id=1157123791]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.24340747, -0.33062845, -2.6348734)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.4188637, -1.2596198)
 
 [node name="MuzzleFlash" parent="Muzzle" unique_id=1165541235 instance=ExtResource("3_7oeqp")]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=828523941]
+libraries/ = SubResource("AnimationLibrary_a8mn3")
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="." unique_id=1108819861]
 replication_config = SubResource("SceneReplicationConfig_7oeqp")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=14926278]
-libraries/ = SubResource("AnimationLibrary_a8mn3")
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=2125134795]
+transform = Transform3D(0.99019504, -0.13969159, -1.1188526e-08, 4.9911644e-09, -4.4714927e-08, 1, -0.13969159, -0.99019504, -4.3579277e-08, 0.31976485, -0.52205575, -0.41112632)
+material_override = SubResource("StandardMaterial3D_7oeqp")
+mesh = SubResource("CapsuleMesh_a8mn3")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="." unique_id=2121044900]
+transform = Transform3D(0.8214379, 0.5702978, 2.1400904e-08, 4.9911573e-09, -4.4714923e-08, 1, 0.5702978, -0.8214379, -3.9576985e-08, -0.10563719, -0.52205575, -0.79370236)
+material_override = SubResource("StandardMaterial3D_7oeqp")
+mesh = SubResource("CapsuleMesh_a8mn3")
 
 [editable path="Double Deuce"]
