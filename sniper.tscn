@@ -4,6 +4,23 @@
 [ext_resource type="PackedScene" uid="uid://yg2u62is0a7y" path="res://Leader _50.fbx" id="2_okkp5"]
 [ext_resource type="PackedScene" uid="uid://bbc31s7tdy1pq" path="res://muzzle_flash.tscn" id="3_okkp5"]
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_okkp5"]
+albedo_color = Color(0.11760362, 2.8878452e-07, 0.59663695, 1)
+emission = Color(0.7293818, 0.55274343, 0.20701948, 1)
+emission_energy_multiplier = 7.31
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_pyhkq"]
+radius = 0.135
+height = 1.5
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_okkp5"]
+properties/0/path = NodePath("AnimationPlayer:current_animation")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+properties/1/path = NodePath("Muzzle/MuzzleFlash:emitting")
+properties/1/spawn = true
+properties/1/replication_mode = 1
+
 [sub_resource type="Animation" id="Animation_okkp5"]
 length = 0.001
 tracks/0/type = "value"
@@ -16,7 +33,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector3(-0.0016207248, -0.4340573, -1.0641127)]
+"values": [Vector3(0.21554148, -0.4340573, -1.324791)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -40,10 +57,10 @@ tracks/0/path = NodePath("Leader _50:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.13256374, 0.13488942, 0.58607125, 1),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.21371797, 0.54599524, 0.66800535, 0.80526674, 0.89464545, 0.9952866),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [Vector3(-0.0016207248, -0.48103195, -0.8008362), Vector3(-0.0016207248, -0.3553923, -1.0641127), Vector3(-0.0016207248, -0.3990896, -0.7243659), Vector3(-0.0016207248, -0.44182506, -0.76424754), Vector3(-0.0016207248, -0.48103195, -0.8008362)]
+"values": [Vector3(0.21554148, -0.4340573, -1.324791), Vector3(0.21554148, -0.4340573, -1.324791), Vector3(0.21554148, -0.4340573, -1.221487), Vector3(0.21554148, -0.5832523, -1.1835545), Vector3(0.21554148, -0.4340573, -1.1408803), Vector3(0.21554148, -0.4340573, -1.1130928), Vector3(0.21554148, -0.4340573, -1.324791)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -52,10 +69,10 @@ tracks/1/path = NodePath("Leader _50:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.13256374, 0.57909423, 1),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.21371797, 0.993315),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Vector3(0, 1.5707964, 0), Vector3(0.9956136, 2.5103295, 1.0205675), Vector3(0.9956136, 2.317296, 1.0205674), Vector3(0, 1.5707964, 0)]
+"values": [Vector3(0, 1.5707964, 0), Vector3(0.26179937, 1.5707964, 1.3089969), Vector3(0, 1.5707964, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_pyhkq"]
@@ -67,10 +84,10 @@ tracks/0/path = NodePath("Leader _50:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.0038716136, 0.02605063, 0.6),
+"times": PackedFloat32Array(0, 0.099920094, 0.16514571, 0.41217038),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
-"values": [Vector3(-0.0016207248, -0.4340573, -0.75276923), Vector3(-0.0016207248, -0.43381843, -0.71438104), Vector3(-0.0016207248, -0.3827261, -0.53583884), Vector3(-0.0016207248, -0.4340573, -0.75276923)]
+"values": [Vector3(0.21554148, -0.4340573, -1.324791), Vector3(0.21554148, -0.4340573, -0.9416568), Vector3(0.21554148, -0.29379004, -0.88872284), Vector3(0.21554148, -0.4340573, -1.324791)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -79,10 +96,10 @@ tracks/1/path = NodePath("Leader _50:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.0041347817, 0.035111573, 0.59933734),
+"times": PackedFloat32Array(0, 0.099920094, 0.16514571, 0.41217038),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
-"values": [Vector3(0, 1.5707964, 0), Vector3(-3.532982e-09, 1.5707964, 0.08091347), Vector3(-1.6023728e-08, 1.5707964, 0.37435034), Vector3(0, 1.5707964, 0)]
+"values": [Vector3(0, 1.5707964, 0), Vector3(-1.038291e-08, 1.5707964, 0.23982571), Vector3(-1.5307833e-08, 1.5707964, 0.35534313), Vector3(0, 1.5707964, 0)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_r8j6d"]
@@ -91,14 +108,6 @@ _data = {
 &"reload": SubResource("Animation_r8j6d"),
 &"shoot": SubResource("Animation_pyhkq")
 }
-
-[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_okkp5"]
-properties/0/path = NodePath("AnimationPlayer:current_animation")
-properties/0/spawn = true
-properties/0/replication_mode = 1
-properties/1/path = NodePath("Muzzle/MuzzleFlash:emitting")
-properties/1/spawn = true
-properties/1/replication_mode = 1
 
 [node name="Sniper" type="Node3D" unique_id=345758277]
 script = ExtResource("1_6jcko")
@@ -114,20 +123,30 @@ collision_mask = 2
 collide_with_areas = true
 
 [node name="Leader _50" parent="." unique_id=1598665167 instance=ExtResource("2_okkp5")]
-transform = Transform3D(-1.0709291e-08, 0, 0.24500002, 0, 0.245, 0, -0.24500003, 0, -1.0709291e-08, -0.0016207248, -0.4340573, -1.0641127)
+transform = Transform3D(-1.7597916e-08, 0, 0.40259343, 0, 0.40259337, 0, -0.40259337, 0, -1.7597918e-08, 0.21554148, -0.4340573, -1.324791)
 
 [node name="Light" parent="Leader _50" index="0" unique_id=104521066]
 light_energy = 0.0
 
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Leader _50" unique_id=1584300245]
+transform = Transform3D(0.34697917, 2.4595408, 1.0824636e-07, 1.2397531e-08, -1.1106721e-07, 2.4838955, 2.459541, -0.3469792, -2.7791124e-08, -2.2694473, -0.21857893, 0.2588799)
+material_override = SubResource("StandardMaterial3D_okkp5")
+mesh = SubResource("CapsuleMesh_pyhkq")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="Leader _50" unique_id=398615491]
+transform = Transform3D(-1.41656, 2.0403657, 9.830509e-08, 1.2397513e-08, -1.110672e-07, 2.4838955, 2.040366, 1.4165602, 5.3157613e-08, -1.3191684, -0.21857893, -0.7977743)
+material_override = SubResource("StandardMaterial3D_okkp5")
+mesh = SubResource("CapsuleMesh_pyhkq")
+
 [node name="Muzzle" type="Node3D" parent="." unique_id=1577237426]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.39422518, -1.6762348)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.21198845, -0.35889378, -2.3159194)
 
 [node name="MuzzleFlash" parent="Muzzle" unique_id=1165541235 instance=ExtResource("3_okkp5")]
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1817528808]
-libraries/ = SubResource("AnimationLibrary_r8j6d")
-
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="." unique_id=291804428]
 replication_config = SubResource("SceneReplicationConfig_okkp5")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1601208900]
+libraries/ = SubResource("AnimationLibrary_r8j6d")
 
 [editable path="Leader _50"]
