@@ -11,13 +11,16 @@ var preview_weapon: Node3D = null
 var claimed := false
 
 
+# ─────────────────────────────────────────
+# INIT
+# ─────────────────────────────────────────
 func _ready() -> void:
 	if weapon_scene:
 		_spawn_preview()
 
 
 # ─────────────────────────────────────────
-# Preview display
+# VISUAL PREVIEW
 # ─────────────────────────────────────────
 func _spawn_preview():
 	if preview_weapon:
@@ -34,7 +37,7 @@ func _spawn_preview():
 
 
 # ─────────────────────────────────────────
-# Client → request pickup
+# PICKUP TRIGGER (client side)
 # ─────────────────────────────────────────
 func _on_claim_area_body_entered(body: Node3D) -> void:
 	if claimed:
@@ -43,12 +46,12 @@ func _on_claim_area_body_entered(body: Node3D) -> void:
 	if body is Player:
 		var player := body as Player
 
-		# send request to server (peer 1)
+		# request server authority
 		_request_pickup.rpc_id(1, player.get_multiplayer_authority())
 
 
 # ─────────────────────────────────────────
-# Server handles pickup
+# SERVER HANDLES PICKUP
 # ─────────────────────────────────────────
 @rpc("authority", "call_local", "reliable")
 func _request_pickup(player_id: int):
@@ -61,17 +64,37 @@ func _request_pickup(player_id: int):
 
 	claimed = true
 
-	# tell ALL clients to give weapon
+	# sync crate state to ALL clients
+	_set_crate_state.rpc(true)
+
+	# give weapon to ALL clients
 	_give_weapon.rpc(player_id)
 
-	_disable_crate()
-
+	# respawn later (server controls timing)
 	await get_tree().create_timer(respawn_time).timeout
-	_respawn()
+	_set_crate_state.rpc(false)
 
 
 # ─────────────────────────────────────────
-# Give weapon on ALL clients
+# SYNC CRATE VISIBILITY
+# ─────────────────────────────────────────
+@rpc("any_peer", "call_local", "reliable")
+func _set_crate_state(is_claimed: bool):
+	claimed = is_claimed
+
+	if claimed:
+		if preview_weapon:
+			preview_weapon.visible = false
+		claim_area.monitoring = false
+		collision.disabled = true
+	else:
+		_spawn_preview()
+		claim_area.monitoring = true
+		collision.disabled = false
+
+
+# ─────────────────────────────────────────
+# GIVE WEAPON (ALL CLIENTS)
 # ─────────────────────────────────────────
 @rpc("any_peer", "call_local", "reliable")
 func _give_weapon(player_id: int):
@@ -85,26 +108,10 @@ func _give_weapon(player_id: int):
 	new_weapon.visible = false
 
 	player.guns.append(new_weapon)
+
+	# connect signals for HUD/audio
 	player._connect_gun(new_weapon)
 
-	player.equip_gun(player.guns.size() - 1)
-
-
-# ─────────────────────────────────────────
-# Disable / respawn
-# ─────────────────────────────────────────
-func _disable_crate():
-	if preview_weapon:
-		preview_weapon.visible = false
-
-	claim_area.monitoring = false
-	collision.disabled = true
-
-
-func _respawn():
-	claimed = false
-
-	_spawn_preview()
-
-	claim_area.monitoring = true
-	collision.disabled = false
+	# ONLY local player equips + sees viewmodel properly
+	if player.is_multiplayer_authority():
+		player.equip_gun(player.guns.size() - 1)
