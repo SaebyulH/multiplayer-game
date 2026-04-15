@@ -11,6 +11,25 @@ func _process(delta: float) -> void:
 	pass
 	
 func shoot(player: Player):
+	if is_reloading:
+		return
+	
+	if mag <= 0:
+		start_reload()
+		return
+	
+	if not can_shoot:
+		return
+	$AnimationPlayer.play("shoot")
+	
+	can_shoot = false
+	mag -= 1
+	ammo_changed.emit(mag, mag_size)
+	shot_fired.emit()
+	muzzle_flash.emitting = true
+	
+	get_tree().create_timer(fire_rate).timeout.connect(func(): can_shoot = true)
+	
 	if player.is_multiplayer_authority():
 		_request_rocket.rpc_id(1,
 		player.get_multiplayer_authority(),  # ← fix here

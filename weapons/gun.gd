@@ -13,7 +13,7 @@ class_name Gun
 
 
 var reload_time := 0.0
-var mag
+var mag = mag_size
 @onready var muzzle_flash = $Muzzle/MuzzleFlash
 
 var can_shoot := true
