@@ -16,21 +16,12 @@ var current_gun: Gun
 var movement_direction
 
 
-# Spread / inaccuracy
-var spread := 0.0
-var shoot_spread := 0.0
-
-const BASE_SPREAD := 0.002
-const MOVE_SPREAD := 0.2
-const AIR_SPREAD := 0.025
-const SHOOT_SPREAD_ADD := 0.5
-const SPREAD_DECAY := 4.0
 
 
 # Mouse
 const MOUSE_SENS_X: float = 0.002
 const MOUSE_SENS_Y: float = 0.002
-@onready var mesh: MeshInstance3D = $MeshInstance3D
+@onready var mesh: MeshInstance3D = $MeshInstance3D3
 
 # Stats
 const MAX_HEALTH = 100
@@ -202,6 +193,8 @@ func _physics_process(delta):
 		return
 
 	camera.fov = 30 if ads else 90
+	$CanvasLayer/Scope.visible = ads
+	$Head/GunSocket.visible = not ads
 	movement_direction = get_movement_direction()
 
 	# ─── Gravity ─────────────────────────────
@@ -233,41 +226,9 @@ func _physics_process(delta):
 	else:
 		if Input.is_action_just_pressed("shoot") and can_shoot:
 			_shoot()
-	_update_spread(delta)
-	_apply_gun_spread()
 	move_and_slide()
 
 
-func _update_spread(delta):
-	# movement-based spread
-	var horizontal_speed = Vector3(velocity.x, 0, velocity.z).length()
-	var move_factor = clamp(horizontal_speed / MAX_SPEED, 0.0, 1.0)
-
-	var target_spread = BASE_SPREAD + move_factor * MOVE_SPREAD
-
-	if not is_on_floor():
-		target_spread += AIR_SPREAD
-
-	# combine with shooting spread
-	spread = target_spread + shoot_spread
-
-	# decay shooting spread
-	shoot_spread = max(shoot_spread - SPREAD_DECAY * delta, 0.0)
-	
-	if movement_direction == Vector3.ZERO and is_on_floor():
-		shoot_spread = max(shoot_spread - SPREAD_DECAY * delta * 2.0, 0.0)
-	
-func _apply_gun_spread():
-	if not gun_socket:
-		return
-
-	# small random offsets
-	var x = randf_range(-spread, spread)
-	var y = randf_range(-spread, spread)
-
-	# apply rotation (pitch + yaw)
-	gun_socket.rotation.x = lerp(gun_socket.rotation.x, x, 0.2)
-	gun_socket.rotation.y = lerp(gun_socket.rotation.y, y, 0.2)
 		
 func _apply_friction(delta):
 	var speed = velocity.length()
@@ -321,7 +282,6 @@ func get_movement_direction() -> Vector3:
 func _shoot():
 	if current_gun:
 		current_gun.shoot(self)
-		shoot_spread += SHOOT_SPREAD_ADD
 
 
 @rpc("any_peer", "call_local", "reliable")

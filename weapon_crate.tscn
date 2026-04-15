@@ -1,0 +1,35 @@
+[gd_scene format=3 uid="uid://d4muho47bxamc"]
+
+[ext_resource type="Script" uid="uid://ynntby6prk0k" path="res://weapon_crate.gd" id="1_hcfla"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_hcfla"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_44u3b"]
+size = Vector3(1, 0.17, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_44u3b"]
+albedo_color = Color(0.29948267, 0.13123685, 0.054370724, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_44u3b"]
+
+[node name="WeaponCrate" type="StaticBody3D" unique_id=1565253267]
+script = ExtResource("1_hcfla")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1806892990]
+shape = SubResource("BoxShape3D_hcfla")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1520079854]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.34714377, 0)
+mesh = SubResource("BoxMesh_44u3b")
+surface_material_override/0 = SubResource("StandardMaterial3D_44u3b")
+
+[node name="ClaimArea" type="Area3D" parent="." unique_id=119077444]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ClaimArea" unique_id=2140383766]
+transform = Transform3D(1.3295387, 0, 0, 0, 1.3295387, 0, 0, 0, 1.3295387, 0, 0, 0)
+shape = SubResource("BoxShape3D_44u3b")
+
+[node name="DisplayPoint" type="Node3D" parent="." unique_id=791348385]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1411162, 0)
+
+[connection signal="body_entered" from="ClaimArea" to="." method="_on_claim_area_body_entered"]
