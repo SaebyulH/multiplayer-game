@@ -69,9 +69,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.731, 0)
 [node name="GunSocket" type="Node3D" parent="Head" unique_id=1360289710]
 transform = Transform3D(0.9999999, 0, 0, 0, 1, 0, 0, 0, 1.0000001, 0, 0, 0)
 
-[node name="Gun" parent="Head/GunSocket" unique_id=235050932 instance=ExtResource("2_tdg3f")]
+[node name="Gun" parent="Head/GunSocket" unique_id=235050932 node_paths=PackedStringArray("arms") instance=ExtResource("2_tdg3f")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0028017762, 0, 0.0015054939)
 crit = 3.0
+arms = []
 
 [node name="Shotgun" parent="Head/GunSocket" unique_id=345758277 instance=ExtResource("3_dtqjt")]
 
