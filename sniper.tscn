@@ -109,11 +109,12 @@ _data = {
 &"shoot": SubResource("Animation_pyhkq")
 }
 
-[node name="Sniper" type="Node3D" unique_id=345758277]
+[node name="Sniper" type="Node3D" unique_id=345758277 node_paths=PackedStringArray("arms")]
 script = ExtResource("1_6jcko")
 damage = 55
 fire_rate = 1.0
 mag_size = 5
+arms = [NodePath("Leader _50/MeshInstance3D"), NodePath("Leader _50/MeshInstance3D4")]
 
 [node name="Raycasts" type="Node3D" parent="." unique_id=832925510]
 

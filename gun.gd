@@ -9,6 +9,9 @@ class_name Gun
 @export var bullet_hole_scene: PackedScene = preload("res://bullet_hole.tscn")
 @export var automatic = true
 
+@export var arms: Array[MeshInstance3D] = []
+
+
 var reload_time := 0.0
 var mag
 @onready var muzzle_flash = $Muzzle/MuzzleFlash
@@ -25,6 +28,14 @@ signal ammo_changed(current, max)
 signal reload_started
 signal reload_finished
 signal reload_progress(value)
+
+func hide_arms():
+	for arm in arms:
+		arm.hide()
+
+func show_arms():
+	for arm in arms:
+		arm.show()
 
 func _ready() -> void:
 	mag = mag_size

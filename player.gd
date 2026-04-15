@@ -193,7 +193,6 @@ func _physics_process(delta):
 		return
 
 	camera.fov = 30 if ads else 90
-	$CanvasLayer/Scope.visible = ads
 	$Head/GunSocket.visible = not ads
 	movement_direction = get_movement_direction()
 

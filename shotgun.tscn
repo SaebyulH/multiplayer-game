@@ -135,13 +135,14 @@ _data = {
 &"shoot": SubResource("Animation_7oeqp")
 }
 
-[node name="Shotgun" type="Node3D" unique_id=345758277]
+[node name="Shotgun" type="Node3D" unique_id=345758277 node_paths=PackedStringArray("arms")]
 script = ExtResource("1_5bb75")
 damage = 15
 fire_rate = 0.1
 mag_size = 2
 reload_rate = 1.2
 automatic = false
+arms = [NodePath("Double Deuce/MeshInstance3D"), NodePath("Double Deuce/MeshInstance3D4")]
 
 [node name="Raycasts" type="Node3D" parent="." unique_id=832925510]
 

@@ -4,10 +4,8 @@
 [ext_resource type="AudioStream" uid="uid://lok0qio71yk6" path="res://Sniper_bazaarbargain_shoot.wav" id="2_e80uo"]
 [ext_resource type="PackedScene" uid="uid://d3a25xx4xrpd0" path="res://gun.tscn" id="2_tdg3f"]
 [ext_resource type="AudioStream" uid="uid://8iccnkcb310w" path="res://Hitsound.wav" id="3_cxr5p"]
-[ext_resource type="PackedScene" uid="uid://dgonpuubl7xqa" path="res://sniper.tscn" id="3_tdg3f"]
-[ext_resource type="PackedScene" uid="uid://dcwoh2ee3wly2" path="res://shotgun.tscn" id="4_dtqjt"]
+[ext_resource type="PackedScene" uid="uid://bjfq41rpthdls" path="res://bullet_hole.tscn" id="3_tdg3f"]
 [ext_resource type="AudioStream" uid="uid://cklt78jqh12d7" path="res://critical-hit-sounds-effect.mp3" id="4_tdg3f"]
-[ext_resource type="Texture2D" uid="uid://dlw180io6d8ie" path="res://pngimg.com - scope_PNG13017.png" id="5_5ncpa"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_0rwas"]
 
@@ -59,7 +57,7 @@ properties/6/replication_mode = 1
 
 [node name="Player" type="CharacterBody3D" unique_id=1040195153 node_paths=PackedStringArray("guns")]
 script = ExtResource("1_xhfnw")
-guns = [NodePath("Head/GunSocket/Sniper"), NodePath("Head/GunSocket/Gun"), NodePath("Head/GunSocket/Shotgun")]
+guns = [NodePath("Head/GunSocket/Gun")]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=2097299770]
 shape = SubResource("CapsuleShape3D_0rwas")
@@ -82,16 +80,14 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.731, 0)
 [node name="GunSocket" type="Node3D" parent="Head" unique_id=1360289710]
 transform = Transform3D(0.9999999, 0, 0, 0, 1, 0, 0, 0, 1.0000001, 0, 0, 0)
 
-[node name="Sniper" parent="Head/GunSocket" unique_id=345758277 instance=ExtResource("3_tdg3f")]
-visible = false
-
 [node name="Gun" parent="Head/GunSocket" unique_id=235050932 instance=ExtResource("2_tdg3f")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0028017762, 0, 0.0015054939)
-visible = false
+damage = 10
 crit = 3.0
-
-[node name="Shotgun" parent="Head/GunSocket" unique_id=990368423 instance=ExtResource("4_dtqjt")]
-visible = false
+fire_rate = 0.08
+mag_size = 20
+reload_rate = 1.0
+bullet_hole_scene = ExtResource("3_tdg3f")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1728018687]
 
@@ -159,17 +155,6 @@ offset_right = 974.0
 offset_bottom = 45.0
 theme_override_font_sizes/font_size = 44
 text = "Kills: 0"
-
-[node name="Scope" type="TextureRect" parent="CanvasLayer" unique_id=44254939]
-visible = false
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-texture = ExtResource("5_5ncpa")
 
 [node name="ShootSound" type="AudioStreamPlayer3D" parent="." unique_id=139818228]
 stream = ExtResource("2_e80uo")
