@@ -249,6 +249,26 @@ func _jump() -> void:
 		coyote_timer = 0.0
 
 
+# ─── Gun Pickup ───────────────────────────────────────────────────────────────
+## Called by the weapon crate RPC on the owning peer only.
+## Instantiates and equips a new gun from the given PackedScene path.
+func receive_gun(scene_path: String) -> void:
+	if not is_multiplayer_authority():
+		return
+
+	var scene: PackedScene = load(scene_path)
+	if scene == null:
+		push_error("Player.receive_gun: could not load scene: " + scene_path)
+		return
+
+	var new_gun: Gun = scene.instantiate()
+	gun_socket.add_child(new_gun)
+	new_gun.hide()  # equip_gun will show it
+	guns.append(new_gun)
+	_connect_gun(new_gun)
+	equip_gun(guns.size() - 1)
+
+
 # ─── Combat ───────────────────────────────────────────────────────────────────
 func _shoot() -> void:
 	if current_gun:
