@@ -209,6 +209,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9, 13.205529, 6.789177)
 operation = 2
 size = Vector3(7, 3, 11.876953)
 
+[node name="CSGBox3D24" type="CSGBox3D" parent="CSGCombiner3D" unique_id=1753607938]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.607666, 13.095605, -17.800014)
+operation = 2
+size = Vector3(36.215332, 4.1551514, 3.628418)
+
 [node name="CSGBox3D23" type="CSGBox3D" parent="CSGCombiner3D" unique_id=366224995]
 transform = Transform3D(0.99999374, -0.0027472218, 0.0022120415, 0.0027493974, 0.99999577, -0.0009777757, -0.0022093377, 0.000983859, 0.999997, 23.561268, 13.867622, 25.488258)
 size = Vector3(0.6152402, 8.05127, 64.27539)
