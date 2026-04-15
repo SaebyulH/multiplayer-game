@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://mnu41vwdqady" path="res://citrus_orchard_road_puresky_1k.exr" id="2_e2o6t"]
 [ext_resource type="PackedScene" uid="uid://bg3yvptu2ojlf" path="res://weapon_crate.tscn" id="3_fc0e3"]
 [ext_resource type="PackedScene" uid="uid://dgonpuubl7xqa" path="res://sniper.tscn" id="4_7jktm"]
+[ext_resource type="PackedScene" uid="uid://dcwoh2ee3wly2" path="res://shotgun.tscn" id="5_7jktm"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_feb5d"]
 panorama = ExtResource("2_e2o6t")
@@ -41,10 +42,10 @@ _spawnable_scenes = PackedStringArray("uid://dbiptpnc576os")
 spawn_path = NodePath("..")
 
 [node name="HostPosition" type="Node3D" parent="." unique_id=1158607876]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.80098, -2.2020383, 31.755985)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18.083626, -2.2020383, 38.799667)
 
 [node name="ClientPosition" type="Node3D" parent="." unique_id=144583522]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32.511307, -2.6308784, 34.14892)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 27.36943, -2.6308784, 37.089996)
 
 [node name="CSGCombiner3D" type="CSGCombiner3D" parent="." unique_id=1721842706]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -6, 0)
@@ -166,8 +167,16 @@ size = Vector3(0.6152402, 8.05127, 64.27539)
 transform = Transform3D(0.99999374, -0.0027472218, 0.0022120415, 0.0027493974, 0.99999577, -0.0009777757, -0.0022093377, 0.000983859, 0.999997, -6.3378863, 13.901634, -13.9304)
 size = Vector3(0.6152402, 8.05127, 16.27362)
 
+[node name="CSGBox3D41" type="CSGBox3D" parent="CSGCombiner3D" unique_id=240644559]
+transform = Transform3D(0.99999374, -0.0027472218, 0.0022120415, 0.0027493974, 0.99999577, -0.0009777757, -0.0022093377, 0.000983859, 0.999997, 18.50047, 13.901634, -13.9304)
+size = Vector3(0.6152402, 8.05127, 16.27362)
+
 [node name="CSGBox3D29" type="CSGBox3D" parent="CSGCombiner3D" unique_id=1388546640]
 transform = Transform3D(0.99999374, -0.0027472218, 0.0022120415, 0.0027493974, 0.99999577, -0.0009777757, -0.0022093377, 0.000983859, 0.999997, 5.6989393, 13.927631, -6.190546)
+size = Vector3(36.11902, 8.05127, 0.99609375)
+
+[node name="CSGBox3D46" type="CSGBox3D" parent="CSGCombiner3D" unique_id=545546496]
+transform = Transform3D(0.99999374, -0.0027472218, 0.0022120415, 0.0027493974, 0.99999577, -0.0009777757, -0.0022093377, 0.000983859, 0.999997, 5.6989393, 13.927631, 57.149933)
 size = Vector3(36.11902, 8.05127, 0.99609375)
 
 [node name="CSGBox3D38" type="CSGBox3D" parent="CSGCombiner3D" unique_id=1426862383]
@@ -204,6 +213,26 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9, 13.205529, 27.376892)
 operation = 2
 size = Vector3(7, 3, 11.876953)
 
+[node name="CSGBox3D42" type="CSGBox3D" parent="CSGCombiner3D" unique_id=1894343170]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.105057, 8.705529, 16.652433)
+operation = 2
+size = Vector3(3, 12, 3)
+
+[node name="CSGBox3D43" type="CSGBox3D" parent="CSGCombiner3D" unique_id=1902554814]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.105057, 8.705529, 37.83795)
+operation = 2
+size = Vector3(3, 12, 3)
+
+[node name="CSGBox3D44" type="CSGBox3D" parent="CSGCombiner3D" unique_id=2043579116]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 28.16951, 8.705529, 16.652433)
+operation = 2
+size = Vector3(3, 12, 3)
+
+[node name="CSGBox3D45" type="CSGBox3D" parent="CSGCombiner3D" unique_id=340542693]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 28.16951, 8.705529, 37.83795)
+operation = 2
+size = Vector3(3, 12, 3)
+
 [node name="CSGBox3D22" type="CSGBox3D" parent="CSGCombiner3D" unique_id=476044317]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9, 13.205529, 6.789177)
 operation = 2
@@ -234,5 +263,9 @@ operation = 2
 size = Vector3(7, 3, 11.876953)
 
 [node name="WeaponCrate" parent="." unique_id=1565253267 instance=ExtResource("3_fc0e3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.4333253, -4.779674, 20.461552)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.4333253, -4.499867, 22.493069)
 weapon_scene = ExtResource("4_7jktm")
+
+[node name="WeaponCrate2" parent="." unique_id=646274889 instance=ExtResource("3_fc0e3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.975807, 5.866015, -13.868524)
+weapon_scene = ExtResource("5_7jktm")
