@@ -62,6 +62,10 @@ var is_reloading = false
 
 @onready var gun_socket = $Head/GunSocket
 func equip_gun(index: int):
+	
+	for gun in guns:
+		gun.hide()
+	
 	if index < 0 or index >= guns.size():
 		return
 
