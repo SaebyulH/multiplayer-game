@@ -1,6 +1,208 @@
-[gd_scene format=3 uid="uid://bg3yvptu2ojlf"]
+[gd_scene format=3 uid="uid://d4muho47bxamc"]
 
-[ext_resource type="Script" uid="uid://ynntby6prk0k" path="res://weapon_crate.gd" id="1_hcfla"]
+[sub_resource type="GDScript" id="GDScript_44u3b"]
+script/source = "extends StaticBody3D
+
+@export var weapon_scene: PackedScene
+@export var respawn_time := 10.0
+
+@onready var display_point: Node3D    = $DisplayPoint
+@onready var claim_area: Area3D       = $ClaimArea
+@onready var collision: CollisionShape3D = $CollisionShape3D
+
+var preview_weapon: Node3D = null
+var claimed := false
+
+
+func _ready() -> void:
+	if weapon_scene:
+		_spawn_preview()
+
+
+<<<<<<< HEAD
+# ─────────────────────────────────────────
+# VISUAL PREVIEW
+# ─────────────────────────────────────────
+func _spawn_preview():
+=======
+func _spawn_preview() -> void:
+>>>>>>> parent of 993f6f6 (Revert \"Merge branch 'main' of https://github.com/SaebyulH/multiplayer-game\")
+	if preview_weapon:
+		preview_weapon.queue_free()
+
+	preview_weapon = weapon_scene.instantiate()
+	display_point.add_child(preview_weapon)
+<<<<<<< HEAD
+
+	preview_weapon.visible = true
+	preview_weapon.scale = Vector3(3.0, 3.0, 3.0)
+=======
+	preview_weapon.scale = Vector3(3, 3, 3)
+>>>>>>> parent of 993f6f6 (Revert \"Merge branch 'main' of https://github.com/SaebyulH/multiplayer-game\")
+
+	if preview_weapon.has_method(\"hide_arms\"):
+		preview_weapon.hide_arms()
+
+
+# ─────────────────────────────────────────
+<<<<<<< HEAD
+# PICKUP TRIGGER (client side)
+=======
+# CLIENT: enters the pickup zone
+>>>>>>> parent of 993f6f6 (Revert \"Merge branch 'main' of https://github.com/SaebyulH/multiplayer-game\")
+# ─────────────────────────────────────────
+func _on_claim_area_body_entered(body: Node3D) -> void:
+	if not (body is Player) or claimed:
+		return
+	if not body.is_multiplayer_authority():
+		return
+
+<<<<<<< HEAD
+	if body is Player:
+		var player := body as Player
+
+		# request server authority
+		_request_pickup.rpc_id(1, player.get_multiplayer_authority())
+=======
+	if multiplayer.is_server():
+		# Host is peer 1 — rpc_id(1) to self is a no-op, so call directly.
+		_request_pickup()
+	else:
+		_request_pickup.rpc_id(1)
+>>>>>>> parent of 993f6f6 (Revert \"Merge branch 'main' of https://github.com/SaebyulH/multiplayer-game\")
+
+
+# ─────────────────────────────────────────
+# SERVER: validates and authorises pickup
+# ─────────────────────────────────────────
+<<<<<<< HEAD
+@rpc(\"authority\", \"call_local\", \"reliable\")
+func _request_pickup(player_id: int):
+	if claimed or not weapon_scene:
+		return
+
+	var player := get_parent().get_node_or_null(str(player_id))
+	if not player:
+		return
+
+	claimed = true
+
+	# sync crate state to ALL clients
+	_set_crate_state.rpc(true)
+
+	# give weapon to ALL clients
+	_give_weapon.rpc(player_id)
+
+	# respawn later (server controls timing)
+=======
+@rpc(\"any_peer\", \"reliable\")
+func _request_pickup() -> void:
+	if claimed or not multiplayer.is_server():
+		return
+
+	# get_remote_sender_id() returns 0 when the host triggers the RPC locally.
+	# The host's real peer ID is always 1.
+	var sender_id := multiplayer.get_remote_sender_id()
+	if sender_id == 0:
+		sender_id = 1
+
+	var player := _get_player_by_id(sender_id)
+	if player == null:
+		return
+
+	claimed = true
+	_set_crate_state.rpc(true)
+
+	var scene_path := weapon_scene.resource_path
+
+	if sender_id == 1:
+		# Host is picking up — rpc_id(1) from the server to itself is a no-op,
+		# so call the delivery function directly instead.
+		_deliver_gun_to_peer(scene_path)
+	else:
+		_deliver_gun_to_peer.rpc_id(sender_id, scene_path)
+
+>>>>>>> parent of 993f6f6 (Revert \"Merge branch 'main' of https://github.com/SaebyulH/multiplayer-game\")
+	await get_tree().create_timer(respawn_time).timeout
+	_set_crate_state.rpc(false)
+
+
+# ─────────────────────────────────────────
+<<<<<<< HEAD
+# SYNC CRATE VISIBILITY
+# ─────────────────────────────────────────
+@rpc(\"any_peer\", \"call_local\", \"reliable\")
+func _set_crate_state(is_claimed: bool):
+=======
+# PEER: receives and instantiates its gun
+# ─────────────────────────────────────────
+# Not marked @rpc — the server calls this directly for the host,
+# and via rpc_id for remote clients.
+func _deliver_gun_to_peer(scene_path: String) -> void:
+	var local_player := _get_local_authority_player()
+	if local_player == null:
+		return
+	local_player.receive_gun(scene_path)
+
+
+# ─────────────────────────────────────────
+# CRATE STATE SYNC (all peers)
+# ─────────────────────────────────────────
+@rpc(\"call_local\", \"reliable\")
+func _set_crate_state(is_claimed: bool) -> void:
+>>>>>>> parent of 993f6f6 (Revert \"Merge branch 'main' of https://github.com/SaebyulH/multiplayer-game\")
+	claimed = is_claimed
+
+	if claimed:
+		if preview_weapon:
+			preview_weapon.visible = false
+		claim_area.monitoring = false
+		collision.disabled    = true
+	else:
+		_spawn_preview()
+		claim_area.monitoring = true
+		collision.disabled    = false
+
+
+# ─────────────────────────────────────────
+# HELPERS
+# ─────────────────────────────────────────
+<<<<<<< HEAD
+@rpc(\"any_peer\", \"call_local\", \"reliable\")
+func _give_weapon(player_id: int):
+	var player := get_parent().get_node_or_null(str(player_id))
+	if not player:
+		return
+=======
+func _get_player_by_id(id: int) -> Player:
+	for node in get_tree().get_nodes_in_group(\"players\"):
+		if node is Player and node.get_multiplayer_authority() == id:
+			return node
+	return null
+>>>>>>> parent of 993f6f6 (Revert \"Merge branch 'main' of https://github.com/SaebyulH/multiplayer-game\")
+
+
+<<<<<<< HEAD
+	player.gun_socket.add_child(new_weapon)
+	new_weapon.visible = false
+
+	player.guns.append(new_weapon)
+
+	# connect signals for HUD/audio
+	player._connect_gun(new_weapon)
+
+	# ONLY local player equips + sees viewmodel properly
+	if player.is_multiplayer_authority():
+		player.equip_gun(player.guns.size() - 1)
+=======
+## Returns the Player node that this local machine owns.
+func _get_local_authority_player() -> Player:
+	for node in get_tree().get_nodes_in_group(\"players\"):
+		if node is Player and node.is_multiplayer_authority():
+			return node
+	return null
+>>>>>>> parent of 993f6f6 (Revert \"Merge branch 'main' of https://github.com/SaebyulH/multiplayer-game\")
+"
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_hcfla"]
 
@@ -13,7 +215,9 @@ albedo_color = Color(0.29948267, 0.13123685, 0.054370724, 1)
 size = Vector3(1, 1.3165283, 1)
 
 [node name="WeaponCrate" type="StaticBody3D" unique_id=1565253267]
-script = ExtResource("1_hcfla")
+script = SubResource("GDScript_44u3b")
+respawn_time = null
+index = null
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1806892990]
 shape = SubResource("BoxShape3D_hcfla")

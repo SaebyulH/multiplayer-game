@@ -4,6 +4,8 @@
 [ext_resource type="AudioStream" uid="uid://lok0qio71yk6" path="res://Sniper_bazaarbargain_shoot.wav" id="2_e80uo"]
 [ext_resource type="PackedScene" uid="uid://d3a25xx4xrpd0" path="res://gun.tscn" id="2_tdg3f"]
 [ext_resource type="AudioStream" uid="uid://8iccnkcb310w" path="res://Hitsound.wav" id="3_cxr5p"]
+[ext_resource type="PackedScene" uid="uid://dcwoh2ee3wly2" path="res://shotgun.tscn" id="3_dtqjt"]
+[ext_resource type="PackedScene" uid="uid://dgonpuubl7xqa" path="res://sniper.tscn" id="4_5ncpa"]
 [ext_resource type="AudioStream" uid="uid://cklt78jqh12d7" path="res://critical-hit-sounds-effect.mp3" id="4_tdg3f"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_0rwas"]
@@ -42,9 +44,9 @@ properties/2/path = NodePath("Head:rotation")
 properties/2/spawn = true
 properties/2/replication_mode = 1
 
-[node name="Player" type="CharacterBody3D" unique_id=1040195153 node_paths=PackedStringArray("default_guns")]
+[node name="Player" type="CharacterBody3D" unique_id=1040195153 node_paths=PackedStringArray("guns")]
 script = ExtResource("1_xhfnw")
-default_guns = [NodePath("Head/GunSocket/Gun")]
+guns = [NodePath("Head/GunSocket/Gun"), NodePath("Head/GunSocket/Shotgun"), NodePath("Head/GunSocket/Sniper")]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=2097299770]
 shape = SubResource("CapsuleShape3D_0rwas")
@@ -70,6 +72,10 @@ transform = Transform3D(0.9999999, 0, 0, 0, 1, 0, 0, 0, 1.0000001, 0, 0, 0)
 [node name="Gun" parent="Head/GunSocket" unique_id=235050932 instance=ExtResource("2_tdg3f")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0028017762, 0, 0.0015054939)
 crit = 3.0
+
+[node name="Shotgun" parent="Head/GunSocket" unique_id=345758277 instance=ExtResource("3_dtqjt")]
+
+[node name="Sniper" parent="Head/GunSocket" unique_id=1410220767 instance=ExtResource("4_5ncpa")]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1728018687]
 

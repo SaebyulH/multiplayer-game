@@ -11,5 +11,5 @@ rocket_speed = 1.0
 explosion_damage = 50
 explosion_radius = 4.0
 
-[node name="Node3D" parent="." index="4" unique_id=890904197]
-transform = Transform3D(0.5364109, 0, 0, 0, 0.5364109, 0, 0, 0, 0.5364109, 0, -0.17848764, -0.16163851)
+[node name="Node3D" parent="." index="3" unique_id=890904197]
+transform = Transform3D(0.5364109, 0, 0, 0, 0.5364109, 0, 0, 0, 0.5364109, 0.2729211, -0.44274676, -1.008683)

@@ -2,6 +2,9 @@
 
 [ext_resource type="Script" uid="uid://iefbpqgwinon" path="res://game.gd" id="1_80nbo"]
 [ext_resource type="Texture2D" uid="uid://mnu41vwdqady" path="res://citrus_orchard_road_puresky_1k.exr" id="2_e2o6t"]
+[ext_resource type="PackedScene" uid="uid://d4muho47bxamc" path="res://weapon_crate.tscn" id="3_fc0e3"]
+[ext_resource type="PackedScene" uid="uid://dgonpuubl7xqa" path="res://sniper.tscn" id="4_7jktm"]
+[ext_resource type="PackedScene" uid="uid://dcwoh2ee3wly2" path="res://shotgun.tscn" id="5_7jktm"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_feb5d"]
 panorama = ExtResource("2_e2o6t")
@@ -301,3 +304,11 @@ size = Vector3(7, 3, 11.876953)
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 5.1502514, 13.205529, -7.766083)
 operation = 2
 size = Vector3(7, 3, 11.876953)
+
+[node name="WeaponCrate" parent="." unique_id=1565253267 instance=ExtResource("3_fc0e3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.4333253, -4.499867, 22.493069)
+weapon_scene = ExtResource("4_7jktm")
+
+[node name="WeaponCrate2" parent="." unique_id=646274889 instance=ExtResource("3_fc0e3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.975807, 5.866015, -13.868524)
+weapon_scene = ExtResource("5_7jktm")
