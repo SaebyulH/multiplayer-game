@@ -310,3 +310,9 @@ func set_position_on_all(pos: Vector3):
 
 func _die():
 	health = MAX_HEALTH
+	
+	# Tell the server to respawn us
+	var game = get_parent()
+	game.respawn_player.rpc_id(1, name.to_int())
+	health = MAX_HEALTH
+	
