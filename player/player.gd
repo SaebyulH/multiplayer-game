@@ -5,7 +5,14 @@ class_name Player
 var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
 const JUMP_VELOCITY: float = 5.5
 # CS-like movement tuning
-const MAX_SPEED := 7.0
+const MAX_SPEED := 5.5
+
+
+# add near the top with other vars
+var speed_multiplier := 1.0
+const SHOOT_SLOW = 0.2
+const SHOOT_SLOW_RECOVERY = 2.0  # how fast it recovers per second
+
 const ACCEL := 20.0
 const AIR_ACCEL := 4.0
 const FRICTION := 7.0
@@ -201,7 +208,9 @@ func _physics_process(delta):
 			velocity.y = 0
 
 	var wish_dir = movement_direction
-	var wish_speed = MAX_SPEED
+	# recover speed multiplier over time
+	speed_multiplier = move_toward(speed_multiplier, 1.0, SHOOT_SLOW_RECOVERY * delta)
+	var wish_speed = MAX_SPEED * speed_multiplier
 
 	if is_on_floor():
 		_apply_friction(delta)
@@ -264,7 +273,9 @@ func get_movement_direction() -> Vector3:
 
 func _shoot():
 	if current_gun:
+		speed_multiplier = SHOOT_SLOW
 		current_gun.shoot(self)
+	
 
 @rpc("any_peer", "call_local", "reliable")
 func take_damage(amount: int, shooter_id: int):
