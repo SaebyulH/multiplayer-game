@@ -329,6 +329,7 @@ func set_position_on_all(pos: Vector3):
 
 func _die():
 	guns = default_guns
+	equip_gun(0)
 	health = MAX_HEALTH
 	_update_hud()
 	var game = get_parent()
