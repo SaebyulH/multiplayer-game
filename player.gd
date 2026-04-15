@@ -79,6 +79,7 @@ func equip_gun(index: int):
 	_update_hud()
 
 func _ready():
+	add_to_group("players")
 	# Hide own model only for the owning client
 	if is_multiplayer_authority():
 		mesh.visible = false
