@@ -13,17 +13,6 @@ emission_energy_multiplier = 7.31
 radius = 0.135
 height = 1.5
 
-[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_okkp5"]
-properties/0/path = NodePath("Muzzle/MuzzleFlash:emitting")
-properties/0/spawn = true
-properties/0/replication_mode = 1
-properties/1/path = NodePath(".:visible")
-properties/1/spawn = true
-properties/1/replication_mode = 1
-properties/2/path = NodePath("AnimationPlayer:current_animation")
-properties/2/spawn = true
-properties/2/replication_mode = 1
-
 [sub_resource type="Animation" id="Animation_okkp5"]
 length = 0.001
 tracks/0/type = "value"
@@ -112,6 +101,17 @@ _data = {
 &"shoot": SubResource("Animation_pyhkq")
 }
 
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_okkp5"]
+properties/0/path = NodePath(".:visible")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+properties/1/path = NodePath("AnimationPlayer:current_animation")
+properties/1/spawn = true
+properties/1/replication_mode = 1
+properties/2/path = NodePath("Muzzle/MuzzleFlash:emitting")
+properties/2/spawn = true
+properties/2/replication_mode = 1
+
 [node name="Sniper" type="Node3D" unique_id=345758277 node_paths=PackedStringArray("arms")]
 script = ExtResource("1_6jcko")
 damage = 55
@@ -147,10 +147,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.21198845, -0.35889378, -2.3
 
 [node name="MuzzleFlash" parent="Muzzle" unique_id=1165541235 instance=ExtResource("3_okkp5")]
 
-[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="." unique_id=291804428]
-replication_config = SubResource("SceneReplicationConfig_okkp5")
-
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1601208900]
 libraries/ = SubResource("AnimationLibrary_r8j6d")
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="." unique_id=342505910]
+replication_config = SubResource("SceneReplicationConfig_okkp5")
 
 [editable path="Leader _50"]
