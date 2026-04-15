@@ -11,7 +11,7 @@ const FRICTION := 7.0
 const STOP_SPEED := 2.5
 var coyote_timer := 0.0
 @export var default_guns: Array[Gun] = []
-var guns: Array[Gun] = default_guns
+@export var guns: Array[Gun] = []
 
 var current_gun_index := 0
 var current_gun: Gun

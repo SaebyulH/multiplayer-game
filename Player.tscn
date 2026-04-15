@@ -54,9 +54,10 @@ properties/6/path = NodePath("Head/GunSocket/Shotgun:visible")
 properties/6/spawn = true
 properties/6/replication_mode = 1
 
-[node name="Player" type="CharacterBody3D" unique_id=1040195153 node_paths=PackedStringArray("default_guns")]
+[node name="Player" type="CharacterBody3D" unique_id=1040195153 node_paths=PackedStringArray("default_guns", "guns")]
 script = ExtResource("1_xhfnw")
 default_guns = [NodePath("Head/GunSocket/Gun")]
+guns = [NodePath("Head/GunSocket/Gun")]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=2097299770]
 shape = SubResource("CapsuleShape3D_0rwas")
