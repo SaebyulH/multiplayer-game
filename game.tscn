@@ -42,7 +42,7 @@ _spawnable_scenes = PackedStringArray("uid://dbiptpnc576os")
 spawn_path = NodePath("..")
 
 [node name="HostPosition" type="Node3D" parent="." unique_id=1158607876]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18.083626, -2.2020383, 38.799667)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.988104, -2.2020383, 38.799667)
 
 [node name="ClientPosition" type="Node3D" parent="." unique_id=144583522]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 27.36943, -2.6308784, 37.089996)
