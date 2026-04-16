@@ -81,6 +81,7 @@ func equip_gun(index: int):
 	_update_hud()
 
 func _ready():
+	$CanvasLayer/MultiplayerLabel.text = str(multiplayer.get_unique_id())
 	# Hide own model only for the owning client
 	if is_multiplayer_authority():
 		mesh.visible = false

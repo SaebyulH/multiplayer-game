@@ -148,6 +148,14 @@ offset_bottom = 45.0
 theme_override_font_sizes/font_size = 44
 text = "Kills: 0"
 
+[node name="MultiplayerLabel" type="Label" parent="CanvasLayer" unique_id=934115000]
+offset_left = 160.0
+offset_top = 85.0
+offset_right = 976.0
+offset_bottom = 146.0
+theme_override_font_sizes/font_size = 44
+text = "HOST/CLIENT"
+
 [node name="Items" type="VBoxContainer" parent="CanvasLayer" unique_id=766239787]
 anchors_preset = 9
 anchor_bottom = 1.0

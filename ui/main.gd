@@ -3,7 +3,7 @@ extends Control
 const PORT = 7000
 const MAX_CLIENTS = 10
 const GAME_SCENE = "res://world/game.tscn"
-
+var peer : ENetMultiplayerPeer
 @onready var address_input = $VBoxContainer/AddressInput
 @onready var ip_label = $VBoxContainer/IPLabel
 func _ready():
@@ -21,7 +21,7 @@ func _ready():
 	multiplayer.peer_connected.connect(_on_peer_connected)
 
 func _on_HostButton_pressed():
-	var peer = ENetMultiplayerPeer.new()
+	peer = ENetMultiplayerPeer.new()
 	var err = peer.create_server(PORT, MAX_CLIENTS)
 	if err != OK:
 		print("Failed to create server: ", err)
@@ -35,7 +35,7 @@ func _on_JoinButton_pressed():
 	var address = address_input.text
 	if address == "":
 		address = "127.0.0.1"
-	var peer = ENetMultiplayerPeer.new()
+	peer = ENetMultiplayerPeer.new()
 	var err = peer.create_client(address, PORT)
 	if err != OK:
 		print("Failed to connect: ", err)
