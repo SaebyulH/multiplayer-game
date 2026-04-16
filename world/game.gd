@@ -9,7 +9,7 @@ func spawn_rocket(shooter_id: int, spawn_transform: Transform3D):
 	var rocket = ROCKET_SCENE.instantiate()
 	rocket.shooter_id = shooter_id
 	# Push spawn point forward so it clears the camera/player
-	spawn_transform.origin += -spawn_transform.basis.z * 1.5
+	#spawn_transform.origin += -spawn_transform.basis.z * 1.5
 	rocket.global_transform = spawn_transform
 	$Rockets.add_child(rocket)
 	

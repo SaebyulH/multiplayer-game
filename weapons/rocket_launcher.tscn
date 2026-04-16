@@ -3,9 +3,30 @@
 [ext_resource type="PackedScene" uid="uid://d3a25xx4xrpd0" path="res://weapons/gun.tscn" id="1_vfvja"]
 [ext_resource type="Script" uid="uid://2v0i2ajtkome" path="res://weapons/rocket_launcher.gd" id="2_f4skl"]
 
+[sub_resource type="CylinderMesh" id="CylinderMesh_a5eyy"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_a5eyy"]
+albedo_color = Color(0.44291076, 0.44291076, 0.44291073, 1)
+
 [node name="RocketLauncher" unique_id=345758277 instance=ExtResource("1_vfvja")]
 script = ExtResource("2_f4skl")
 damage = 100
 crit = 1.0
-fire_rate = 1.0
-mag_size = 4
+fire_rate = 0.75
+
+[node name="Muzzle" parent="." index="1" unique_id=775387590]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.52010125, -0.1302099, -1.2772977)
+
+[node name="Sketchfab_Scene" parent="Node3D" parent_id_path=PackedInt32Array(890904197) index="0" unique_id=925269606]
+visible = false
+
+[node name="MeshInstance3D" parent="Node3D" parent_id_path=PackedInt32Array(890904197) index="1" unique_id=1361813219]
+transform = Transform3D(1.074467, -0.03699548, -7.0170922e-09, 5.3660187e-09, -4.807317e-08, 1.0751036, -0.036995478, -1.074467, -4.7860063e-08, 0.18856806, -0.13637888, 0.90445095)
+
+[node name="MeshInstance3D4" parent="Node3D" parent_id_path=PackedInt32Array(890904197) index="2" unique_id=872058312]
+transform = Transform3D(0.88313085, 0.6131292, 2.300819e-08, 5.366011e-09, -4.8073172e-08, 1.0751036, 0.61312914, -0.8831308, -4.254936e-08, -0.33130908, -0.0852654, 0.6501233)
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Node3D" parent_id_path=PackedInt32Array(890904197) index="3" unique_id=199736730]
+transform = Transform3D(0.44608796, 0, 0, 0, -4.6687926e-08, 0.4460878, 0, -1.0680951, -1.9499119e-08, 0.27353352, 0.14773712, 0.64084375)
+mesh = SubResource("CylinderMesh_a5eyy")
+surface_material_override/0 = SubResource("StandardMaterial3D_a5eyy")

@@ -18,6 +18,8 @@ scale_curve = SubResource("CurveTexture_k4mlb")
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_k4mlb"]
 transparency = 1
 albedo_texture = ExtResource("1_3x5r1")
+emission_enabled = true
+emission = Color(0.62595284, 0.48028165, 0.29328406, 1)
 billboard_mode = 3
 billboard_keep_scale = true
 particles_anim_h_frames = 1

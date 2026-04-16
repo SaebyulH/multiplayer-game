@@ -3,7 +3,10 @@
 [ext_resource type="Script" uid="uid://dty7vrfihnwb7" path="res://weapons/rocket.gd" id="1_fj03e"]
 [ext_resource type="PackedScene" uid="uid://bbc31s7tdy1pq" path="res://weapons/effects/muzzle_flash.tscn" id="2_p4dla"]
 
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_csmyn"]
+[sub_resource type="CylinderMesh" id="CylinderMesh_p4dla"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_i4ig0"]
+top_radius = 0.0
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_csmyn"]
 
@@ -33,13 +36,34 @@ scale_min = 10.0
 scale_max = 47.55
 scale_curve = SubResource("CurveTexture_k4mlb")
 
+[sub_resource type="SphereMesh" id="SphereMesh_p4dla"]
+radius = 5.0
+height = 10.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_p4dla"]
+transparency = 1
+albedo_color = Color(1, 0.6156863, 0.39215687, 0.59607846)
+
 [node name="Rocket" type="RigidBody3D" unique_id=1078177365]
 collision_layer = 4
+gravity_scale = 0.0
 script = ExtResource("1_fj03e")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=739616246]
 transform = Transform3D(0.27459675, 0, 0, 0, -1.2003005e-08, 0.27459675, 0, -0.27459675, -1.2003005e-08, 0, 0, 0)
-mesh = SubResource("CapsuleMesh_csmyn")
+mesh = SubResource("CylinderMesh_p4dla")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="MeshInstance3D" unique_id=1977596837]
+transform = Transform3D(0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, 0, 1.9923128, 8.708676e-08)
+mesh = SubResource("CylinderMesh_i4ig0")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="MeshInstance3D" unique_id=1248236730]
+transform = Transform3D(0.17364863, 0, 0, 0, 1.6379384, -7.1054274e-15, 0, 7.1054274e-15, 1.6379384, 0, -0.08073963, -3.5292413e-09)
+mesh = SubResource("CylinderMesh_i4ig0")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="MeshInstance3D" unique_id=246376576]
+transform = Transform3D(-7.590422e-09, -7.159654e-08, 1.6379383, 7.5904225e-09, 1.6379384, 7.1596546e-08, -0.17364863, 7.159656e-08, -7.159656e-08, 0, -0.08073963, -3.5292413e-09)
+mesh = SubResource("CylinderMesh_i4ig0")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=480811557]
 transform = Transform3D(0.3356492, 0, 0, 0, -1.4671692e-08, 0.3356492, 0, -0.3356492, -1.4671692e-08, 0, 0, 0)
@@ -49,6 +73,12 @@ shape = SubResource("CapsuleShape3D_csmyn")
 replication_config = SubResource("SceneReplicationConfig_lrh38")
 
 [node name="Explosion" parent="." unique_id=1165541235 instance=ExtResource("2_p4dla")]
+amount = 1
 lifetime = 1.0
 explosiveness = 0.9
 process_material = SubResource("ParticleProcessMaterial_p4dla")
+
+[node name="Radius" type="MeshInstance3D" parent="." unique_id=924140110]
+visible = false
+mesh = SubResource("SphereMesh_p4dla")
+surface_material_override/0 = SubResource("StandardMaterial3D_p4dla")
