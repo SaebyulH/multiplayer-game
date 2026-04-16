@@ -62,6 +62,9 @@ var is_reloading = false
 @onready var kill_sound = $KillSound
 
 @onready var gun_socket = $Head/GunSocket
+@rpc("any_peer", "call_local")
+func apply_knockback(force: Vector3):
+	velocity += force
 func equip_gun(index: int):
 	for gun in guns:
 		gun.hide()

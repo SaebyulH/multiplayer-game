@@ -21,7 +21,7 @@ func shoot(player: Player):
 	if player.is_multiplayer_authority():
 		_request_rocket.rpc_id(1,
 			player.get_multiplayer_authority(),
-			global_transform
+			player.camera.global_transform
 		)
 
 @rpc("any_peer", "call_local", "reliable")
